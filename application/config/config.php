@@ -1,10 +1,10 @@
-<?php
+﻿<?php
 return array(
 	'defines'=>array(
 		'admin_email'=>'mgaghdam@gmail.com',
 		'ostan' => 2,//ag
 	),
-	'homeUrl'=>'http://localhost/qmb/',
+	'homeUrl'=>'/qmb/',
 	'appName'=>'سامانه مدیریت منابع انسانی یاغیش- نسخه ۱.۱',
 	'language'=>'persian',
 	'debug'=>FALSE,
