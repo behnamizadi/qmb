@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 return array(
 	'defines'=>array(
 		'admin_email'=>'mgaghdam@gmail.com',
