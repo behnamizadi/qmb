@@ -1,1 +1,1 @@
-xcopy /e /y * d:\xampp\htdocs\qmb\
+xcopy /e /y d:\projects\qmb\* d:\xampp\htdocs\qmb\

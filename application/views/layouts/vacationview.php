@@ -5,6 +5,8 @@
 <meta name="language" content="fa" />
 <link rel="stylesheet" type="text/css" href="<?php $path=PHP40::get()->homeUrl; echo $path; ?>public/css/print.css"  />
 <script type="text/javascript" src="<?php  echo $path;?>public/jscript/print.js"></script>
+<script type="text/javascript" src="<?php  echo $path;?>public/jscript/jquery-1.8.3.min.js"></script>
+<script src="<?php echo $path;?>public/jscript/focus.js"></script>
 <title>خلاصه مرخصی</title>
 </head>
 <body>

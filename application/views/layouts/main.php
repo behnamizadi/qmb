@@ -4,6 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="language" content="fa" />
 <link rel="stylesheet" type="text/css" href="<?php $path=PHP40::get()->homeUrl; echo $path; ?>public/css/main.css"  />
+<script type="text/javascript" src="<?php  echo $path;?>public/jscript/jquery-1.8.3.min.js"></script>
+<script src="<?php echo $path;?>public/jscript/focus.js"></script>
 <title>سامانه مدیریت منابع انسانی یاغیش- نسخه ۱</title>
 </head>
 <body>
