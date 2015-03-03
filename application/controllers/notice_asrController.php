@@ -20,6 +20,7 @@ class notice_asrController {
 	}
 
 	public function manage() {
+		$h=FALSE;
 		if (CUrl::segment(3) === 'print')
 			$h = TRUE;
 		$i = "SELECT tbl_notice_asr.code,tbl_notice_asr.date_end,tbl_branch.name FROM tbl_notice_asr,tbl_branch   
