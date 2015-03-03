@@ -6,8 +6,8 @@ class reportController {
 		$c = $b -> queryAll($a, TRUE);
 		$d = new CView;
 		$e = new Ostan;
-		$d -> title = '&#1711;&#1586;&#1575;&#1585;&#1588; &#1605;&#1602;&#1575;&#1591;&#1593; &#1578;&#1581;&#1589;&#1740;&#1604;&#1740; &#1705;&#1575;&#1585;&#1705;&#1606;&#1575;&#1606; &#1576;&#1575;&#1606;&#1705; &#1602;&#1585;&#1590;&#8204;&#1575;&#1604;&#1581;&#1587;&#1606;&#1607; &#1605;&#1607;&#1585; &#1575;&#1740;&#1585;&#1575;&#1606;- ' . $e -> getName();
-		if (!is_array($c)) {$d -> error = '&#1605;&#1608;&#1585;&#1583;&#1740; &#1740;&#1575;&#1601;&#1578; &#1606;&#1588;&#1583;.';
+		$d -> title = 'گزارش مقاطع تحصیلی کارکنان بانک قرض‌الحسنه مهر ایران- ' . $e -> getName();
+		if (!is_array($c)) {$d -> error = 'موردی یافت نشد.';
 			$d -> run();
 		}$f = array(
 			'زیردیپلم' => 0,
@@ -86,8 +86,8 @@ class reportController {
                 graph.title = "Income";
                 graph.valueField = "income";
                 graph.type = "column";
-                graph.balloonText = "&#1605;&#1602;&#1591;&#1593; [[category]]:[[value]] &#1606;&#1601;&#1585;";
-		graph.labelText = "[[value]] &#1606;&#1601;&#1585;";
+                graph.balloonText = "مقطع [[category]]:[[value]] نفر";
+		graph.labelText = "[[value]] نفر";
                 graph.lineAlpha = 0;
                 graph.fillColors = "#bf1c25";
                 graph.fillAlphas = 1;
@@ -101,7 +101,7 @@ class reportController {
 			$l = new User;
 			$d -> producer = $l -> producer();
 		} else {$d -> layout = 'chart';
-			$d -> pb = '<center><p>' . CUrl::createLink('&#1606;&#1587;&#1582;&#1607; &#1670;&#1575;&#1662;&#1740;', 'report/study_degree/print', 'class="box" target="_blank"') . '</p></center>';
+			$d -> pb = '<center><p>' . CUrl::createLink('نسخه چاپی', 'report/study_degree/print', 'class="box" target="_blank"') . '</p></center>';
 		}$d -> script = $h;
 		$d -> run();
 	}
@@ -112,8 +112,8 @@ SELECT tbl_carrier.clerk_id FROM tbl_carrier WHERE  tbl_carrier.job_status='1' A
 		$c = $b -> queryAll($a, TRUE);
 		$d = new CView;
 		$e = new Ostan;
-		$d -> title = '&#1608;&#1590;&#1593;&#1740;&#1578; &#1578;&#1575;&#1607;&#1604; &#1705;&#1575;&#1585;&#1705;&#1606;&#1575;&#1606; &#1576;&#1575;&#1606;&#1705; &#1602;&#1585;&#1590;&#8204;&#1575;&#1604;&#1581;&#1587;&#1606;&#1607; &#1605;&#1607;&#1585; &#1575;&#1740;&#1585;&#1575;&#1606;- ' . $e -> getName();
-		if (!is_array($c)) {$d -> error = '&#1605;&#1608;&#1585;&#1583;&#1740; &#1740;&#1575;&#1601;&#1578; &#1606;&#1588;&#1583;.';
+		$d -> title = 'وضعیت تاهل کارکنان بانک قرض‌الحسنه مهر ایران- ' . $e -> getName();
+		if (!is_array($c)) {$d -> error = 'موردی یافت نشد.';
 			$d -> run();
 		}$f = array(
 			'مجرد'=>0,
@@ -173,8 +173,8 @@ SELECT tbl_carrier.clerk_id FROM tbl_carrier WHERE  tbl_carrier.job_status='1' A
                 graph.title = "Income";
                 graph.valueField = "income";
                 graph.type = "column";
-                graph.balloonText = "[[category]]:[[value]] &#1606;&#1601;&#1585;";
-		graph.labelText = "[[value]] &#1606;&#1601;&#1585;";
+                graph.balloonText = "[[category]]:[[value]] نفر";
+		graph.labelText = "[[value]] نفر";
                 graph.lineAlpha = 0;
                 graph.fillColors = "#bf1c25";
                 graph.fillAlphas = 1;
@@ -188,7 +188,7 @@ SELECT tbl_carrier.clerk_id FROM tbl_carrier WHERE  tbl_carrier.job_status='1' A
 			$l = new User;
 			$d -> producer = $l -> producer();
 		} else {$d -> layout = 'chart';
-			$d -> pb = '<center><p>' . CUrl::createLink('&#1606;&#1587;&#1582;&#1607; &#1670;&#1575;&#1662;&#1740;', 'report/married/print', 'class="box" target="_blank"') . '</p></center>';
+			$d -> pb = '<center><p>' . CUrl::createLink('نسخه چاپی', 'report/married/print', 'class="box" target="_blank"') . '</p></center>';
 		}$d -> script = $h;
 		$d -> run();
 	}
@@ -205,7 +205,7 @@ SELECT tbl_carrier.clerk_id FROM tbl_carrier WHERE  tbl_carrier.job_status='1' A
 			foreach ($n as $q) {$p[$q['geo']] = $q['COUNT(tbl_branch.code)'];
 			}
 		}
-		if (empty($p)) {$d -> error = '&#1605;&#1608;&#1585;&#1583;&#1740; &#1740;&#1575;&#1601;&#1578; &#1606;&#1588;&#1583;!';
+		if (empty($p)) {$d -> error = 'موردی یافت نشد!';
 			$d -> run();
 		}$a = "SELECT COUNT(tbl_carrier.clerk_id),geo FROM tbl_branch,tbl_carrier 
 		WHERE tbl_branch.code=tbl_carrier.branch_id AND tbl_carrier.now_c='1' AND tbl_carrier.job_status='1' AND hokm_type <> 8 GROUP BY tbl_branch.geo";
@@ -222,7 +222,7 @@ SELECT tbl_carrier.clerk_id FROM tbl_carrier WHERE  tbl_carrier.job_status='1' A
 		tbl_branch.code=tbl_degree.branch_code AND degree_start='1393' GROUP BY geo,degree";
 		$d -> degreeCount = $b -> queryAll($a, TRUE);
 		$e = new Ostan;
-		$v = '&#1711;&#1586;&#1575;&#1585;&#1588; &#1580;&#1575;&#1605;&#1593; &#1570;&#1605;&#1575;&#1585; &#1662;&#1585;&#1587;&#1606;&#1604; &#1705;&#1575;&#1585;&#1705;&#1606;&#1575;&#1606; &#1576;&#1575;&#1606;&#1705; &#1602;&#1585;&#1590;&#8204;&#1575;&#1604;&#1581;&#1587;&#1606;&#1607; &#1605;&#1607;&#1585; &#1575;&#1740;&#1585;&#1575;&#1606;- ' . $e -> getName();
+		$v = 'گزارش جامع آمار پرسنل کارکنان بانک قرض‌الحسنه مهر ایران- ' . $e -> getName();
 		$d -> title = $v;
 		$d -> branchCount = $p;
 		$d -> clerkCount = $s;
@@ -248,7 +248,7 @@ SELECT tbl_carrier.clerk_id FROM tbl_carrier WHERE  tbl_carrier.job_status='1' A
 			$d -> ptitle = '<h1>' . $v . '</h1>';
 			$l = new User;
 			$d -> producer = $l -> producer();
-		} else {$d -> pb = '<center><p>' . CUrl::createLink('&#1606;&#1587;&#1582;&#1607; &#1670;&#1575;&#1662;&#1740;', 'report/shc/print', 'class="box" target="_blank"') . '</p></center>';
+		} else {$d -> pb = '<center><p>' . CUrl::createLink('نسخه چاپی', 'report/shc/print', 'class="box" target="_blank"') . '</p></center>';
 		}$d -> run('report/shc');
 	}
 
@@ -265,9 +265,9 @@ SELECT tbl_carrier.clerk_id FROM tbl_carrier WHERE  tbl_carrier.job_status='1' A
 		$aa -> operations = FALSE;
 		$aa -> counter = TRUE;
 		$aa -> table = 'tbl_clerk';
-		$aa -> headers = array('clerk_number' => array('label' => '&#1705;&#1583; &#1705;&#1575;&#1585;&#1605;&#1606;&#1583;&#1740;'), 'name' => array('label' => '&#1606;&#1575;&#1605;'), 'lastname' => array('label' => '&#1606;&#1575;&#1605; &#1582;&#1575;&#1606;&#1608;&#1575;&#1583;&#1711;&#1740;'), 'date_employed' => array('format' => 'model[CJcalendar,date(Y/m/j,$value)]', 'label' => '&#1578;&#1575;&#1585;&#1740;&#1582; &#1575;&#1587;&#1578;&#1582;&#1583;&#1575;&#1605;'), 'branch_id' => array('format' => 'model[Carrier::comletePlace($value)]', 'label' => '&#1605;&#1581;&#1604; &#1582;&#1583;&#1605;&#1578;'), 'branch_id2' => array('format' => 'type[0:7800]', 'label' => '&#1705;&#1583; &#1605;&#1581;&#1604; &#1582;&#1583;&#1605;&#1578;'), 'post' => array('format' => 'model[Lookup,getById($value,post)]', 'label' => '&#1662;&#1587;&#1578; &#1587;&#1575;&#1586;&#1605;&#1575;&#1606;&#1740;'), 'married' => array('format' => 'type[1:&#1605;&#1580;&#1585;&#1583;,2:&#1605;&#1578;&#1575;&#1607;&#1604;]', 'label' => '&#1608;&#1590;&#1593;&#1740;&#1578; &#1578;&#1575;&#1607;&#1604;'), 'sex' => array('format' => 'type[1:&#1605;&#1585;&#1583;,2:&#1586;&#1606;]', 'label' => '&#1580;&#1606;&#1587;&#1740;&#1578;'));
+		$aa -> headers = array('clerk_number' => array('label' => 'کد کارمندی'), 'name' => array('label' => 'نام'), 'lastname' => array('label' => 'نام خانوادگی'), 'date_employed' => array('format' => 'model[CJcalendar,date(Y/m/j,$value)]', 'label' => 'تاریخ استخدام'), 'branch_id' => array('format' => 'model[Carrier::comletePlace($value)]', 'label' => 'محل خدمت'), 'branch_id2' => array('format' => 'type[0:7800]', 'label' => 'کد محل خدمت'), 'post' => array('format' => 'model[Lookup,getById($value,post)]', 'label' => 'پست سازمانی'), 'married' => array('format' => 'type[1:مجرد,2:متاهل]', 'label' => 'وضعیت تاهل'), 'sex' => array('format' => 'type[1:مرد,2:زن]', 'label' => 'جنسیت'));
 		$d = new CView;
-		$v = '&#1575;&#1591;&#1604;&#1575;&#1593;&#1575;&#1578; &#1580;&#1575;&#1605;&#1593; &#1705;&#1575;&#1585;&#1605;&#1606;&#1583;&#1575;&#1606;';
+		$v = 'اطلاعات جامع کارمندان';
 		if ($m) {$aa -> operations = FALSE;
 			$aa -> noSort = TRUE;
 			$aa -> paginate = FALSE;
@@ -275,7 +275,7 @@ SELECT tbl_carrier.clerk_id FROM tbl_carrier WHERE  tbl_carrier.job_status='1' A
 			$d -> ptitle = "<h1>$v</h1>";
 			$l = new User;
 			$d -> producer = $l -> producer();
-		} else {$d -> pb = '<center><p>' . CUrl::createLink('&#1606;&#1587;&#1582;&#1607; &#1670;&#1575;&#1662;&#1740;', 'report/r2/print', 'class="box" target="_blank"') . '</p></center>';
+		} else {$d -> pb = '<center><p>' . CUrl::createLink('نسخه چاپی', 'report/r2/print', 'class="box" target="_blank"') . '</p></center>';
 		}$d -> grid = $aa -> run();
 		$d -> title = $v;
 		$d -> run();
@@ -293,9 +293,9 @@ FROM tbl_education  WHERE tbl_education.clerk_id=edu.clerk_id) GROUP BY tbl_cler
 		$aa -> operations = FALSE;
 		$aa -> counter = TRUE;
 		$aa -> table = 'tbl_clerk';
-		$aa -> headers = array('clerk_number' => array('label' => '&#1705;&#1583; &#1705;&#1575;&#1585;&#1605;&#1606;&#1583;&#1740;'), 'name' => array('label' => '&#1606;&#1575;&#1605;'), 'lastname' => array('label' => '&#1606;&#1575;&#1605; &#1582;&#1575;&#1606;&#1608;&#1575;&#1583;&#1711;&#1740;'), 'study_degree' => array('format' => 'model[Lookup,getById($value,study_degree)]', 'label' => '&#1605;&#1583;&#1585;&#1705; &#1578;&#1581;&#1589;&#1740;&#1604;&#1740;'), 'study_field' => array('format' => 'model[StudyField,getById($value)]', 'label' => '&#1585;&#1588;&#1578;&#1607; &#1578;&#1581;&#1589;&#1740;&#1604;&#1740;'), 'place' => array('label' => '&#1605;&#1581;&#1604; &#1578;&#1581;&#1589;&#1740;&#1604;'), 'date_get' => array('format' => 'model[Cal,getDate($value,Y)]', 'label' => '&#1578;&#1575;&#1585;&#1740;&#1582; &#1575;&#1582;&#1584; &#1605;&#1583;&#1585;&#1705;'), );
+		$aa -> headers = array('clerk_number' => array('label' => 'کد کارمندی'), 'name' => array('label' => 'نام'), 'lastname' => array('label' => 'نام خانوادگی'), 'study_degree' => array('format' => 'model[Lookup,getById($value,study_degree)]', 'label' => 'مدرک تحصیلی'), 'study_field' => array('format' => 'model[StudyField,getById($value)]', 'label' => 'رشته تحصیلی'), 'place' => array('label' => 'محل تحصیل'), 'date_get' => array('format' => 'model[Cal,getDate($value,Y)]', 'label' => 'تاریخ اخذ مدرک'), );
 		$d = new CView;
-		$v = '&#1575;&#1591;&#1604;&#1575;&#1593;&#1575;&#1578; &#1578;&#1581;&#1589;&#1740;&#1604;&#1740; &#1705;&#1575;&#1585;&#1605;&#1606;&#1583;&#1575;&#1606;';
+		$v = 'اطلاعات تحصیلی کارمندان';
 		if ($m) {$aa -> operations = FALSE;
 			$aa -> noSort = TRUE;
 			$aa -> paginate = FALSE;
@@ -303,7 +303,7 @@ FROM tbl_education  WHERE tbl_education.clerk_id=edu.clerk_id) GROUP BY tbl_cler
 			$d -> ptitle = "<h1>$v</h1>";
 			$l = new User;
 			$d -> producer = $l -> producer();
-		} else {$d -> pb = '<center><p>' . CUrl::createLink('&#1606;&#1587;&#1582;&#1607; &#1670;&#1575;&#1662;&#1740;', 'report/r3/print', 'class="box" target="_blank"') . '</p></center>';
+		} else {$d -> pb = '<center><p>' . CUrl::createLink('نسخه چاپی', 'report/r3/print', 'class="box" target="_blank"') . '</p></center>';
 		}$d -> grid = $aa -> run();
 		$d -> title = $v;
 		$d -> run();
