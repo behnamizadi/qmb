@@ -171,24 +171,24 @@ class clerkController {
 	}
 
 	public function search() {
-		$ii = CUrl::segment(3);
+		$clerkid = CUrl::segment(3);
 		$h = FALSE;
 		if (CUrl::segment(4) === 'print')
 			$h = TRUE;
-		if (!$ii)
+		if (!$clerkid)
 			CUrl::redirect('clerk/index');
 		$jj = new CDetail;
 		$view = new CView;
 		$e = new CDatabase;
 		$e -> setTbl('tbl_profile');
-		$s = $e -> getByPk($ii);
+		$s = $e -> getByPk($clerkid);
 		if ($s) {$jj -> value = $s;
 			$jj -> numberOfColumns = 4;
 			$jj -> headers = array('name', 'lastname', 'father', 'date_born' => array('format' => 'model[Cal,getDate($value)]'), 'city_born', 'city_sodur', 'sh_sh', 'code_melli', 'religion', 'sex' => array('format' => 'type[1:مرد,2:زن]'), 'sarbazi' => array('format' => 'model[Lookup,getById($value,sarbazi)]'), 'married' => array('format' => 'type[1:مجرد,2:متاهل]'), 'tel', 'mobile', 'father_tel', 'takafol', 'address', 'father_address','religion');
 			$view -> profile = $jj -> run();
 		}
 		if ($s -> married == 2) {
-			$j = "SELECT * FROM tbl_spouse WHERE clerk_id='$ii'";
+			$j = "SELECT * FROM tbl_spouse WHERE clerk_id='$clerkid'";
 			$kk = $e -> queryOne($j);
 			if ($kk) {
 				$jj -> value = $kk;
@@ -200,7 +200,7 @@ class clerkController {
 		$e -> setTbl('tbl_employment');
 		
 		//-----------childs
-		$child_query = "SELECT * FROM tbl_child WHERE clerk_id='$ii'";
+		$child_query = "SELECT * FROM tbl_child WHERE clerk_id='$clerkid'";
 		$childs = $e -> queryAll($child_query);
 		if ($childs) {
 			$g = new CGrid;
@@ -214,14 +214,14 @@ class clerkController {
 		//------------end childs
 		
 		
-		$aa = $e -> getByPk($ii);
+		$aa = $e -> getByPk($clerkid);
 		if ($aa) {$jj -> value = $aa;
 			$jj -> numberOfColumns = 4;
 			$jj -> headers = array('hesab', 'bon', 'bimeh', 'date_employed' => array('format' => 'model[Cal,getDate($value)]'), );
 			$view -> employment = $jj -> run();
 		}
 		//------------------------------------
-		$j = "SELECT * FROM tbl_education WHERE clerk_id='$ii' ORDER BY date_get";
+		$j = "SELECT * FROM tbl_education WHERE clerk_id='$clerkid' ORDER BY date_get";
 		$ll = $e -> queryAll($j);
 		if ($ll) {$g = new CGrid;
 			$g -> operations = FALSE;
@@ -231,7 +231,7 @@ class clerkController {
 			}$view -> education = $g -> run();
 		}
 		//---------------------------
-		$j = "SELECT * FROM tbl_carrier WHERE clerk_id='$ii' ORDER BY start";
+		$j = "SELECT * FROM tbl_carrier WHERE clerk_id='$clerkid' ORDER BY start";
 		$mm = $e -> queryAll($j);
 		if ($mm) {$g = new CGrid;
 			$g -> operations = FALSE;
@@ -243,13 +243,13 @@ class clerkController {
 		}
 		$p = new CJcalendar;
 		$current_year = $p -> date('Y', FALSE, FALSE) - 1;
-		$picquery = $e -> queryOne("SELECT date_employed,picture FROM tbl_employment WHERE clerk_id='$ii'");
+		$picquery = $e -> queryOne("SELECT date_employed,picture FROM tbl_employment WHERE clerk_id='$clerkid'");
 		$view -> picture = $picquery -> picture;
 		
 		//----------------------------------------------------------
 		$ff = array();
 		for ($counter = $current_year - 3; $counter <= $current_year; $counter++) {
-			$j = "SELECT grade,year FROM tbl_evaluation WHERE clerk_id='$ii' AND year='$counter'";
+			$j = "SELECT grade,year FROM tbl_evaluation WHERE clerk_id='$clerkid' AND year='$counter'";
 			$hh = $e -> queryOne($j);
 			if ($hh)
 				$ff[$counter] = $hh -> grade;
@@ -258,14 +258,23 @@ class clerkController {
 		}
 		$view -> evResult = $ff;
 		//----------------------------------------------------------
-		
+		$j = "SELECT COUNT(*) FROM tbl_training WHERE clerk_id='$clerkid'";
+		$view -> tCount = $e -> countRows($j);
+		$j = "SELECT COUNT(*) FROM tbl_p_p WHERE clerk_id='$clerkid' AND type='1'";
+		$view -> p1Count = $e -> countRows($j);
+		$j = "SELECT COUNT(*) FROM tbl_p_p WHERE clerk_id='$clerkid' AND type='2'";
+		$view -> p2Count = $e -> countRows($j);
+		//----------------------------------------------------------
 		if ($h) {
 			$view -> layout = 'print2';
-			$view -> ptitle = '<h1>گزارش جامع اطلاعات ' . Profile::getName($ii) . '</h1>';
+			$view -> ptitle = '<h1>گزارش جامع اطلاعات ' . Profile::getName($clerkid) . '</h1>';
 			$l = new User;
 			$view -> producer = $l -> producer();
-		} else {$view -> pb = '<center><p>' . CUrl::createLink('نسخه چاپی', 'clerk/search/' . $ii . '/print', 'class="box" target="_blank"') . '</p></center>';
-		}$view -> title = 'گزارش جامع اطلاعات کارمند: ' . Profile::getName($ii);
+		} 
+		else {
+		 	$view -> pb = '<center><p>' . CUrl::createLink('نسخه چاپی', 'clerk/search/' . $clerkid . '/print', 'class="box" target="_blank"') . '</p></center>';
+		}
+		$view -> title = 'گزارش جامع اطلاعات کارمند: ' . Profile::getName($clerkid);
 		$view -> run('clerk/search');
 	}
 

@@ -69,5 +69,18 @@ endif;
 		<?php endforeach; ?>
 		</tr>
         </table>
+<h3>سایر</h3>
+<table class="clist">
+	<tr>
+		<th class="grid_th">تعداد تشویق</th>
+		<th class="grid_th">تعداد تنبیه</th>
+		<th class="grid_th">تعداد دوره های گذرانده</th>
+	</tr>
+	<tr>
+		<td><?php echo $p1Count; ?></td>
+		<td><?php echo $p2Count; ?></td>
+		<td><?php echo $tCount; ?></td>
+	</tr>
+</table>      
 <?php if(isset($pb)) echo $pb; ?>
 <?php if(isset($producer)) echo $producer; ?>
