@@ -1,4 +1,5 @@
 <?php if(isset($ptitle)) echo $ptitle; ?>
+<img src="<?php $path=PHP40::get()->homeUrl;echo $path; ?>pics/<?php echo $picture; ?>" alt="عکس پرسنلی" width="100"  style="float:left" align="middle" style="display: inline" />
 <?php
 if(isset($profile)):
 ?>

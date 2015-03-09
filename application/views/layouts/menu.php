@@ -61,7 +61,7 @@
         </ul></li>
         <li class="topmenu"><a href="#" style="height:17px;line-height:17px;"><span>مدیریت کارمندان</span></a>
         <ul>
-            <li><a href="<?php echo $path; ?>index.php/clerk/add">ثبت کارمند</a></li>
+            <li><a href="<?php echo $path; ?>index.php/clerk/add">ثبت کارمند جدید</a></li>
             <li><a href="<?php echo $path; ?>index.php/clerk/manage">لیست کارمندان</a></li>
             <li><a href="<?php echo $path; ?>index.php/clerk/index/view">خلاصه وضعیت</a></li>
             <li><a href="<?php echo $path; ?>index.php/clerk/index">گزارش جامع اطلاعات کارمند</a></li>

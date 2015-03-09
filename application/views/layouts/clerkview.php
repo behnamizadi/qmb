@@ -38,6 +38,7 @@
             <tr>
             	<td>تاریخ استخدام: <?php echo $dateEmployed ; ?></td>
                 <td>سابقه بانکی: <?php echo $timeEmployed ; ?></td>
+                <td>مذهب: <?php echo $profile->religion; ?></td>
             </tr>
             <tr>
                 <td colspan="2">محل خدمت سازمانی: <?php echo $jobPlace; ?></td>
@@ -51,7 +52,7 @@
         <table class="clist">
 		<tr>
 		<?php foreach($evResult as $year=>$grade): ?>
-			<th class="grid_th">سال <? echo $year; ?></th>
+			<th class="grid_th">سال <?php echo $year; ?></th>
 		<?php endforeach; ?>
 		</tr>
 		<tr>
