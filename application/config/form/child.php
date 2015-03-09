@@ -7,7 +7,7 @@ $f = $a -> getAll('job_status');
 $g = $a -> getAll('hokm_type');
 $h = new Branch;
 $i = $h -> getByOstan();
-return array('index' => array('<p><label for="clerk_number">شماره کارمندی<span class="error">*</span></label>', 
+return array('index' => array('<p><label for="clerk_number">کد پرسنلی<span class="error">*</span></label>', 
 'clerk_number' => array('type' => 'text', 'in' => 'class="txt" maxLength="25"', 'validation' => array('required,number'), 'decoration' => FALSE), 
 'search' => array('type' => 'button', 'value' => '...', 'decoration' => FALSE),'</p>',
   'submit' => array('type' => 'submit','in' => 'class="box"', 'value' => 'مرحله بعد')),

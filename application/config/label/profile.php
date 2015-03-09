@@ -3,7 +3,7 @@ return array(
        '*'=>array(
          'name'=>'نام',
         'lastname'=>'نام خانوادگی',
-        'clerk_number'=>'شماره کارمندی',
+        'clerk_number'=>'کد پرسنلی',
         'father'=>'نام پدر',
         'sh_sh'=>'شماره شناسنامه',
         'code_melli'=>'کد ملی',

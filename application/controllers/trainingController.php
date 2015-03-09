@@ -4,7 +4,7 @@ class trainingController {
 		$b = new CForm;
 		if (isset($_POST['submit'])) {$c = new Clerk;
 			$d = $c -> getId($_POST['clerk_number']);
-			if (!$d) {$b -> setError('clerk_number', '&#1585;&#1705;&#1608;&#1585;&#1583;&#1740; &#1576;&#1575; &#1575;&#1740;&#1606; &#1588;&#1605;&#1575;&#1585;&#1607; &#1705;&#1575;&#1585;&#1605;&#1606;&#1583;&#1740; &#1608;&#1580;&#1608;&#1583; &#1606;&#1583;&#1575;&#1585;&#1583;.');
+			if (!$d) {$b -> setError('clerk_number', 'رکوردی با این کد پرسنلی وجود ندارد.');
 			}
 			if ($b -> validate() == TRUE) {
 				if ($a == 'add')
@@ -14,9 +14,9 @@ class trainingController {
 			}
 		}$e = new CView;
 		if ($a == 'add')
-			$e -> title = '&#1579;&#1576;&#1578; &#1583;&#1608;&#1585;&#1607; &#1570;&#1605;&#1608;&#1586;&#1588;&#1740;';
+			$e -> title = 'ثبت دوره آموزشی';
 		else
-			$e -> title = '&#1583;&#1608;&#1585;&#1607;&#8204;&#1607;&#1575;&#1740; &#1570;&#1605;&#1608;&#1586;&#1588;&#1740; &#1711;&#1584;&#1585;&#1575;&#1606;&#1583;&#1607;';
+			$e -> title = 'دوره‌های آموزشی گذرانده';
 		$e -> form = $b -> run();
 		$e -> layout = 'jquery';
 		$e -> run('clerk/edit');
@@ -29,9 +29,9 @@ class trainingController {
 				CUrl::redirect('training/title/' . $_POST['title']);
 		}$e = new CView;
 		if (CUrl::segment(3) == 2)
-			$e -> title = '&#1583;&#1608;&#1585;&#1607;&#8204;&#1607;&#1575;&#1740; &#1591;&#1740; &#1606;&#1588;&#1583;&#1607; &#1578;&#1608;&#1587;&#1591; &#1705;&#1575;&#1585;&#1605;&#1606;&#1583;';
+			$e -> title = 'دوره‌های طی نشده توسط کارمند';
 		else
-			$e -> title = '&#1711;&#1586;&#1575;&#1585;&#1588; &#1576;&#1585; &#1575;&#1587;&#1575;&#1587; &#1593;&#1606;&#1608;&#1575;&#1606; &#1583;&#1608;&#1585;&#1607;';
+			$e -> title = 'گزارش بر اساس عنوان دوره';
 		$e -> form = $b -> run();
 		$e -> run();
 	}
@@ -53,11 +53,11 @@ class trainingController {
 		$o -> values = $j;
 		$o -> counter = TRUE;
 		$o -> operations = FALSE;
-		$o -> headers = array('clerk_number' => array('label' => '&#1588;&#1605;&#1575;&#1585;&#1607; &#1705;&#1575;&#1585;&#1605;&#1606;&#1583;&#1740;'), 'name' => array('label' => '&#1606;&#1575;&#1605;'), 'lastname' => array('label' => '&#1606;&#1575;&#1605; &#1582;&#1575;&#1606;&#1608;&#1575;&#1583;&#1711;&#1740;'), 'title' => array('format' => 'model[Lookup,getById($value,training)]'), 'period' => array('format' => ' &#1587;&#1575;&#1593;&#1578;'), 'grade', 'date_start' => array('format' => 'model[Cal,getDate($value)]', 'label' => '&#1578;&#1575;&#1585;&#1740;&#1582; &#1588;&#1585;&#1608;&#1593;'), 'branch_id' => array('format' => 'model[Carrier::comletePlace($value)]', 'label' => '&#1605;&#1581;&#1604; &#1582;&#1583;&#1605;&#1578;'), 'branch_id2' => array('format' => 'type[0:7800]', 'label' => '&#1705;&#1583; &#1605;&#1581;&#1604; &#1582;&#1583;&#1605;&#1578;'), );
+		$o -> headers = array('clerk_number' => array('label' => 'کد پرسنلی'), 'name' => array('label' => 'نام'), 'lastname' => array('label' => 'نام خانوادگی'), 'title' => array('format' => 'model[Lookup,getById($value,training)]'), 'period' => array('format' => ' ساعت'), 'grade', 'date_start' => array('format' => 'model[Cal,getDate($value)]', 'label' => 'تاریخ شروع'), 'branch_id' => array('format' => 'model[Carrier::comletePlace($value)]', 'label' => 'محل خدمت'), 'branch_id2' => array('format' => 'type[0:7800]', 'label' => 'کد محل خدمت'), );
 		$e = new CView;
 		$p = new Lookup;
 		$q = $p -> getById($f, 'training');
-		$r = '&#1711;&#1586;&#1575;&#1585;&#1588; &#1576;&#1585; &#1575;&#1587;&#1575;&#1587; &#1593;&#1606;&#1608;&#1575;&#1606; &#1583;&#1608;&#1585;&#1607;: ' . $q;
+		$r = 'گزارش بر اساس عنوان دوره: ' . $q;
 		if ($g) {$o -> operations = FALSE;
 			$o -> noSort = TRUE;
 			$e -> layout = 'print';
@@ -65,7 +65,7 @@ class trainingController {
 			$s = new User;
 			$e -> producer = $s -> producer();
 			$o -> paginate = FALSE;
-		} else {$e -> pb = '<center><p>' . CUrl::createLink('&#1606;&#1587;&#1582;&#1607; &#1670;&#1575;&#1662;&#1740;', 'training/title/' . $f . '/print', 'class="box" target="_blank"') . '</p></center>';
+		} else {$e -> pb = '<center><p>' . CUrl::createLink('نسخه چاپی', 'training/title/' . $f . '/print', 'class="box" target="_blank"') . '</p></center>';
 		}$e -> grid = $o -> run();
 		$e -> title = $r;
 		$e -> run();
@@ -87,11 +87,11 @@ class trainingController {
 		$o -> values = $j;
 		$o -> counter = TRUE;
 		$o -> operations = FALSE;
-		$o -> headers = array('clerk_number' => array('label' => '&#1588;&#1605;&#1575;&#1585;&#1607; &#1705;&#1575;&#1585;&#1605;&#1606;&#1583;&#1740;'), 'name' => array('label' => '&#1606;&#1575;&#1605;'), 'lastname' => array('label' => '&#1606;&#1575;&#1605; &#1582;&#1575;&#1606;&#1608;&#1575;&#1583;&#1711;&#1740;'), 'branch_id' => array('format' => 'model[Carrier::comletePlace($value)]', 'label' => '&#1605;&#1581;&#1604; &#1582;&#1583;&#1605;&#1578;'), 'branch_id2' => array('format' => 'type[0:7800]', 'label' => '&#1705;&#1583; &#1605;&#1581;&#1604; &#1582;&#1583;&#1605;&#1578;'), 'post' => array('format' => 'model[Lookup,getById($value,post)]', 'label' => '&#1662;&#1587;&#1578; &#1587;&#1575;&#1586;&#1605;&#1575;&#1606;&#1740;'), );
+		$o -> headers = array('clerk_number' => array('label' => 'کد پرسنلی'), 'name' => array('label' => 'نام'), 'lastname' => array('label' => 'نام خانوادگی'), 'branch_id' => array('format' => 'model[Carrier::comletePlace($value)]', 'label' => 'محل خدمت'), 'branch_id2' => array('format' => 'type[0:7800]', 'label' => 'کد محل خدمت'), 'post' => array('format' => 'model[Lookup,getById($value,post)]', 'label' => 'پست سازمانی'), );
 		$e = new CView;
 		$p = new Lookup;
 		$q = $p -> getById($f, 'training');
-		$r = '&#1711;&#1586;&#1575;&#1585;&#1588; &#1583;&#1608;&#1585;&#1607; &#1607;&#1575;&#1740; &#1591;&#1740; &#1606;&#1588;&#1583;&#1607;: ' . $q;
+		$r = 'گزارش دوره های طی نشده: ' . $q;
 		if ($g) {$o -> operations = FALSE;
 			$o -> noSort = TRUE;
 			$e -> layout = 'print';
@@ -99,7 +99,7 @@ class trainingController {
 			$s = new User;
 			$e -> producer = $s -> producer();
 			$o -> paginate = FALSE;
-		} else {$e -> pb = '<center><p>' . CUrl::createLink('&#1606;&#1587;&#1582;&#1607; &#1670;&#1575;&#1662;&#1740;', 'training/notitle/' . $f . '/print', 'class="box" target="_blank"') . '</p></center>';
+		} else {$e -> pb = '<center><p>' . CUrl::createLink('نسخه چاپی', 'training/notitle/' . $f . '/print', 'class="box" target="_blank"') . '</p></center>';
 		}$e -> grid = $o -> run();
 		$e -> title = $r;
 		$e -> run();
@@ -114,19 +114,19 @@ class trainingController {
 		$o = new CGrid;
 		$o -> condition = array('clerk_id' => $d);
 		$o -> sort = 'date_start DESC';
-		$o -> headers = array('title' => array('format' => 'model[Lookup,getById($value,training)]'), 'code', 't_cat' => array('format' => 'model[Lookup,getById($value,t_cat)]'), 'date_start' => array('format' => 'model[Cal,getDate($value)]', 'label' => '&#1578;&#1575;&#1585;&#1740;&#1582; &#1588;&#1585;&#1608;&#1593;', 'onEmpty' => '-'), 'date_end' => array('format' => 'model[Cal,getDate($value)]', 'label' => '&#1578;&#1575;&#1585;&#1740;&#1582; &#1662;&#1575;&#1740;&#1575;&#1606;', 'onEmpty' => '-'), 'period' => array('format' => ' &#1587;&#1575;&#1593;&#1578;', ), 'place', 'date_exam' => array('format' => 'model[Cal,getDate($value)]', 'label' => '&#1578;&#1575;&#1585;&#1740;&#1582; &#1570;&#1586;&#1605;&#1608;&#1606;', 'onEmpty' => '-'), 'grade', 'point', 'has_license' => array('format' => 'type[1:&#1583;&#1575;&#1585;&#1583;,2:&#1606;&#1583;&#1575;&#1585;&#1583;]'), 'is_passed' => array('format' => 'type[1:&#1602;&#1576;&#1608;&#1604;,2:&#1585;&#1583;]'), 'description');
-		$o -> operations = array('view' => FALSE, 'edit' => FALSE, 'delete' => FALSE, 'training/edit/$value->id/' . $d => array('icon' => 'public/images/edit.png', 'alt' => '&#1608;&#1740;&#1585;&#1575;&#1740;&#1588;', 'title' => '&#1608;&#1740;&#1585;&#1575;&#1740;&#1588;'), 'training/delete/$value->id/' . $d => array('icon' => 'public/images/delete.png', 'alt' => '&#1581;&#1584;&#1601;', 'title' => '&#1581;&#1584;&#1601;', 'message' => '&#1608;&#1575;&#1602;&#1593;&#1575; &#1605;&#1740;&#8204;&#1582;&#1608;&#1575;&#1740; &#1581;&#1584;&#1601;&#1588; &#1705;&#1606;&#1740;&#1567;'));
+		$o -> headers = array('title' => array('format' => 'model[Lookup,getById($value,training)]'), 'code', 't_cat' => array('format' => 'model[Lookup,getById($value,t_cat)]'), 'date_start' => array('format' => 'model[Cal,getDate($value)]', 'label' => 'تاریخ شروع', 'onEmpty' => '-'), 'date_end' => array('format' => 'model[Cal,getDate($value)]', 'label' => 'تاریخ پایان', 'onEmpty' => '-'), 'period' => array('format' => ' ساعت', ), 'place', 'date_exam' => array('format' => 'model[Cal,getDate($value)]', 'label' => 'تاریخ آزمون', 'onEmpty' => '-'), 'grade', 'point', 'has_license' => array('format' => 'type[1:دارد,2:ندارد]'), 'is_passed' => array('format' => 'type[1:قبول,2:رد]'), 'description');
+		$o -> operations = array('view' => FALSE, 'edit' => FALSE, 'delete' => FALSE, 'training/edit/$value->id/' . $d => array('icon' => 'public/images/edit.png', 'alt' => 'ویرایش', 'title' => 'ویرایش'), 'training/delete/$value->id/' . $d => array('icon' => 'public/images/delete.png', 'alt' => 'حذف', 'title' => 'حذف', 'message' => 'واقعا می‌خوای حذفش کنی؟'));
 		if ($g) {$o -> operations = FALSE;
 			$o -> noSort = TRUE;
 		}$e = new CView;
 		$e -> grid = $o -> run();
 		$e -> c_id = $d;
 		if ($g) {$e -> layout = 'print2';
-			$e -> ptitle = '<h1>&#1583;&#1608;&#1585;&#1607;&#8204;&#1607;&#1575;&#1740; &#1570;&#1605;&#1608;&#1586;&#1588;&#1740; ' . Profile::getName($d) . '</h1>';
+			$e -> ptitle = '<h1>دوره‌های آموزشی ' . Profile::getName($d) . '</h1>';
 			$s = new User;
 			$e -> producer = $s -> producer();
-		} else {$e -> pb = '<center><p>' . CUrl::createLink('&#1606;&#1587;&#1582;&#1607; &#1670;&#1575;&#1662;&#1740;', 'training/summ/' . $d . '/print', 'class="box" target="_blank"') . '</p></center>';
-		}$e -> title = '&#1583;&#1608;&#1585;&#1607;&#8204;&#1607;&#1575;&#1740; &#1570;&#1605;&#1608;&#1586;&#1588;&#1740; ' . Profile::getName($d);
+		} else {$e -> pb = '<center><p>' . CUrl::createLink('نسخه چاپی', 'training/summ/' . $d . '/print', 'class="box" target="_blank"') . '</p></center>';
+		}$e -> title = 'دوره‌های آموزشی ' . Profile::getName($d);
 		$e -> print = $g;
 		$e -> run('training/summ');
 	}
@@ -151,7 +151,7 @@ class trainingController {
 			CUrl::redirect('training/summ/' . $t);
 		}$e = new CView;
 		$e -> form = $b -> run();
-		$e -> title = '&#1579;&#1576;&#1578; &#1583;&#1608;&#1585;&#1607; ' . Profile::getName($t);
+		$e -> title = 'ثبت دوره ' . Profile::getName($t);
 		$e -> run();
 	}
 
@@ -186,7 +186,7 @@ class trainingController {
 			$e -> yex = $u -> date('Y', $z -> date_exam);
 		}$e -> model = $z;
 		$e -> form = $b -> run();
-		$e -> title = '&#1608;&#1740;&#1585;&#1575;&#1740;&#1588; &#1583;&#1608;&#1585;&#1607; ' . Profile::getName($t);
+		$e -> title = 'ویرایش دوره ' . Profile::getName($t);
 		$e -> run();
 	}
 

@@ -95,7 +95,7 @@
         <li class="topmenu"><a href="#" style="height:17px;line-height:17px;"><span>دوره‌های آموزشی</span></a>
         <ul>
         	<li><a href="<?php echo $path; ?>index.php/training/index/add">ثبت دوره</a></li>
-            <li><a href="<?php echo $path; ?>index.php/training/index">گزارش بر اساس شماره کارمندی</a></li>
+            <li><a href="<?php echo $path; ?>index.php/training/index">گزارش بر اساس کد پرسنلی</a></li>
             <li><a href="<?php echo $path; ?>index.php/training/index2">گزارش بر اساس عنوان دوره</a></li>
             <li><a href="<?php echo $path; ?>index.php/training/index2/2">دوره‌های طی نشده توسط کارمند</a></li>
             <!-- <li><a href="<?php echo $path; ?>index.php/training/search">گزارش دوره‌های کارمندان</a></li> -->

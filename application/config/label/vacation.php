@@ -1,7 +1,7 @@
 <?php
 return array(
     'index,addindex'=>array(
-        'clerk_number'=>'شماره کارمندی'
+        'clerk_number'=>'کد پرسنلی'
     ),
     '*'=>array(
         'type'=>'نوع مرخصی',

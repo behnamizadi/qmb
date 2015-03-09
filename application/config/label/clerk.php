@@ -3,7 +3,7 @@ return array(
 	'search'=>array(
 		'name'=>'نام',
         'lastname'=>'نام خانوادگی',
-        'clerk_number'=>'شماره کارمندی',
+        'clerk_number'=>'کد پرسنلی',
         'father'=>'نام پدر',
         'sh_sh'=>'شماره شناسنامه',
         'code_melli'=>'کد ملی',
@@ -38,7 +38,7 @@ return array(
         'date_get'=>'تاریخ اخذ مدرک'
   	),
     '*'=>array(
-        'clerk_number'=>'شماره کارمندی'
+        'clerk_number'=>'کد پرسنلی'
     ),    
 );
 ?>

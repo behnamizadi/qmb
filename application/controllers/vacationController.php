@@ -2,22 +2,22 @@
 class vacationController {
 	public function index() {$a = new CView;
 		if (CUrl::segment(3) == 'add') {$b = new CForm('addindex');
-			$a -> title = '&#1579;&#1576;&#1578; &#1605;&#1585;&#1582;&#1589;&#1740;';
-			$a -> info = '&#1604;&#1591;&#1601;&#1575; &#1576;&#1585;&#1575;&#1740; &#1579;&#1576;&#1578; &#1605;&#1585;&#1582;&#1589;&#1740;&#8204;&#1607;&#1575;&#1740; &#1602;&#1576;&#1604; &#1575;&#1586; &#1587;&#1575;&#1604; &#1777;&#1779;&#1785;&#1778; &#1575;&#1586; &#1602;&#1587;&#1605;&#1578; ' . CUrl::createLink('«&#1579;&#1576;&#1578; &#1605;&#1585;&#1582;&#1589;&#1740; &#1587;&#1575;&#1604;&#1575;&#1606;&#1607;»', 'vacation/index/addyear') . ' &#1575;&#1587;&#1578;&#1601;&#1575;&#1583;&#1607; &#1606;&#1605;&#1575;&#1740;&#1740;&#1583;.';
-		} elseif (CUrl::segment(3) == 'addyear') {$a -> title = '&#1579;&#1576;&#1578; &#1605;&#1585;&#1582;&#1589;&#1740; &#1587;&#1575;&#1604;&#1575;&#1606;&#1607;';
+			$a -> title = 'ثبت مرخصی';
+			$a -> info = 'لطفا برای ثبت مرخصی‌های قبل از سال ۱۳۹۲ از قسمت ' . CUrl::createLink('«ثبت مرخصی سالانه»', 'vacation/index/addyear') . ' استفاده نمایید.';
+		} elseif (CUrl::segment(3) == 'addyear') {$a -> title = 'ثبت مرخصی سالانه';
 			$b = new CForm('addindex2');
-			$a -> info = '&#1575;&#1740;&#1606; &#1602;&#1587;&#1605;&#1578; &#1576;&#1585;&#1575;&#1740; &#1578;&#1587;&#1585;&#1740;&#1593; &#1583;&#1585; &#1579;&#1576;&#1578; &#1605;&#1585;&#1582;&#1589;&#1740;&#8204;&#1607;&#1575;&#1740; &#1587;&#1575;&#1604;&#8204;&#1607;&#1575;&#1740; &#1602;&#1576;&#1604;(&#1602;&#1576;&#1604; &#1575;&#1586; &#1587;&#1575;&#1604; &#1777;&#1779;&#1785;&#1778;) &#1705;&#1607; &#1606;&#1740;&#1575;&#1586;&#1740; &#1576;&#1607; &#1580;&#1586;&#1574;&#1740;&#1575;&#1578;&#1588;&#1575;&#1606; &#1575;&#1581;&#1587;&#1575;&#1587; &#1606;&#1605;&#1740;&#8204;&#1588;&#1608;&#1583;&#1548; &#1591;&#1585;&#1575;&#1581;&#1740; &#1588;&#1583;&#1607; &#1575;&#1587;&#1578;. &#1604;&#1591;&#1601;&#1575; &#1576;&#1585;&#1575;&#1740; &#1579;&#1576;&#1578; &#1605;&#1585;&#1582;&#1589;&#1740; &#1575;&#1605;&#1587;&#1575;&#1604; &#1575;&#1586; ' . CUrl::createLink('«&#1579;&#1576;&#1578; &#1605;&#1585;&#1582;&#1589;&#1740;»', 'vacation/index/add') . ' &#1575;&#1587;&#1578;&#1601;&#1575;&#1583;&#1607; &#1606;&#1605;&#1575;&#1740;&#1740;&#1583;.';
+			$a -> info = 'این قسمت برای تسریع در ثبت مرخصی‌های سال‌های قبل(قبل از سال ۱۳۹۲) که نیازی به جزئیاتشان احساس نمی‌شود، طراحی شده است. لطفا برای ثبت مرخصی امسال از ' . CUrl::createLink('«ثبت مرخصی»', 'vacation/index/add') . ' استفاده نمایید.';
 		} else {$c = new CJcalendar;
-			$a -> title = '&#1711;&#1586;&#1575;&#1585;&#1588; &#1605;&#1585;&#1582;&#1589;&#1740; &#1705;&#1575;&#1585;&#1605;&#1606;&#1583;';
+			$a -> title = 'گزارش مرخصی کارمند';
 			$a -> y = $c -> date('Y', FALSE, FALSE);
 			$b = new CForm();
-			$a -> info = '&#1583;&#1585; &#1589;&#1608;&#1585;&#1578; &#1593;&#1583;&#1605; &#1575;&#1606;&#1578;&#1582;&#1575;&#1576; &#1587;&#1575;&#1604; &#1705;&#1604; &#1605;&#1585;&#1582;&#1589;&#1740;&#8204;&#1607;&#1575;&#1740; &#1705;&#1575;&#1585;&#1605;&#1606;&#1583; &#1606;&#1605;&#1575;&#1740;&#1588; &#1583;&#1575;&#1583;&#1607; &#1582;&#1608;&#1575;&#1607;&#1583; &#1588;&#1583;.';
+			$a -> info = 'در صورت عدم انتخاب سال کل مرخصی‌های کارمند نمایش داده خواهد شد.';
 		}
 		$b -> showFieldErrorText = FALSE;
 		if (isset($_POST['submit'])) {$d = new Clerk;
 			$e = $d -> getId($_POST['clerk_number']);
 			if (!$e) {$b -> showFieldErrorText = TRUE;
-				$b -> setError('clerk_number', '&#1585;&#1705;&#1608;&#1585;&#1583;&#1740; &#1576;&#1575; &#1575;&#1740;&#1606; &#1588;&#1605;&#1575;&#1585;&#1607; &#1705;&#1575;&#1585;&#1605;&#1606;&#1583;&#1740; &#1608;&#1580;&#1608;&#1583; &#1606;&#1583;&#1575;&#1585;&#1583;.');
+				$b -> setError('clerk_number', 'رکوردی با این کد پرسنلی وجود ندارد.');
 			}$f = isset($_POST['year']) ? $_POST['year'] : 0;
 			if ($b -> validate() == TRUE) {
 				if (CUrl::segment(3) == 'add')
@@ -40,7 +40,7 @@ class vacationController {
 		}$c = new CJcalendar;
 		$a -> y = $c -> date('Y', FALSE, FALSE);
 		$a -> form = $b -> run();
-		$a -> title = '&#1711;&#1586;&#1575;&#1585;&#1588; &#1605;&#1585;&#1582;&#1589;&#1740; &#1705;&#1604; &#1705;&#1575;&#1585;&#1705;&#1606;&#1575;&#1606;';
+		$a -> title = 'گزارش مرخصی کل کارکنان';
 		$a -> run();
 	}
 
@@ -56,7 +56,7 @@ class vacationController {
 			$m = $j + $k - 28800;
 			$n = $_POST['description'];
 			if ($_POST['off_day'] > 0)
-				$n .= ' ' . $_POST['off_day'] . ' &#1585;&#1608;&#1586; &#1578;&#1593;&#1591;&#1740;&#1604;&#1740; &#1576;&#1740;&#1606; &#1605;&#1585;&#1582;&#1589;&#1740;';
+				$n .= ' ' . $_POST['off_day'] . ' روز تعطیلی بین مرخصی';
 			$g -> additional = array('date_start' => $j, 'date_end' => $m, 'description' => $n);
 			$g -> update(array('id' => $h));
 			CUrl::redirect('vacation/summ/' . CUrl::segment(4) . '/' . CUrl::segment(5));
@@ -72,12 +72,12 @@ class vacationController {
 	public function search1() {$b = new CForm;
 		$b -> showFieldErrorText = FALSE;
 		$a = new CView;
-		$a -> title = '&#1711;&#1586;&#1575;&#1585;&#1588; &#1605;&#1585;&#1582;&#1589;&#1740;';
-		$a -> info = '&#1576;&#1585;&#1575;&#1740; &#1605;&#1585;&#1582;&#1589;&#1740;&#8204;&#1607;&#1575;&#1740; &#1602;&#1576;&#1604; &#1575;&#1586; &#1587;&#1575;&#1604; &#1777;&#1779;&#1785;&#1778;&#1548; &#1606;&#1608;&#1593; &#1605;&#1585;&#1582;&#1589;&#1740; &#1601;&#1602;&#1591; &#1575;&#1587;&#1578;&#1581;&#1602;&#1575;&#1602;&#1740; &#1583;&#1585; &#1606;&#1592;&#1585; &#1711;&#1585;&#1601;&#1578;&#1607; &#1582;&#1608;&#1575;&#1607;&#1583; &#1588;&#1583;.
+		$a -> title = 'گزارش مرخصی';
+		$a -> info = 'برای مرخصی‌های قبل از سال ۱۳۹۲، نوع مرخصی فقط استحقاقی در نظر گرفته خواهد شد.
 		<br/>
-		&#1576;&#1585;&#1575;&#1740; &#1605;&#1588;&#1575;&#1607;&#1583;&#1607; &#1605;&#1580;&#1605;&#1608;&#1593; &#1605;&#1585;&#1582;&#1589;&#1740; &#1705;&#1575;&#1585;&#1605;&#1606;&#1583;&#1575;&#1606; &#1575;&#1586; &#1711;&#1586;&#1575;&#1585;&#1588; &#1705;&#1604; &#1605;&#1585;&#1582;&#1589;&#1740; &#1705;&#1575;&#1585;&#1705;&#1606;&#1575;&#1606; &#1575;&#1587;&#1578;&#1601;&#1575;&#1583;&#1607; &#1606;&#1605;&#1575;&#1740;&#1740;&#1583;. &#1606;&#1578;&#1740;&#1580;&#1607; &#1575;&#1740;&#1606; &#1711;&#1586;&#1575;&#1585;&#1588; &#1576;&#1585;&#1575;&#1740; &#1605;&#1585;&#1582;&#1589;&#1740;(&#1608; &#1606;&#1607; &#1605;&#1580;&#1605;&#1608;&#1593; &#1605;&#1585;&#1582;&#1589;&#1740;&#8204;&#1607;&#1575;) &#1605;&#1740;&#8204;&#1576;&#1575;&#1588;&#1583;.
+		برای مشاهده مجموع مرخصی کارمندان از گزارش کل مرخصی کارکنان استفاده نمایید. نتیجه این گزارش برای مرخصی(و نه مجموع مرخصی‌ها) می‌باشد.
 		<br/>
-		«&#1576;&#1740;&#1588;&#1578;&#1585;» &#1740;&#1575; «&#1705;&#1605;&#1578;&#1585;» &#1576;&#1607; &#1605;&#1593;&#1606;&#1740; &#1582;&#1608;&#1583; &#1605;&#1740;&#8204;&#1576;&#1575;&#1588;&#1606;&#1583; &#1608; &#1605;&#1587;&#1575;&#1608;&#1740; &#1585;&#1575; &#1588;&#1575;&#1605;&#1604; &#1606;&#1605;&#1740;&#8204;&#1588;&#1608;&#1606;&#1583;. &#1576;&#1585;&#1575;&#1740; &#1588;&#1605;&#1608;&#1604; &#1605;&#1587;&#1575;&#1608;&#1740; &#1740;&#1705; &#1585;&#1602;&#1605; &#1705;&#1605;&#1578;&#1585; &#1740;&#1575; &#1576;&#1740;&#1588;&#1578;&#1585; &#1575;&#1586; &#1593;&#1583;&#1583; &#1605;&#1608;&#1585;&#1583; &#1606;&#1592;&#1585;&#1578;&#1575;&#1606; &#1585;&#1575; &#1608;&#1575;&#1585;&#1583; &#1606;&#1605;&#1575;&#1740;&#1740;&#1583;.';
+		«بیشتر» یا «کمتر» به معنی خود می‌باشند و مساوی را شامل نمی‌شوند. برای شمول مساوی یک رقم کمتر یا بیشتر از عدد مورد نظرتان را وارد نمایید.';
 		if ($b -> validate()) {$o = !empty($_POST['type']) ? $_POST['type'] : 0;
 			$p = !empty($_POST['period_range']) ? $_POST['period_range'] : 0;
 			$k = !empty($_POST['period']) ? $_POST['period'] : 0;
@@ -102,15 +102,15 @@ class vacationController {
 			if (!empty($k)) {
 				switch($p) {case  "less" :
 						$t = 'tbl_vacation_year.used < ' . $g -> escape($k);
-						$r = '- &#1705;&#1605;&#1578;&#1585; &#1575;&#1586; ' . $k . ' &#1585;&#1608;&#1586; ';
+						$r = '- کمتر از ' . $k . ' روز ';
 						break;
 					case  'more' :
 						$t = 'tbl_vacation_year.used > ' . $g -> escape($k);
-						$r = '- &#1576;&#1740;&#1588;&#1578;&#1585; &#1575;&#1586; ' . $k . ' &#1585;&#1608;&#1586; ';
+						$r = '- بیشتر از ' . $k . ' روز ';
 						break;
 					case  'equal' :
 						$t = 'tbl_vacation_year.used = \'' . $g -> escape($k) . '\'';
-						$r = '-' . $k . ' &#1585;&#1608;&#1586; ';
+						$r = '-' . $k . ' روز ';
 						break;
 				}
 			}
@@ -126,7 +126,7 @@ class vacationController {
 			$v -> values = $g -> queryAll($u);
 			$v -> counter = TRUE;
 			$v -> sort = 'used DESC';
-			$v -> headers = array('clerk_number' => array('label' => '&#1588;&#1605;&#1575;&#1585;&#1607; &#1705;&#1575;&#1585;&#1605;&#1606;&#1583;&#1740;'), 'name' => array('label' => '&#1606;&#1575;&#1605;'), 'lastname' => array('label' => '&#1606;&#1575;&#1605; &#1582;&#1575;&#1606;&#1608;&#1575;&#1583;&#1711;&#1740;'), 'year' => array('label' => '&#1587;&#1575;&#1604;'), 'all_v' => array('label' => '&#1705;&#1604; &#1605;&#1585;&#1582;&#1589;&#1740;'), 'used' => array('label' => '&#1575;&#1587;&#1578;&#1601;&#1575;&#1583;&#1607; &#1588;&#1583;&#1607;'), 'saved' => array('label' => '&#1584;&#1582;&#1740;&#1585;&#1607; &#1588;&#1583;&#1607;', ), );
+			$v -> headers = array('clerk_number' => array('label' => 'کد پرسنلی'), 'name' => array('label' => 'نام'), 'lastname' => array('label' => 'نام خانوادگی'), 'year' => array('label' => 'سال'), 'all_v' => array('label' => 'کل مرخصی'), 'used' => array('label' => 'استفاده شده'), 'saved' => array('label' => 'ذخیره شده', ), );
 			$a -> grid = $v -> run();
 			$a -> run();
 		} else {
@@ -138,15 +138,15 @@ class vacationController {
 			if (!empty($k)) {
 				switch($p) {case  "less" :
 						$t = 'tbl_vacation.period < ' . $g -> escape($k);
-						$r = '- &#1705;&#1605;&#1578;&#1585; &#1575;&#1586; ' . $k . ' &#1585;&#1608;&#1586; ';
+						$r = '- کمتر از ' . $k . ' روز ';
 						break;
 					case  'more' :
 						$t = 'tbl_vacation.period > ' . $g -> escape($k);
-						$r = '- &#1576;&#1740;&#1588;&#1578;&#1585; &#1575;&#1586; -' . $k . ' &#1585;&#1608;&#1586; ';
+						$r = '- بیشتر از -' . $k . ' روز ';
 						break;
 					case  'equal' :
 						$t = 'tbl_vacation.period = \'' . $g -> escape($k) . '\'';
-						$r = '-' . $k . ' &#1585;&#1608;&#1586; ';
+						$r = '-' . $k . ' روز ';
 						break;
 				}
 			}
@@ -166,10 +166,10 @@ class vacationController {
 				$v -> values = $g -> queryAll($u);
 				$v -> operations = FALSE;
 				$v -> counter = TRUE;
-				$v -> headers = array('clerk_number' => array('label' => '&#1588;&#1605;&#1575;&#1585;&#1607; &#1705;&#1575;&#1585;&#1605;&#1606;&#1583;&#1740;'), 'name' => array('label' => '&#1606;&#1575;&#1605;'), 'lastname' => array('label' => '&#1606;&#1575;&#1605; &#1582;&#1575;&#1606;&#1608;&#1575;&#1583;&#1711;&#1740;'), 'SUM(tbl_vacation.period)' => array('format' => ' &#1585;&#1608;&#1586;', 'label' => '&#1605;&#1583;&#1578; &#1605;&#1585;&#1582;&#1589;&#1740;'), );
+				$v -> headers = array('clerk_number' => array('label' => 'کد پرسنلی'), 'name' => array('label' => 'نام'), 'lastname' => array('label' => 'نام خانوادگی'), 'SUM(tbl_vacation.period)' => array('format' => ' روز', 'label' => 'مدت مرخصی'), );
 				$bb = new Lookup;
 				$cc = $bb -> getById($o, 'vacation');
-				$dd = ' &#1711;&#1586;&#1575;&#1585;&#1588; &#1605;&#1585;&#1582;&#1589;&#1740; ' . $cc . $r . '-&#1587;&#1575;&#1604; ' . $f;
+				$dd = ' گزارش مرخصی ' . $cc . $r . '-سال ' . $f;
 				$ee = FALSE;
 				if (CUrl::segment(7) === 'print')
 					$ee = TRUE;
@@ -182,7 +182,7 @@ class vacationController {
 					$a -> producer = $ff -> producer();
 				} else {$o = !empty($o) ? $o : 0;
 					$k = !empty($k) ? $k : 0;
-					$a -> pb = '<center><p>' . CUrl::createLink('&#1606;&#1587;&#1582;&#1607; &#1670;&#1575;&#1662;&#1740;', 'vacation/search/' . $o . '/' . $f . '/' . $p . '/' . $k . '/print', 'class="box" target="_blank"') . '</p></center>';
+					$a -> pb = '<center><p>' . CUrl::createLink('نسخه چاپی', 'vacation/search/' . $o . '/' . $f . '/' . $p . '/' . $k . '/print', 'class="box" target="_blank"') . '</p></center>';
 				}$a -> title = $dd;
 				$a -> grid = $v -> run();
 				$a -> run();
@@ -193,7 +193,7 @@ class vacationController {
 	public function t_search1() {$b = new CForm;
 		$b -> showFieldErrorText = FALSE;
 		$a = new CView;
-		$a -> title = '&#1711;&#1586;&#1575;&#1585;&#1588; &#1586;&#1605;&#1575;&#1606;&#1740; &#1605;&#1585;&#1582;&#1589;&#1740;';
+		$a -> title = 'گزارش زمانی مرخصی';
 		if ($b -> validate()) {$o = !empty($_POST['type']) ? $_POST['type'] : 0;
 			CUrl::redirect('vacation/t_search/' . $o . '/' . $_POST['y_start'] . '/' . $_POST['m_start'] . '/' . $_POST['d_start'] . '/' . $_POST['y_end'] . '/' . $_POST['m_end'] . '/' . $_POST['d_end']);
 		}$a -> form = $b -> run();
@@ -215,7 +215,7 @@ class vacationController {
 		$a = new CView;
 		$bb = new Lookup;
 		$cc = $bb -> getById($o, 'vacation');
-		$dd = "&#1711;&#1586;&#1575;&#1585;&#1588; &#1605;&#1585;&#1582;&#1589;&#1740; $cc &#1705;&#1575;&#1585;&#1705;&#1606;&#1575;&#1606; &#1575;&#1586; &#1578;&#1575;&#1585;&#1740;&#1582; $gg/$hh/$ii &#1578;&#1575; &#1578;&#1575;&#1585;&#1740;&#1582; $jj/$kk/$ll";
+		$dd = "گزارش مرخصی $cc کارکنان از تاریخ $gg/$hh/$ii تا تاریخ $jj/$kk/$ll";
 		$a -> title = $dd;
 		$q = '';
 		if (!empty($o)) {$x = "tbl_vacation.type='$o'";
@@ -232,7 +232,7 @@ class vacationController {
 		$v -> values = $g -> queryAll($u);
 		$v -> operations = FALSE;
 		$v -> counter = TRUE;
-		$v -> headers = array('clerk_number' => array('label' => '&#1588;&#1605;&#1575;&#1585;&#1607; &#1705;&#1575;&#1585;&#1605;&#1606;&#1583;&#1740;'), 'name' => array('label' => '&#1606;&#1575;&#1605;'), 'lastname' => array('label' => '&#1606;&#1575;&#1605; &#1582;&#1575;&#1606;&#1608;&#1575;&#1583;&#1711;&#1740;'), 'SUM(tbl_vacation.period)' => array('format' => ' &#1585;&#1608;&#1586;', 'label' => '&#1605;&#1583;&#1578; &#1605;&#1585;&#1582;&#1589;&#1740;'), );
+		$v -> headers = array('clerk_number' => array('label' => 'کد پرسنلی'), 'name' => array('label' => 'نام'), 'lastname' => array('label' => 'نام خانوادگی'), 'SUM(tbl_vacation.period)' => array('format' => ' روز', 'label' => 'مدت مرخصی'), );
 		if ($ee) {$v -> operations = FALSE;
 			$v -> noSort = TRUE;
 			$v -> paginate = FALSE;
@@ -241,7 +241,7 @@ class vacationController {
 			$ff = new User;
 			$a -> producer = $ff -> producer();
 		} else {$o = !empty($o) ? $o : 0;
-			$a -> pb = '<center><p>' . CUrl::createLink('&#1606;&#1587;&#1582;&#1607; &#1670;&#1575;&#1662;&#1740;', 'vacation/t_search/' . $o . '/' . $gg . '/' . $hh . '/' . $ii . '/' . $jj . '/' . $kk . '/' . $ll . '/print', 'class="box" target="_blank"') . '</p></center>';
+			$a -> pb = '<center><p>' . CUrl::createLink('نسخه چاپی', 'vacation/t_search/' . $o . '/' . $gg . '/' . $hh . '/' . $ii . '/' . $jj . '/' . $kk . '/' . $ll . '/print', 'class="box" target="_blank"') . '</p></center>';
 		}$a -> grid = $v -> run();
 		$a -> run();
 	}
@@ -263,9 +263,9 @@ class vacationController {
 				$aa += 86400;
 			$v -> condition = "WHERE date_start BETWEEN $f AND $aa AND clerk_id='$nn'";
 		} else {$v -> condition = "WHERE clerk_id='$nn'";
-		}$v -> operations = array('view' => FALSE, 'edit' => FALSE, 'delete' => FALSE, 'vacation/edit/$value->id/' . $nn . '/' . $oo => array('icon' => 'public/images/edit.png', 'alt' => '&#1608;&#1740;&#1585;&#1575;&#1740;&#1588;', 'title' => '&#1608;&#1740;&#1585;&#1575;&#1740;&#1588;'), 'vacation/delete/$value->id/' . $nn . '/' . $oo => array('icon' => 'public/images/delete.png', 'alt' => '&#1608;&#1740;&#1585;&#1575;&#1740;&#1588;', 'title' => '&#1608;&#1740;&#1585;&#1575;&#1740;&#1588;'), );
+		}$v -> operations = array('view' => FALSE, 'edit' => FALSE, 'delete' => FALSE, 'vacation/edit/$value->id/' . $nn . '/' . $oo => array('icon' => 'public/images/edit.png', 'alt' => 'ویرایش', 'title' => 'ویرایش'), 'vacation/delete/$value->id/' . $nn . '/' . $oo => array('icon' => 'public/images/delete.png', 'alt' => 'ویرایش', 'title' => 'ویرایش'), );
 		$v -> sort = 'hokm_number DESC';
-		$v -> headers = array('date_added' => array('format' => 'model[Cal,getDate($value)]', 'label' => '&#1578;&#1575;&#1585;&#1740;&#1582; &#1581;&#1705;&#1605;'), 'hokm_number', 'date_start' => array('format' => 'model[Cal,getDate($value)]', 'label' => '&#1578;&#1575;&#1585;&#1740;&#1582; &#1588;&#1585;&#1608;&#1593;'), 'date_end' => array('format' => 'model[Cal,getDate($value)]', 'label' => '&#1578;&#1575;&#1585;&#1740;&#1582; &#1662;&#1575;&#1740;&#1575;&#1606;'), 'period' => array('format' => ' &#1585;&#1608;&#1586;'), 'type' => array('format' => 'model[Lookup,getById($value,vacation)]', ), 'description');
+		$v -> headers = array('date_added' => array('format' => 'model[Cal,getDate($value)]', 'label' => 'تاریخ حکم'), 'hokm_number', 'date_start' => array('format' => 'model[Cal,getDate($value)]', 'label' => 'تاریخ شروع'), 'date_end' => array('format' => 'model[Cal,getDate($value)]', 'label' => 'تاریخ پایان'), 'period' => array('format' => ' روز'), 'type' => array('format' => 'model[Lookup,getById($value,vacation)]', ), 'description');
 		$a = new CView;
 		$pp = new CDetail;
 		$pp -> value = FALSE;
@@ -276,7 +276,7 @@ class vacationController {
 		} else {$pp -> additional = Vacation::getStat($nn, $oo);
 		}$a -> grid = $qq;
 		$a -> c_id = $nn;
-		$a -> title = '&#1711;&#1586;&#1575;&#1585;&#1588; &#1605;&#1585;&#1582;&#1589;&#1740; ' . Profile::getName($nn);
+		$a -> title = 'گزارش مرخصی ' . Profile::getName($nn);
 		$a -> y = $oo;
 		$pp -> numberOfColumns = 3;
 		$a -> detail = $pp -> run();
@@ -296,13 +296,13 @@ class vacationController {
 			$v -> condition = "WHERE date_start BETWEEN $f AND $aa AND clerk_id='$nn'";
 		} else {$v -> condition = "WHERE clerk_id='$nn'";
 		}$v -> sort = 'hokm_number DESC';
-		$v -> headers = array('date_added' => array('format' => 'model[Cal,getDate($value)]', 'label' => '&#1578;&#1575;&#1585;&#1740;&#1582; &#1581;&#1705;&#1605;'), 'hokm_number', 'date_start' => array('format' => 'model[Cal,getDate($value)]', 'label' => '&#1578;&#1575;&#1585;&#1740;&#1582; &#1588;&#1585;&#1608;&#1593;'), 'date_end' => array('format' => 'model[Cal,getDate($value)]', 'label' => '&#1578;&#1575;&#1585;&#1740;&#1582; &#1662;&#1575;&#1740;&#1575;&#1606;'), 'period' => array('format' => ' &#1585;&#1608;&#1586;'), 'type' => array('format' => 'model[Lookup,getById($value,vacation)]', ), );
+		$v -> headers = array('date_added' => array('format' => 'model[Cal,getDate($value)]', 'label' => 'تاریخ حکم'), 'hokm_number', 'date_start' => array('format' => 'model[Cal,getDate($value)]', 'label' => 'تاریخ شروع'), 'date_end' => array('format' => 'model[Cal,getDate($value)]', 'label' => 'تاریخ پایان'), 'period' => array('format' => ' روز'), 'type' => array('format' => 'model[Lookup,getById($value,vacation)]', ), );
 		$v -> operations = FALSE;
 		$v -> noSort = array('date_added', 'hokm_number', 'date_start', 'date_end', 'period', 'type');
 		$v -> paginate = FALSE;
 		$a = new CView;
 		$dd = Profile::getName($nn);
-		if ($oo) {$dd .= ' &#1583;&#1585; &#1587;&#1575;&#1604; ' . $oo;
+		if ($oo) {$dd .= ' در سال ' . $oo;
 		}$a -> title = $dd;
 		$pp = new CDetail;
 		$pp -> numberOfColumns = 3;
@@ -321,36 +321,41 @@ class vacationController {
 		$a -> run();
 	}
 
-	public function all() {$rr = CUrl::segment(3);
+	public function all() {
+		$year = CUrl::segment(3);
 		$ee = FALSE;
 		if (CUrl::segment(5) === 'print')
 			$ee = TRUE;
-		$rr = (int)$rr;
-		if (!$rr)
+		$year = (int)$year;
+		if (!$year)
 			CUrl::redirect('vacation/index2');
-		$ss = CUrl::segment(4);
+		$vac_type = CUrl::segment(4);
 		$a = new CView;
 		$c = new CJcalendar(FALSE);
-		$f = $c -> mktime(0, 0, 0, 1, 1, $rr);
+		$f = $c -> mktime(0, 0, 0, 1, 1, $year);
 		$aa = $f + 31536000;
-		if ($c -> checkdate(12, 30, (int)$rr))
+		if ($c -> checkdate(12, 30, (int)$year))
 			$aa += 86400;
 		$u = "SELECT tbl_profile.clerk_id,tbl_profile.name,tbl_profile.lastname FROM tbl_profile,tbl_carrier 
 		WHERE tbl_carrier.clerk_id=tbl_profile.clerk_id AND tbl_carrier.job_status='1' AND tbl_carrier.now_c='1' AND  tbl_carrier.hokm_type<>8";
 		$g = new CDatabase;
 		$tt = $g -> queryAll($u);
 		$qq = array();
-		foreach ($tt as $d) {$u = "SELECT clerk_number FROM tbl_clerk WHERE id='$d->clerk_id'";
+		foreach ($tt as $d) {
+			$u = "SELECT clerk_number FROM tbl_clerk WHERE id='$d->clerk_id'";
 			$uu = $g -> queryOne($u) -> clerk_number;
-			$u = "SELECT * FROM tbl_vacation_year WHERE clerk_id='$d->clerk_id' AND year='$rr'";
-			if (($vv = $g -> queryOne($u)) !== FALSE) {$ww = $vv -> all_v - $vv -> used;
+			$u = "SELECT * FROM tbl_vacation_year WHERE clerk_id='$d->clerk_id' AND year='$year'";
+			if (($vv = $g -> queryOne($u)) !== FALSE) {
+				$ww = $vv -> all_v - $vv -> used;
 				$qq[] = (object) array('clerk_id' => $d -> clerk_id, 'clerk_number' => $uu, 'name' => $d -> name, 'lastname' => $d -> lastname, 'used' => $vv -> used, 'remaining' => $ww, 'wasted' => $vv -> wasted, 'saved' => $vv -> saved);
-			} else {$u = "SELECT date_employed FROM tbl_employment WHERE clerk_id='$d->clerk_id'";
+			} else {
+				$u = "SELECT date_employed FROM tbl_employment WHERE clerk_id='$d->clerk_id'";
 				$xx = $g -> queryOne($u) -> date_employed;
-				if ($c -> date('Y', $xx) <= $rr) {$u = "SELECT SUM(period) FROM tbl_vacation WHERE clerk_id='$d->clerk_id' AND date_start BETWEEN $f AND $aa AND type='$ss'";
+				if ($c -> date('Y', $xx) <= $year) {
+					$u = "SELECT SUM(period) FROM tbl_vacation WHERE clerk_id='$d->clerk_id' AND date_start BETWEEN $f AND $aa AND type='$vac_type'";
 					$yy = $g -> sumRows('period', $u);
-					if ($rr >= 1392) {$zz = 26;
-						if ($rr == $c -> date('Y', $xx)) {$aaa = $c -> date('d', $xx);
+					if ($year >= 1392) {$zz = 26;
+						if ($year == $c -> date('Y', $xx)) {$aaa = $c -> date('d', $xx);
 							$zz = (12 - $c -> date('m', $xx)) * 2.17;
 							if ($aaa > 1 && $aaa <= 5)
 								$zz += 2.17;
@@ -364,7 +369,7 @@ class vacationController {
 								$zz += 0.45;
 						}
 					} else {$zz = 30;
-						if ($rr == $c -> date('Y', $xx)) {$aaa = $c -> date('d', $xx);
+						if ($year == $c -> date('Y', $xx)) {$aaa = $c -> date('d', $xx);
 							$zz = (12 - $c -> date('m', $xx)) * 2.5;
 							if ($aaa > 1 && $aaa <= 5)
 								$zz += 2.5;
@@ -383,7 +388,7 @@ class vacationController {
 					} else {$bbb = $ww;
 						$ccc = 0;
 					}$yy = round($yy);
-					if ($ss == 2) {
+					if ($vac_type == 2) {
 						if ($yy != 0) {$qq[] = (object) array('clerk_id' => $d -> clerk_id, 'clerk_number' => $uu, 'name' => $d -> name, 'lastname' => $d -> lastname, 'used' => $yy, 'remaining' => round($ww), 'wasted' => round($ccc), 'saved' => round($bbb));
 						}
 					} else {$qq[] = (object) array('clerk_id' => $d -> clerk_id, 'clerk_number' => $uu, 'name' => $d -> name, 'lastname' => $d -> lastname, 'used' => $yy, 'remaining' => round($ww), 'wasted' => round($ccc), 'saved' => round($bbb));
@@ -392,22 +397,22 @@ class vacationController {
 			}
 		}$v = new CGrid;
 		$v -> sort = 'used DESC';
-		$v -> operations = array('edit' => FALSE, 'delete' => FALSE, 'view' => FALSE, 'vacation/summ/$value->clerk_id/' . $rr => array('in' => 'target="_blank"', 'icon' => 'public/images/view.png', 'alt' => '&#1605;&#1588;&#1575;&#1607;&#1583;&#1607;', 'title' => '&#1605;&#1588;&#1575;&#1607;&#1583;&#1607;'));
+		$v -> operations = array('edit' => FALSE, 'delete' => FALSE, 'view' => FALSE, 'vacation/summ/$value->clerk_id/' . $year => array('in' => 'target="_blank"', 'icon' => 'public/images/view.png', 'alt' => 'مشاهده', 'title' => 'مشاهده'));
 		$v -> pk = 'clerk_id';
 		$v -> values = $qq;
 		$v -> counter = TRUE;
-		if ($ss != 1) {$v -> headers = array('name' => array('label' => '&#1606;&#1575;&#1605;'), 'lastname' => array('label' => '&#1606;&#1575;&#1605; &#1582;&#1575;&#1606;&#1608;&#1575;&#1583;&#1711;&#1740;'), 'clerk_number' => array('label' => '&#1705;&#1583; &#1705;&#1575;&#1585;&#1605;&#1606;&#1583;&#1740;'), 'used' => array('label' => '&#1578;&#1593;&#1583;&#1575;&#1583; &#1585;&#1608;&#1586;&#1607;&#1575;&#1740; &#1575;&#1587;&#1578;&#1601;&#1575;&#1583;&#1607; &#1588;&#1583;&#1607;'), );
+		if ($vac_type != 1) {$v -> headers = array('name' => array('label' => 'نام'), 'lastname' => array('label' => 'نام خانوادگی'), 'clerk_number' => array('label' => 'کد پرسنلی'), 'used' => array('label' => 'تعداد روزهای استفاده شده'), );
 		} else {
-			if ($c -> date('Y') == (int)$rr) {$v -> headers = array('name' => array('label' => '&#1606;&#1575;&#1605;'), 'lastname' => array('label' => '&#1606;&#1575;&#1605; &#1582;&#1575;&#1606;&#1608;&#1575;&#1583;&#1711;&#1740;'), 'clerk_number' => array('label' => '&#1705;&#1583; &#1705;&#1575;&#1585;&#1605;&#1606;&#1583;&#1740;'), 'used' => array('label' => '&#1578;&#1593;&#1583;&#1575;&#1583; &#1585;&#1608;&#1586;&#1607;&#1575;&#1740; &#1575;&#1587;&#1578;&#1601;&#1575;&#1583;&#1607; &#1588;&#1583;&#1607;'), 'remaining' => array('label' => '&#1605;&#1575;&#1606;&#1583;&#1607; &#1605;&#1585;&#1582;&#1589;&#1740;'), 'saved' => array('label' => '&#1602;&#1575;&#1740;&#1604; &#1584;&#1582;&#1740;&#1585;&#1607; &#1583;&#1585; &#1587;&#1575;&#1604; &#1580;&#1575;&#1585;&#1740;'), );
-			} else {$v -> headers = array('name' => array('label' => '&#1606;&#1575;&#1605;'), 'lastname' => array('label' => '&#1606;&#1575;&#1605; &#1582;&#1575;&#1606;&#1608;&#1575;&#1583;&#1711;&#1740;'), 'clerk_number' => array('label' => '&#1705;&#1583; &#1705;&#1575;&#1585;&#1605;&#1606;&#1583;&#1740;'), 'used' => array('label' => '&#1578;&#1593;&#1583;&#1575;&#1583; &#1585;&#1608;&#1586;&#1607;&#1575;&#1740; &#1575;&#1587;&#1578;&#1601;&#1575;&#1583;&#1607; &#1588;&#1583;&#1607;'), 'remaining' => array('label' => '&#1605;&#1575;&#1606;&#1583;&#1607; &#1605;&#1585;&#1582;&#1589;&#1740;'), 'wasted' => array('label' => '&#1587;&#1608;&#1582;&#1578; &#1588;&#1583;&#1607;'), 'saved' => array('label' => '&#1602;&#1575;&#1740;&#1604; &#1584;&#1582;&#1740;&#1585;&#1607; &#1583;&#1585; &#1587;&#1575;&#1604; &#1580;&#1575;&#1585;&#1740;'), );
+			if ($c -> date('Y') == (int)$year) {$v -> headers = array('name' => array('label' => 'نام'), 'lastname' => array('label' => 'نام خانوادگی'), 'clerk_number' => array('label' => 'کد پرسنلی'), 'used' => array('label' => 'تعداد روزهای استفاده شده'), 'remaining' => array('label' => 'مانده مرخصی'), 'saved' => array('label' => 'قایل ذخیره در سال جاری'), );
+			} else {$v -> headers = array('name' => array('label' => 'نام'), 'lastname' => array('label' => 'نام خانوادگی'), 'clerk_number' => array('label' => 'کد پرسنلی'), 'used' => array('label' => 'تعداد روزهای استفاده شده'), 'remaining' => array('label' => 'مانده مرخصی'), 'wasted' => array('label' => 'سوخت شده'), 'saved' => array('label' => 'قایل ذخیره در سال جاری'), );
 			}
 		}$a = new CView;
 		$bb = new Lookup;
-		$cc = $bb -> getById($ss, 'vacation');
-		if ($rr < 1393)
-			$dd = '&#1711;&#1586;&#1575;&#1585;&#1588; &#1605;&#1585;&#1582;&#1589;&#1740; ' . $cc . ' &#1705;&#1604; &#1705;&#1575;&#1585;&#1705;&#1606;&#1575;&#1606; &#1587;&#1575;&#1604; ' . $rr . ' &#1578;&#1575; &#1578;&#1575;&#1585;&#1740;&#1582; ' . $rr . '/12/29';
+		$cc = $bb -> getById($vac_type, 'vacation');
+		if ($year < 1393)
+			$dd = 'گزارش مرخصی ' . $cc . ' کل کارکنان سال ' . $year . ' تا تاریخ ' . $year . '/12/29';
 		else
-			$dd = '&#1711;&#1586;&#1575;&#1585;&#1588; &#1605;&#1585;&#1582;&#1589;&#1740; ' . $cc . ' &#1705;&#1604; &#1705;&#1575;&#1585;&#1705;&#1606;&#1575;&#1606; &#1587;&#1575;&#1604; ' . $rr . ' &#1578;&#1575; &#1578;&#1575;&#1585;&#1740;&#1582; ' . $c -> date('Y/m/d');
+			$dd = 'گزارش مرخصی ' . $cc . ' کل کارکنان سال ' . $year . ' تا تاریخ ' . $c -> date('Y/m/d');
 		if ($ee) {$v -> operations = FALSE;
 			$v -> noSort = TRUE;
 			$v -> paginate = FALSE;
@@ -415,7 +420,7 @@ class vacationController {
 			$a -> ptitle = "<h1>$dd</h1>";
 			$ff = new User;
 			$a -> producer = $ff -> producer();
-		} else {$a -> pb = '<center><p>' . CUrl::createLink('&#1606;&#1587;&#1582;&#1607; &#1670;&#1575;&#1662;&#1740;', 'vacation/all/' . $rr . '/' . $ss . '/print', 'class="box" target="_blank"') . '</p></center>';
+		} else {$a -> pb = '<center><p>' . CUrl::createLink('نسخه چاپی', 'vacation/all/' . $year . '/' . $vac_type . '/print', 'class="box" target="_blank"') . '</p></center>';
 		}$a -> grid = $v -> run();
 		$a -> title = $dd;
 		$a -> run();
@@ -443,7 +448,7 @@ class vacationController {
 					$ddd = $ddd -> hokm_number + 1;
 				$n = $_POST['description'];
 				if ($_POST['off_day'] > 0)
-					$n .= ' ' . $_POST['off_day'] . ' &#1585;&#1608;&#1586; &#1578;&#1593;&#1591;&#1740;&#1604;&#1740; &#1576;&#1740;&#1606; &#1605;&#1585;&#1582;&#1589;&#1740;';
+					$n .= ' ' . $_POST['off_day'] . ' روز تعطیلی بین مرخصی';
 				$g -> additional = array('clerk_id' => $nn, 'date_start' => $j, 'date_end' => $m, 'hokm_number' => $ddd, 'date_added' => time(), 'description' => $n);
 				$g -> insert();
 			}$oo = $c -> date('Y', FALSE, FALSE);
@@ -455,7 +460,7 @@ class vacationController {
 		$a -> form = $b -> run();
 		$a -> layout = 'jquery';
 		$a -> c_id = $nn;
-		$a -> title = '&#1579;&#1576;&#1578; &#1605;&#1585;&#1582;&#1589;&#1740; &#1576;&#1585;&#1575;&#1740; ' . Profile::getName($nn);
+		$a -> title = 'ثبت مرخصی برای ' . Profile::getName($nn);
 		$a -> run('vacation/add');
 	}
 
@@ -470,12 +475,12 @@ class vacationController {
 		$g = new CDatabase;
 		$u = "SELECT COUNT(*) FROM tbl_vacation_year WHERE clerk_id='$nn' AND year='$f'";
 		$g = new CDatabase;
-		if ($g -> countRows($u)) {$a -> error = '&#1602;&#1576;&#1604;&#1575; &#1576;&#1585;&#1575;&#1740; ' . Profile::getName($nn) . ' &#1605;&#1585;&#1582;&#1589;&#1740; &#1587;&#1575;&#1604;&#1575;&#1606;&#1607; &#1576;&#1585;&#1575;&#1740; &#1587;&#1575;&#1604; ' . $f . ' &#1608;&#1575;&#1585;&#1583; &#1588;&#1583;&#1607; &#1575;&#1587;&#1578;. &#1576;&#1585;&#1575;&#1740; &#1608;&#1740;&#1585;&#1575;&#1740;&#1588; &#1585;&#1608;&#1740; &#1575;&#1740;&#1606; ' . CUrl::createLink('&#1604;&#1740;&#1606;&#1705;', 'vacation/edityear/' . $nn . '/' . $f) . ' &#1705;&#1604;&#1740;&#1705; &#1705;&#1606;&#1740;&#1583;.';
+		if ($g -> countRows($u)) {$a -> error = 'قبلا برای ' . Profile::getName($nn) . ' مرخصی سالانه برای سال ' . $f . ' وارد شده است. برای ویرایش روی این ' . CUrl::createLink('لینک', 'vacation/edityear/' . $nn . '/' . $f) . ' کلیک کنید.';
 			$a -> run();
 		}$u = "SELECT date_employed FROM tbl_employment WHERE clerk_id='$nn'";
 		$xx = $g -> queryOne($u) -> date_employed;
 		$c = new CJcalendar(FALSE);
-		if ($c -> date('Y', $xx) > $f) {$a -> error = Profile::getName($nn) . ' &#1583;&#1585; &#1587;&#1575;&#1604; ' . $c -> date('Y', $xx) . ' &#1575;&#1587;&#1578;&#1582;&#1583;&#1575;&#1605; &#1588;&#1583;&#1607; &#1575;&#1587;&#1578; &#1608; &#1575;&#1605;&#1705;&#1575;&#1606; &#1579;&#1576;&#1578; &#1605;&#1585;&#1582;&#1589;&#1740; &#1587;&#1575;&#1604;&#1575;&#1606;&#1607; &#1576;&#1585;&#1575;&#1740; &#1587;&#1575;&#1604; ' . $f . ' &#1576;&#1585;&#1575;&#1740; &#1575;&#1740;&#1588;&#1575;&#1606; &#1575;&#1605;&#1705;&#1575;&#1606;&#8204;&#1662;&#1584;&#1740;&#1585; &#1606;&#1605;&#1740;&#8204;&#1576;&#1575;&#1588;&#1583;!';
+		if ($c -> date('Y', $xx) > $f) {$a -> error = Profile::getName($nn) . ' در سال ' . $c -> date('Y', $xx) . ' استخدام شده است و امکان ثبت مرخصی سالانه برای سال ' . $f . ' برای ایشان امکان‌پذیر نمی‌باشد!';
 			$a -> run();
 		}
 		if (isset($_POST['submit'])) {
@@ -484,7 +489,7 @@ class vacationController {
 				$g -> insert();
 				CUrl::redirect('vacation/index/addyear');
 			}
-		}$a -> title = '&#1579;&#1576;&#1578; &#1605;&#1585;&#1582;&#1589;&#1740; &#1587;&#1575;&#1604;&#1575;&#1606;&#1607; ' . $eee . '-&#1587;&#1575;&#1604; ' . $f;
+		}$a -> title = 'ثبت مرخصی سالانه ' . $eee . '-سال ' . $f;
 		$a -> form = $b -> run();
 		$a -> run();
 	}
@@ -502,7 +507,7 @@ class vacationController {
 		$xx = $g -> queryOne($u) -> date_employed;
 		$c = new CJcalendar(FALSE);
 		$a = new CView;
-		if ($c -> date('Y', $xx) > $f) {$a -> error = Profile::getName($nn) . ' &#1583;&#1585; &#1587;&#1575;&#1604; ' . $c -> date('Y', $xx) . ' &#1575;&#1587;&#1578;&#1582;&#1583;&#1575;&#1605; &#1588;&#1583;&#1607; &#1575;&#1587;&#1578; &#1608; &#1575;&#1605;&#1705;&#1575;&#1606; &#1579;&#1576;&#1578; &#1605;&#1585;&#1582;&#1589;&#1740; &#1587;&#1575;&#1604;&#1575;&#1606;&#1607; &#1576;&#1585;&#1575;&#1740; &#1587;&#1575;&#1604; ' . $f . ' &#1576;&#1585;&#1575;&#1740; &#1575;&#1740;&#1588;&#1575;&#1606; &#1575;&#1605;&#1705;&#1575;&#1606;&#8204;&#1662;&#1584;&#1740;&#1585; &#1606;&#1605;&#1740;&#8204;&#1576;&#1575;&#1588;&#1583;!';
+		if ($c -> date('Y', $xx) > $f) {$a -> error = Profile::getName($nn) . ' در سال ' . $c -> date('Y', $xx) . ' استخدام شده است و امکان ثبت مرخصی سالانه برای سال ' . $f . ' برای ایشان امکان‌پذیر نمی‌باشد!';
 			$a -> run();
 		}$b = new CForm;
 		$b -> showFieldErrorText = FALSE;
@@ -510,7 +515,7 @@ class vacationController {
 			$q = array('clerk_id' => $nn, 'year' => $f);
 			$g -> update($q);
 			CUrl::redirect('vacation/all/' . $f);
-		}$a -> title = '&#1608;&#1740;&#1585;&#1575;&#1740;&#1588; &#1605;&#1585;&#1582;&#1589;&#1740; &#1587;&#1575;&#1604;&#1575;&#1606;&#1607; ' . $eee . '-&#1587;&#1575;&#1604; ' . $f;
+		}$a -> title = 'ویرایش مرخصی سالانه ' . $eee . '-سال ' . $f;
 		$a -> model = $i;
 		$a -> form = $b -> run();
 		$a -> run();
@@ -531,7 +536,7 @@ class vacationController {
 					$ddd = $ddd -> hokm_number + 1;
 				else
 					$ddd = 1;
-				$jjj = array('clerk_id' => $nn, 'type' => 1, 'date_start' => $fff, 'date_end' => $fff + 86399, 'period' => 1, 'hokm_number' => $ddd, 'description' => '&#1605;&#1585;&#1582;&#1589;&#1740; &#1587;&#1575;&#1593;&#1578;&#1740; &#1576;&#1740;&#1588;&#1578;&#1585; &#1575;&#1586; &#1779; &#1587;&#1575;&#1593;&#1578; &#1583;&#1585; &#1740;&#1705; &#1585;&#1608;&#1586; ' . $_POST['description']);
+				$jjj = array('clerk_id' => $nn, 'type' => 1, 'date_start' => $fff, 'date_end' => $fff + 86399, 'period' => 1, 'hokm_number' => $ddd, 'description' => 'مرخصی ساعتی بیشتر از ۳ ساعت در یک روز ' . $_POST['description']);
 				$g -> insert($jjj);
 			}
 		}$c = new CJcalendar;
@@ -556,7 +561,7 @@ class vacationController {
 					$ddd = $ddd -> hokm_number + 1;
 				else
 					$ddd = 1;
-				$jjj = array('clerk_id' => $nn, 'type' => 1, 'date_start' => $fff, 'date_end' => $fff + 86399, 'period' => 1, 'hokm_number' => $ddd, 'description' => '&#1605;&#1585;&#1582;&#1589;&#1740; &#1587;&#1575;&#1593;&#1578;&#1740; &#1576;&#1740;&#1588;&#1578;&#1585; &#1575;&#1586; 7 &#1587;&#1575;&#1593;&#1578; &#1583;&#1585; &#1740;&#1705; &#1607;&#1601;&#1578;&#1607; ' . $_POST['description']);
+				$jjj = array('clerk_id' => $nn, 'type' => 1, 'date_start' => $fff, 'date_end' => $fff + 86399, 'period' => 1, 'hokm_number' => $ddd, 'description' => 'مرخصی ساعتی بیشتر از 7 ساعت در یک هفته ' . $_POST['description']);
 				$g -> insert($jjj);
 			}
 		}

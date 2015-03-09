@@ -1,7 +1,7 @@
 <?php
 return array(
     'index'=>array(
-        'clerk_number'=>'شماره کارمندی'
+        'clerk_number'=>'کد پرسنلی'
     ),
     'add-old'=>array(
         'title[]'=>'عنوان دوره',

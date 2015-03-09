@@ -26,7 +26,7 @@
                 <td>تعداد افراد تحت تکفل: <?php echo $profile->takafol; ?></td>
             </tr>
             <tr>
-                <td>شماره کارمندی: <?php echo $clerk_number; ?></td>
+                <td>کد پرسنلی: <?php echo $clerk_number; ?></td>
                 <td>محل صدور: <?php echo $profile->city_sodur; ?></td>
                 <td>وضعیت اشتغال همسر: <?php echo $spouseJob; ?></td>
             </tr>

@@ -1,7 +1,7 @@
 <?php
 return array(
     '*'=>array(
-        'clerk_number'=>'شماره کارمندی',
+        'clerk_number'=>'کد پرسنلی',
         'title'=>'عنوان',
         'set_by'=>'صادرکننده',
         'hokm_number'=>'شماره حکم',

@@ -6,7 +6,7 @@ class reportController {
 		$c = $b -> queryAll($a, TRUE);
 		$d = new CView;
 		$e = new Ostan;
-		$d -> title = 'گزارش مقاطع تحصیلی کارکنان بانک قرض‌الحسنه مهر ایران- ' . $e -> getName();
+		$d -> title = 'گزارش مقاطع تحصیلی کارمندان بانک قرض‌الحسنه مهر ایران- ' . $e -> getName();
 		if (!is_array($c)) {$d -> error = 'موردی یافت نشد.';
 			$d -> run();
 		}$f = array(
@@ -112,7 +112,7 @@ SELECT tbl_carrier.clerk_id FROM tbl_carrier WHERE  tbl_carrier.job_status='1' A
 		$c = $b -> queryAll($a, TRUE);
 		$d = new CView;
 		$e = new Ostan;
-		$d -> title = 'وضعیت تاهل کارکنان بانک قرض‌الحسنه مهر ایران- ' . $e -> getName();
+		$d -> title = 'وضعیت تاهل کارمندان بانک قرض‌الحسنه مهر ایران- ' . $e -> getName();
 		if (!is_array($c)) {$d -> error = 'موردی یافت نشد.';
 			$d -> run();
 		}$f = array(
@@ -222,7 +222,7 @@ SELECT tbl_carrier.clerk_id FROM tbl_carrier WHERE  tbl_carrier.job_status='1' A
 		tbl_branch.code=tbl_degree.branch_code AND degree_start='1393' GROUP BY geo,degree";
 		$d -> degreeCount = $b -> queryAll($a, TRUE);
 		$e = new Ostan;
-		$v = 'گزارش جامع آمار پرسنل کارکنان بانک قرض‌الحسنه مهر ایران- ' . $e -> getName();
+		$v = 'گزارش جامع آمار پرسنل کارمندان بانک قرض‌الحسنه مهر ایران- ' . $e -> getName();
 		$d -> title = $v;
 		$d -> branchCount = $p;
 		$d -> clerkCount = $s;
@@ -265,7 +265,7 @@ SELECT tbl_carrier.clerk_id FROM tbl_carrier WHERE  tbl_carrier.job_status='1' A
 		$aa -> operations = FALSE;
 		$aa -> counter = TRUE;
 		$aa -> table = 'tbl_clerk';
-		$aa -> headers = array('clerk_number' => array('label' => 'کد کارمندی'), 'name' => array('label' => 'نام'), 'lastname' => array('label' => 'نام خانوادگی'), 'date_employed' => array('format' => 'model[CJcalendar,date(Y/m/j,$value)]', 'label' => 'تاریخ استخدام'), 'branch_id' => array('format' => 'model[Carrier::comletePlace($value)]', 'label' => 'محل خدمت'), 'branch_id2' => array('format' => 'type[0:7800]', 'label' => 'کد محل خدمت'), 'post' => array('format' => 'model[Lookup,getById($value,post)]', 'label' => 'پست سازمانی'), 'married' => array('format' => 'type[1:مجرد,2:متاهل]', 'label' => 'وضعیت تاهل'), 'sex' => array('format' => 'type[1:مرد,2:زن]', 'label' => 'جنسیت'));
+		$aa -> headers = array('clerk_number' => array('label' => 'کد پرسنلی'), 'name' => array('label' => 'نام'), 'lastname' => array('label' => 'نام خانوادگی'), 'date_employed' => array('format' => 'model[CJcalendar,date(Y/m/j,$value)]', 'label' => 'تاریخ استخدام'), 'branch_id' => array('format' => 'model[Carrier::comletePlace($value)]', 'label' => 'محل خدمت'), 'branch_id2' => array('format' => 'type[0:7800]', 'label' => 'کد محل خدمت'), 'post' => array('format' => 'model[Lookup,getById($value,post)]', 'label' => 'پست سازمانی'), 'married' => array('format' => 'type[1:مجرد,2:متاهل]', 'label' => 'وضعیت تاهل'), 'sex' => array('format' => 'type[1:مرد,2:زن]', 'label' => 'جنسیت'));
 		$d = new CView;
 		$v = 'اطلاعات جامع کارمندان';
 		if ($m) {$aa -> operations = FALSE;
@@ -293,7 +293,7 @@ FROM tbl_education  WHERE tbl_education.clerk_id=edu.clerk_id) GROUP BY tbl_cler
 		$aa -> operations = FALSE;
 		$aa -> counter = TRUE;
 		$aa -> table = 'tbl_clerk';
-		$aa -> headers = array('clerk_number' => array('label' => 'کد کارمندی'), 'name' => array('label' => 'نام'), 'lastname' => array('label' => 'نام خانوادگی'), 'study_degree' => array('format' => 'model[Lookup,getById($value,study_degree)]', 'label' => 'مدرک تحصیلی'), 'study_field' => array('format' => 'model[StudyField,getById($value)]', 'label' => 'رشته تحصیلی'), 'place' => array('label' => 'محل تحصیل'), 'date_get' => array('format' => 'model[Cal,getDate($value,Y)]', 'label' => 'تاریخ اخذ مدرک'), );
+		$aa -> headers = array('clerk_number' => array('label' => 'کد پرسنلی'), 'name' => array('label' => 'نام'), 'lastname' => array('label' => 'نام خانوادگی'), 'study_degree' => array('format' => 'model[Lookup,getById($value,study_degree)]', 'label' => 'مدرک تحصیلی'), 'study_field' => array('format' => 'model[StudyField,getById($value)]', 'label' => 'رشته تحصیلی'), 'place' => array('label' => 'محل تحصیل'), 'date_get' => array('format' => 'model[Cal,getDate($value,Y)]', 'label' => 'تاریخ اخذ مدرک'), );
 		$d = new CView;
 		$v = 'اطلاعات تحصیلی کارمندان';
 		if ($m) {$aa -> operations = FALSE;

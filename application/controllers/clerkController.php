@@ -3,8 +3,8 @@ class clerkController {
 	public function add() {$a = new CForm;
 		$view = new CView;
 		if (isset($_POST['submit'])) {$c = new Clerk;
-			if (($d = $c -> getId($_POST['clerk_number'])) !== FALSE) {$a -> setError('clerk_number', 'این شماره کارمندی قبلا ثبت شده است.');
-				$view -> error = '<div class="red">این شماره کارمندی قبلا ثبت شده است.برای ویرایش یا افزودن اطلاعات اضافی به مشخصات این کارمند لطفا <a href="' . CUrl::createUrl('clerk/edit/' . $d) . '">روی این لینک</a> کلیک نمایید.</div>';
+			if (($d = $c -> getId($_POST['clerk_number'])) !== FALSE) {$a -> setError('clerk_number', 'این کد پرسنلی قبلا ثبت شده است.');
+				$view -> error = '<div class="red">این کد پرسنلی قبلا ثبت شده است.برای ویرایش یا افزودن اطلاعات اضافی به مشخصات این کارمند لطفا <a href="' . CUrl::createUrl('clerk/edit/' . $d) . '">روی این لینک</a> کلیک نمایید.</div>';
 			}
 			if ($a -> validate() === TRUE) {$e = new CDatabase;
 				$f = time();
@@ -68,7 +68,7 @@ class clerkController {
 		}$a = new CForm;
 		if (isset($_POST['submit'])) {$c = new Clerk;
 			$n = $c -> getId($_POST['clerk_number']);
-			if (!$n) {$a -> setError('clerk_number', 'رکوردی با این شماره کارمندی وجود ندارد.');
+			if (!$n) {$a -> setError('clerk_number', 'رکوردی با این کد پرسنلی وجود ندارد.');
 			}
 			if ($a -> validate() == TRUE) {
 				switch($m) {case  'profile' :
@@ -285,7 +285,7 @@ class clerkController {
 		}
 		if (isset($_POST['submit'])) {$c = new Clerk;
 			$n = $c -> getId($_POST['clerk_number']);
-			if (!$n) {$a -> setError('clerk_number', 'رکوردی با این شماره کارمندی وجود ندارد.');
+			if (!$n) {$a -> setError('clerk_number', 'رکوردی با این کد پرسنلی وجود ندارد.');
 			}
 			if ($a -> validate() == TRUE) {
 				if (CUrl::segment(3) == 'view') {CUrl::redirect('clerk/view/' . $n);
