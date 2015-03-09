@@ -20,7 +20,7 @@ class searchController {
 	public function index() {$f = new CForm;
 		$g = new CView;
 		$g -> form = $f -> run();
-		$g -> title = '&#1580;&#1587;&#1578;&#1580;&#1608;';
+		$g -> title = 'جستجو';
 		$g -> layout = 'jquery';
 		$g -> run('search/index');
 	}

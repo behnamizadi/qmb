@@ -1,10 +1,10 @@
 <?php
 class clerkController {
 	public function add() {$a = new CForm;
-		$b = new CView;
+		$view = new CView;
 		if (isset($_POST['submit'])) {$c = new Clerk;
 			if (($d = $c -> getId($_POST['clerk_number'])) !== FALSE) {$a -> setError('clerk_number', 'این شماره کارمندی قبلا ثبت شده است.');
-				$b -> error = '<div class="red">این شماره کارمندی قبلا ثبت شده است.برای ویرایش یا افزودن اطلاعات اضافی به مشخصات این کارمند لطفا <a href="' . CUrl::createUrl('clerk/edit/' . $d) . '">روی این لینک</a> کلیک نمایید.</div>';
+				$view -> error = '<div class="red">این شماره کارمندی قبلا ثبت شده است.برای ویرایش یا افزودن اطلاعات اضافی به مشخصات این کارمند لطفا <a href="' . CUrl::createUrl('clerk/edit/' . $d) . '">روی این لینک</a> کلیک نمایید.</div>';
 			}
 			if ($a -> validate() === TRUE) {$e = new CDatabase;
 				$f = time();
@@ -12,9 +12,9 @@ class clerkController {
 				$e -> insert();
 				CUrl::redirect('profile/add/' . $e -> lastId() . '/' . $f . '/');
 			}
-		}$b -> title = 'ثبت اطلاعات کارمند';
-		$b -> frun = $a -> run();
-		$b -> run('clerk/add');
+		}$view -> title = 'ثبت اطلاعات کارمند';
+		$view -> frun = $a -> run();
+		$view -> run('clerk/add');
 	}
 
 	public function manage() {$g = new CGrid;
@@ -28,43 +28,43 @@ class clerkController {
 		$g -> operations = array('edit' => FALSE);
 		$g -> counter = TRUE;
 		$g -> headers = array('clerk_number', 'name' => array('label' => 'نام'), 'lastname' => array('label' => 'نام خانوادگی'), 'mobile' => array('label' => 'موبایل'), 'employment_status' => array('format' => 'model[Lookup,getById($value,employment_status)]', 'label' => 'وضعیت استخدام'), 'job_status' => array('format' => 'model[Lookup,getById($value,job_status)]', 'label' => 'وضعیت اشتغال'), 'sex' => array('format' => 'type[1:مرد,2:زن]', 'label' => 'جنسیت'));
-		$b = new CView;
+		$view = new CView;
 		$k = 'لیست کارمندان';
 		if ($h) {$g -> operations = FALSE;
 			$g -> noSort = TRUE;
 			$g -> paginate = FALSE;
-			$b -> layout = 'print2';
-			$b -> ptitle = "<h1>$k</h1>";
+			$view -> layout = 'print2';
+			$view -> ptitle = "<h1>$k</h1>";
 			$l = new User;
-			$b -> producer = $l -> producer();
-		} else {$b -> pb = '<center><p>' . CUrl::createLink('نسخه چاپی', 'clerk/manage/print', 'class="box" target="_blank"') . '</p></center>';
-		}$b -> grid = $g -> run();
-		$b -> title = $k;
-		$b -> run();
+			$view -> producer = $l -> producer();
+		} else {$view -> pb = '<center><p>' . CUrl::createLink('نسخه چاپی', 'clerk/manage/print', 'class="box" target="_blank"') . '</p></center>';
+		}$view -> grid = $g -> run();
+		$view -> title = $k;
+		$view -> run();
 	}
 
 	public function edit() {$m = CUrl::segment(3);
-		$b = new CView;
+		$view = new CView;
 		switch($m) {case  'profile' :
-				$b -> title = 'ویرایش مشخصات فردی کارمند';
+				$view -> title = 'ویرایش مشخصات فردی کارمند';
 				break;
 			case  'spouse' :
-				$b -> title = 'ویرایش افراد تحت تکفل کارمند';
+				$view -> title = 'ویرایش افراد تحت تکفل کارمند';
 				break;
 			case  'employment' :
-				$b -> title = 'ویرایش اطلاعات پایه‌ای شغل کارمند';
+				$view -> title = 'ویرایش اطلاعات پایه‌ای شغل کارمند';
 				break;
 			case  'education' :
-				$b -> title = 'ویرایش اطلاعات تحصیلی کارمند';
+				$view -> title = 'ویرایش اطلاعات تحصیلی کارمند';
 				break;
 			default :
-				$b -> title = 'ویرایش اطلاعات کارمند';
+				$view -> title = 'ویرایش اطلاعات کارمند';
 		}
-		if (is_numeric($m)) {$b -> clerk_id = $m;
+		if (is_numeric($m)) {$view -> clerk_id = $m;
 			$j = "SELECT time_added FROM tbl_clerk WHERE id='$m'";
 			$e = new CDatabase;
-			$b -> time_added = $e -> queryOne($j) -> time_added;
-			$b -> run('clerk/edit2');
+			$view -> time_added = $e -> queryOne($j) -> time_added;
+			$view -> run('clerk/edit2');
 		}$a = new CForm;
 		if (isset($_POST['submit'])) {$c = new Clerk;
 			$n = $c -> getId($_POST['clerk_number']);
@@ -84,16 +84,16 @@ class clerkController {
 						CUrl::redirect('education/manage/' . $n);
 						break;
 					default :
-						$b -> clerk_id = $n;
+						$view -> clerk_id = $n;
 						$j = "SELECT time_added FROM tbl_clerk WHERE id='$n'";
 						$e = new CDatabase;
-						$b -> time_added = $e -> queryOne($j) -> time_added;
-						$b -> run('clerk/edit2');
+						$view -> time_added = $e -> queryOne($j) -> time_added;
+						$view -> run('clerk/edit2');
 				}
 			}
-		}$b -> form = $a -> run();
-		$b -> layout = 'jquery';
-		$b -> run('clerk/edit');
+		}$view -> form = $a -> run();
+		$view -> layout = 'jquery';
+		$view -> run('clerk/edit');
 	}
 
 	public function view() {$d = CUrl::segment(3);
@@ -101,7 +101,7 @@ class clerkController {
 			CUrl::redirect('clerk/manage');
 		$e = new CDatabase;
 		$p = new CJcalendar;
-		$b = new CView;
+		$view = new CView;
 		$q = "SELECT name,lastname,father,date_born,city_born,city_sodur,sh_sh,code_melli,takafol,married,religion FROM tbl_profile WHERE clerk_id='$d'";
 		$s = $e -> queryOne($q);
 		$s -> date_born = $p -> date("Y/m/d", $s -> date_born);
@@ -117,13 +117,13 @@ class clerkController {
 				}
 			} else {$u = "سرپرستی $x";
 			}
-		}$b -> jobPlace = $u;
+		}$view -> jobPlace = $u;
 		$c = new Clerk;
-		$b -> clerk_number = $c -> getClerkNumber($d);
+		$view -> clerk_number = $c -> getClerkNumber($d);
 		if ($s -> married == 2)
-			$b -> spouseJob = $e -> queryOne("SELECT job FROM tbl_spouse WHERE clerk_id='$d'") -> job;
+			$view -> spouseJob = $e -> queryOne("SELECT job FROM tbl_spouse WHERE clerk_id='$d'") -> job;
 		else
-			$b -> spouseJob = '-';
+			$view -> spouseJob = '-';
 		$aa = $e -> queryOne("SELECT date_employed,picture FROM tbl_employment WHERE clerk_id='$d'");
 		$bb = $aa -> date_employed;
 		$cc = $p -> difference($bb);
@@ -132,114 +132,147 @@ class clerkController {
 			$dd .= $cc['year'] . ' سال و';
 		$dd .= $cc['month'] . ' ماه و';
 		$dd .= $cc['day'] . ' روز';
-		$b -> timeEmployed = $dd;
-		$b -> dateEmployed = $p -> date('Y/m/d', $bb);
-		$b -> picture = $aa -> picture;
+		$view -> timeEmployed = $dd;
+		$view -> dateEmployed = $p -> date('Y/m/d', $bb);
+		$view -> picture = $aa -> picture;
 		$g = new CGrid;
 		$g -> noSort = array('study_degree', 'study_field', 'date_get', 'place');
 		$g -> table = 'tbl_education';
 		$g -> headers = array('study_degree' => array('format' => 'model[Lookup,getById($value,study_degree)]', 'label' => 'مدرک تحصیلی'), 'study_field' => array('format' => 'model[StudyField,getById($value)]', 'label' => 'رشته تحصیلی'), 'date_get' => array('format' => 'model[Cal,getDate($value,Y)]', 'label' => 'تاریخ اخذ مدرک'), 'place' => array('label' => 'محل تحصیل'));
 		$g -> operations = FALSE;
 		$g -> condition = array('clerk_id' => $d);
-		$b -> education = $g -> run();
+		$view -> education = $g -> run();
 		$g -> table = 'tbl_carrier';
 		$g -> headers = array('hokm_type' => array('format' => 'model[Lookup,getById($value,hokm_type)]', 'label' => 'نوع حکم'), 'post' => array('format' => 'model[Lookup,getById($value,post)]', 'label' => 'پست سازمانی'), 'branch_id' => array('format' => 'model[Carrier::comletePlace($value)]', 'label' => 'محل خدمت'), 'start' => array('format' => 'model[Cal,getDate($value)]', 'label' => 'تاریخ شروع'), 'end' => array('format' => 'model[Cal,getDate($value)]', 'label' => 'تاریخ پایان'), 'emtiaz_shoghl' => array('label' => 'امتیاز شغل'), );
 		$g -> sort = 'start';
 		$g -> noSort = array('hokm_type', 'post', 'branch_id', 'start', 'end', 'emtiaz_shoghl');
-		$b -> carrier = $g -> run();
-		$b -> profile = $s;
-		$ee = $p -> date('Y', FALSE, FALSE) - 1;
+		$view -> carrier = $g -> run();
+		$view -> profile = $s;
+		$current_year = $p -> date('Y', FALSE, FALSE) - 1;
 		$ff = array();
-		for ($gg = $ee - 3; $gg <= $ee; $gg++) {$j = "SELECT grade FROM tbl_evaluation WHERE clerk_id='$d' AND year='$gg'";
+		for ($counter = $current_year - 3; $counter <= $current_year; $counter++) {$j = "SELECT grade FROM tbl_evaluation WHERE clerk_id='$d' AND year='$counter'";
 			$hh = $e -> queryOne($j);
 			if ($hh)
-				$ff[$gg] = $hh -> grade;
+				$ff[$counter] = $hh -> grade;
 			else
-				$ff[$gg] = '-';
+				$ff[$counter] = '-';
 		}
 		$j = "SELECT COUNT(*) FROM tbl_training WHERE clerk_id='$d'";
-		$b -> tCount = $e -> countRows($j);
+		$view -> tCount = $e -> countRows($j);
 		$j = "SELECT COUNT(*) FROM tbl_p_p WHERE clerk_id='$d' AND type='1'";
-		$b -> p1Count = $e -> countRows($j);
+		$view -> p1Count = $e -> countRows($j);
 		$j = "SELECT COUNT(*) FROM tbl_p_p WHERE clerk_id='$d' AND type='2'";
-		$b -> p2Count = $e -> countRows($j);
-		$b -> evResult = $ff;
-		$b -> layout = 'clerkview';
+		$view -> p2Count = $e -> countRows($j);
+		$view -> evResult = $ff;
+		$view -> layout = 'clerkview';
 		$l = new User;
-		$b -> producer = $l -> producer();
-		$b -> run();
+		$view -> producer = $l -> producer();
+		$view -> run();
 	}
 
-	public function search() {$ii = CUrl::segment(3);
+	public function search() {
+		$ii = CUrl::segment(3);
 		$h = FALSE;
 		if (CUrl::segment(4) === 'print')
 			$h = TRUE;
 		if (!$ii)
 			CUrl::redirect('clerk/index');
 		$jj = new CDetail;
-		$b = new CView;
+		$view = new CView;
 		$e = new CDatabase;
 		$e -> setTbl('tbl_profile');
 		$s = $e -> getByPk($ii);
 		if ($s) {$jj -> value = $s;
 			$jj -> numberOfColumns = 4;
 			$jj -> headers = array('name', 'lastname', 'father', 'date_born' => array('format' => 'model[Cal,getDate($value)]'), 'city_born', 'city_sodur', 'sh_sh', 'code_melli', 'religion', 'sex' => array('format' => 'type[1:مرد,2:زن]'), 'sarbazi' => array('format' => 'model[Lookup,getById($value,sarbazi)]'), 'married' => array('format' => 'type[1:مجرد,2:متاهل]'), 'tel', 'mobile', 'father_tel', 'takafol', 'address', 'father_address','religion');
-			$b -> profile = $jj -> run();
+			$view -> profile = $jj -> run();
 		}
-		if ($s -> married == 2) {$j = "SELECT * FROM tbl_spouse WHERE clerk_id='$ii'";
+		if ($s -> married == 2) {
+			$j = "SELECT * FROM tbl_spouse WHERE clerk_id='$ii'";
 			$kk = $e -> queryOne($j);
-			if ($kk) {$jj -> value = $kk;
+			if ($kk) {
+				$jj -> value = $kk;
 				$jj -> numberOfColumns = 4;
 				$jj -> headers = array('name', 'lastname', 'sh_sh', 'code_melli', 'father', 'date_born' => array('format' => 'model[Cal,getDate($value)]'), 'city_born', 'date_married' => array('format' => 'model[Cal,getDate($value)]'), 'study_degree' => array('format' => 'model[Lookup,getById($value,study_degree)]'), 'study_field' => array('format' => 'model[StudyField,getById($value)]'));
-				$b -> spouse = $jj -> run();
+				$view -> spouse = $jj -> run();
 			}
-		}$e -> setTbl('tbl_employment');
+		}
+		$e -> setTbl('tbl_employment');
+		
+		//-----------childs
+		$child_query = "SELECT * FROM tbl_child WHERE clerk_id='$ii'";
+		$childs = $e -> queryAll($child_query);
+		if ($childs) {
+			$g = new CGrid;
+			$g -> operations = FALSE;
+			$g -> values = $childs;
+			$g -> headers = array('name', 'code_melli', 'date_born' => array('format' => 'model[Cal,getDate($value)]'), 'city_born');
+			if ($h) {$g -> noSort = array('study_degree', 'study_field', 'date_get', 'place');
+			}
+			$view -> childs = $g -> run();
+		}
+		//------------end childs
+		
+		
 		$aa = $e -> getByPk($ii);
 		if ($aa) {$jj -> value = $aa;
 			$jj -> numberOfColumns = 4;
 			$jj -> headers = array('hesab', 'bon', 'bimeh', 'date_employed' => array('format' => 'model[Cal,getDate($value)]'), );
-			$b -> employment = $jj -> run();
-		}$j = "SELECT * FROM tbl_education WHERE clerk_id='$ii' ORDER BY date_get";
+			$view -> employment = $jj -> run();
+		}
+		//------------------------------------
+		$j = "SELECT * FROM tbl_education WHERE clerk_id='$ii' ORDER BY date_get";
 		$ll = $e -> queryAll($j);
 		if ($ll) {$g = new CGrid;
 			$g -> operations = FALSE;
 			$g -> values = $ll;
 			$g -> headers = array('study_degree' => array('format' => 'model[Lookup,getById($value,study_degree)]'), 'study_field' => array('format' => 'model[StudyField,getById($value)]'), 'date_get' => array('format' => 'model[Cal,getDate($value,Y)]'), 'place');
 			if ($h) {$g -> noSort = array('study_degree', 'study_field', 'date_get', 'place');
-			}$b -> education = $g -> run();
-		}$j = "SELECT * FROM tbl_carrier WHERE clerk_id='$ii' ORDER BY start";
+			}$view -> education = $g -> run();
+		}
+		//---------------------------
+		$j = "SELECT * FROM tbl_carrier WHERE clerk_id='$ii' ORDER BY start";
 		$mm = $e -> queryAll($j);
 		if ($mm) {$g = new CGrid;
 			$g -> operations = FALSE;
 			$g -> values = $mm;
 			$g -> headers = array('hokm_type' => array('format' => 'model[Lookup,getById($value,hokm_type)]', 'label' => 'نوع حکم'), 'post' => array('format' => 'model[Lookup,getById($value,post)]', 'label' => 'پست سازمانی'), 'branch_id' => array('format' => 'model[Carrier::comletePlace($value)]', 'label' => 'محل خدمت'), 'start' => array('format' => 'model[Cal,getDate($value)]', 'label' => 'تاریخ شروع'), 'end' => array('format' => 'model[Cal,getDate($value)]', 'label' => 'تاریخ پایان'), 'emtiaz_shoghl' => array('label' => 'امتیاز شغل'), );
 			if ($h) {$g -> noSort = array('hokm_type', 'post', 'branch_id', 'start', 'end', 'emtiaz_shoghl');
-			}$b -> carrier = $g -> run();
-		}$p = new CJcalendar;
-		$ee = $p -> date('Y', FALSE, FALSE) - 1;
-		$ff = array();
+			}
+			$view -> carrier = $g -> run();
+		}
+		$p = new CJcalendar;
+		$current_year = $p -> date('Y', FALSE, FALSE) - 1;
 		$picquery = $e -> queryOne("SELECT date_employed,picture FROM tbl_employment WHERE clerk_id='$ii'");
-		$b -> picture = $picquery -> picture;
-		for ($gg = $ee - 3; $gg <= $ee; $gg++) {$j = "SELECT grade FROM tbl_evaluation WHERE clerk_id='$ii' AND year='$gg'";
+		$view -> picture = $picquery -> picture;
+		
+		//----------------------------------------------------------
+		$ff = array();
+		for ($counter = $current_year - 3; $counter <= $current_year; $counter++) {
+			$j = "SELECT grade,year FROM tbl_evaluation WHERE clerk_id='$ii' AND year='$counter'";
 			$hh = $e -> queryOne($j);
 			if ($hh)
-				$ff[$gg] = $hh -> grade;
+				$ff[$counter] = $hh -> grade;
 			else
-				$ff[$gg] = '-';
-		}$b -> evResult = $ff;
-		if ($h) {$b -> layout = 'print2';
-			$b -> ptitle = '<h1>گزارش جامع اطلاعات ' . Profile::getName($ii) . '</h1>';
+				$ff[$counter] = '-';
+		}
+		$view -> evResult = $ff;
+		//----------------------------------------------------------
+		
+		if ($h) {
+			$view -> layout = 'print2';
+			$view -> ptitle = '<h1>گزارش جامع اطلاعات ' . Profile::getName($ii) . '</h1>';
 			$l = new User;
-			$b -> producer = $l -> producer();
-		} else {$b -> pb = '<center><p>' . CUrl::createLink('نسخه چاپی', 'clerk/search/' . $ii . '/print', 'class="box" target="_blank"') . '</p></center>';
-		}$b -> title = 'گزارش جامع اطلاعات کارمند: ' . Profile::getName($ii);
-		$b -> run('clerk/search');
+			$view -> producer = $l -> producer();
+		} else {$view -> pb = '<center><p>' . CUrl::createLink('نسخه چاپی', 'clerk/search/' . $ii . '/print', 'class="box" target="_blank"') . '</p></center>';
+		}$view -> title = 'گزارش جامع اطلاعات کارمند: ' . Profile::getName($ii);
+		$view -> run('clerk/search');
 	}
 
 	public function index() {$a = new CForm;
-		$b = new CView;
-		if (CUrl::segment(3) == 'view') {$b -> title = 'خلاصه وضعیت';
-		} else {$b -> title = 'گزارش جامع اطلاعات کارمند';
+		$view = new CView;
+		if (CUrl::segment(3) == 'view') {$view -> title = 'خلاصه وضعیت';
+		} else {$view -> title = 'گزارش جامع اطلاعات کارمند';
 		}
 		if (isset($_POST['submit'])) {$c = new Clerk;
 			$n = $c -> getId($_POST['clerk_number']);
@@ -250,9 +283,9 @@ class clerkController {
 				} else {CUrl::redirect('clerk/search/' . $n);
 				}
 			}
-		}$b -> layout = 'jquery';
-		$b -> form = $a -> run();
-		$b -> run('clerk/index');
+		}$view -> layout = 'jquery';
+		$view -> form = $a -> run();
+		$view -> run('clerk/index');
 	}
 
 	public function delete() {$d = CUrl::segment(3);

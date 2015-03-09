@@ -25,6 +25,14 @@ echo $spouse;
 endif;
 ?>
 <?php
+if(isset($spouse)):
+?>
+<h3>مشخصات فرزندان</h3>
+<?php
+echo $childs; 
+endif;
+?>
+<?php
 if(isset($employment)):
 ?>
 <h3>اطلاعات پایه‌ای شغل</h3>
@@ -52,7 +60,7 @@ endif;
         <table class="clist">
 		<tr>
 		<?php foreach($evResult as $year=>$grade): ?>
-			<th class="grid_th">سال <? echo $year; ?></th>
+			<th class="grid_th">سال <?php echo $year; ?></th>
 		<?php endforeach; ?>
 		</tr>
 		<tr>
