@@ -23,6 +23,7 @@ class profileController {
 					else
 						CUrl::redirect('employment/add/' . $a . '/' . $b);
 				}
+			}
 			$c -> title = 'افزودن کارمند';
 			$c -> form = $f -> run();
 			$c -> run('profile/create');

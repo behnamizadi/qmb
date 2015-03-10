@@ -16,7 +16,7 @@ h2{font-size: 23px;}
 h3{font-size: 18px;}
 h4{font-size: 15px}
 h3,h2,h4{color:#333;margin:3px 0 0 0;}
-hr{background:url("../images/h2.png") no-repeat scroll right;border:none;margin:0 0 15px 0}
+hr{background:url("../images/h2.png") no-repeat scroll right;border:none;margin:0 0 10px 0}
 label{color:#333;float:right;font-size:15px;width:90px;}
 select{font-size:15px;color:#333;font-family:byekan,tahoma,sans-serif;}
 form p{clear:right}
