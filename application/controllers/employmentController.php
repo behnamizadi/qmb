@@ -113,7 +113,8 @@ class employmentController {
 		$e -> run();
 	}
 
-	public function hesab() {$b = "SELECT tbl_clerk.clerk_number,tbl_profile.name,tbl_profile.lastname,tbl_employment.hesab 
+	public function hesab() {
+		$b = "SELECT tbl_clerk.clerk_number,tbl_profile.name,tbl_profile.lastname,tbl_employment.hesab 
         FROM tbl_clerk,tbl_profile,tbl_employment WHERE tbl_clerk.id=tbl_profile.clerk_id AND tbl_clerk.id=tbl_employment.clerk_id ORDER BY tbl_clerk.clerk_number";
 		$o = new CGrid;
 		$o -> counter = TRUE;
