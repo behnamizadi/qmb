@@ -65,7 +65,6 @@ class educationController {
 		$n -> condition = array('clerk_id' => $b);
 		$n -> headers = array('study_degree' => array('format' => 'model[Lookup,getById($value,study_degree)]'), 'study_field' => array('format' => 'model[StudyField,getById($value)]'), 'date_get' => array('format' => 'model[Cal,getDate($value,Y)]'), 'place');
 		$a -> grid = $n -> run();
-		$a -> layout = 'jquery';
 		$a -> form = $f -> run();
 		$a -> title = '&#1575;&#1591;&#1604;&#1575;&#1593;&#1575;&#1578; &#1578;&#1581;&#1589;&#1740;&#1604;&#1740; ' . Profile::getName($b);
 		$a -> run('education/manage');
@@ -97,7 +96,6 @@ class educationController {
 		$a -> model = $p;
 		$a -> form = $f -> run();
 		$a -> title = '&#1608;&#1740;&#1585;&#1575;&#1740;&#1588; &#1575;&#1591;&#1604;&#1575;&#1593;&#1575;&#1578; &#1578;&#1581;&#1589;&#1740;&#1604;&#1740;';
-		$a -> layout = 'jquery';
 		$a -> run('education/edit');
 	}
 

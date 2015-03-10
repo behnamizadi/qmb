@@ -1,6 +1,7 @@
 <?php
 class branchController {
-	public function add() {$e = new CForm;
+	public function add() {
+		$e = new CForm;
 		$e -> showFieldErrorText = FALSE;
 		$g = new CJcalendar(FALSE);
 		if ($e -> validate()) {$j = $g -> date('H');
@@ -15,7 +16,7 @@ class branchController {
 		}$r = new CView;
 		$r -> degree_start = $g -> date('Y');
 		$r -> form = $e -> run();
-		$r -> title = '&#1575;&#1601;&#1586;&#1608;&#1583;&#1606; &#1588;&#1593;&#1576;&#1607;';
+		$r -> title = 'افزودن شعبه';
 		$r -> run();
 	}
 
@@ -43,12 +44,11 @@ class branchController {
 						$p -> insert();
 					}CUrl::redirect('branch/manage');
 				}
-			}$r -> title = '&#1608;&#1585;&#1608;&#1583; &#1575;&#1591;&#1604;&#1575;&#1593;&#1575;&#1578; &#1578;&#1575;&#1585;&#1740;&#1582;&#1670;&#1607; &#1583;&#1585;&#1580;&#1607; &#1588;&#1593;&#1576;&#1607;';
-			$r -> layout = 'jquery';
+			}$r -> title = 'ورود اطلاعات تاریخچه درجه شعبه';
 			$r -> f = $w;
 			$r -> run('branch/degree');
-		} else {$r -> title = '&#1575;&#1588;&#1705;&#1575;&#1604; &#1583;&#1585; &#1601;&#1585;&#1575;&#1740;&#1606;&#1583; &#1579;&#1576;&#1578;';
-			$r -> error = '&#1605;&#1588;&#1705;&#1604;&#1740; &#1583;&#1585; &#1601;&#1585;&#1575;&#1740;&#1606;&#1583; &#1579;&#1576;&#1578; &#1576;&#1607; &#1608;&#1580;&#1608;&#1583; &#1570;&#1605;&#1583;&#1607; &#1575;&#1587;&#1578;.';
+		} else {$r -> title = 'اشکال در فرایند ثبت';
+			$r -> error = 'مشکلی در فرایند ثبت به وجود آمده است.';
 			$r -> run();
 		}
 	}
@@ -65,9 +65,8 @@ class branchController {
 				$p -> insert();
 			} else
 				$_POST['error'] = 1;
-		}$r -> body = Degree::degreeHistory($aa, array('view' => FALSE, 'edit' => FALSE, 'delete' => FALSE, 'branch/degreeedit/$value->id/' . $aa => array('icon' => 'public/images/edit.png', 'alt' => '&#1608;&#1740;&#1585;&#1575;&#1740;&#1588;', 'title' => '&#1608;&#1740;&#1585;&#1575;&#1740;&#1588;'), 'branch/degreedelete/$value->id/' . $aa => array('icon' => 'public/images/delete.png', 'alt' => '&#1581;&#1584;&#1601;', 'title' => '&#1581;&#1584;&#1601;', 'message' => '&#1608;&#1575;&#1602;&#1593;&#1575; &#1605;&#1740;&#8204;&#1582;&#1608;&#1575;&#1740; &#1581;&#1584;&#1601;&#1588; &#1705;&#1606;&#1740;&#1567;')));
-		$r -> title = '&#1605;&#1583;&#1740;&#1585;&#1740;&#1578; &#1583;&#1585;&#1580;&#1575;&#1578; &#1588;&#1593;&#1576;&#1607; ' . $aa;
-		$r -> layout = 'jquery';
+		}$r -> body = Degree::degreeHistory($aa, array('view' => FALSE, 'edit' => FALSE, 'delete' => FALSE, 'branch/degreeedit/$value->id/' . $aa => array('icon' => 'public/images/edit.png', 'alt' => 'ویرایش', 'title' => 'ویرایش'), 'branch/degreedelete/$value->id/' . $aa => array('icon' => 'public/images/delete.png', 'alt' => 'حذف', 'title' => 'حذف', 'message' => 'واقعا می‌خوای حذفش کنی؟')));
+		$r -> title = 'مدیریت درجات شعبه ' . $aa;
 		$r -> form = $e -> run();
 		$r -> run('branch/degrees');
 	}
@@ -89,7 +88,7 @@ class branchController {
 				CUrl::redirect('branch/degrees/' . $aa);
 			}
 		}$r = new CView;
-		$r -> title = '&#1608;&#1740;&#1585;&#1575;&#1740;&#1588; &#1583;&#1585;&#1580;&#1607; &#1588;&#1593;&#1576;&#1607; ' . $aa;
+		$r -> title = 'ویرایش درجه شعبه ' . $aa;
 		$r -> branchCode = $aa;
 		$r -> model = $cc;
 		$r -> form = $e -> run();
@@ -175,11 +174,10 @@ class branchController {
 					}
 				}CUrl::redirect('branch/degree/' . $aa . '/' . $q);
 			}$r -> form = $e -> run();
-			$r -> title = '&#1575;&#1605;&#1705;&#1575;&#1606;&#1575;&#1578; &#1588;&#1593;&#1576;&#1607;';
-			$r -> layout = 'jquery';
+			$r -> title = 'امکانات شعبه';
 			$r -> run('branch/props');
-		} else {$r -> title = '&#1575;&#1588;&#1705;&#1575;&#1604; &#1583;&#1585; &#1601;&#1585;&#1575;&#1740;&#1606;&#1583; &#1579;&#1576;&#1578;';
-			$r -> error = '&#1605;&#1588;&#1705;&#1604;&#1740; &#1583;&#1585; &#1601;&#1585;&#1575;&#1740;&#1606;&#1583; &#1579;&#1576;&#1578; &#1576;&#1607; &#1608;&#1580;&#1608;&#1583; &#1570;&#1605;&#1583;&#1607; &#1575;&#1587;&#1578;.';
+		} else {$r -> title = 'اشکال در فرایند ثبت';
+			$r -> error = 'مشکلی در فرایند ثبت به وجود آمده است.';
 			$r -> run();
 		}
 	}
@@ -424,9 +422,9 @@ class branchController {
 				if (!empty($_POST['miz_pool_number'])) {$p -> insert(array('branch_code' => $aa, 'name' => 'miz_pool', 'quantity' => $_POST['miz_pool_number']));
 				}
 			}CUrl::redirect('branch/manage');
-		}$r -> layout = 'jquery';
+		}
 		$r -> form = $e;
-		$r -> title = '&#1608;&#1740;&#1585;&#1575;&#1740;&#1588; &#1575;&#1605;&#1705;&#1575;&#1606;&#1575;&#1578; &#1588;&#1593;&#1576;&#1607;';
+		$r -> title = 'ویرایش امکانات شعبه';
 		$r -> run('branch/propsedit');
 	}
 
@@ -438,7 +436,7 @@ class branchController {
 		$uu -> sort = 'code';
 		$r = new CView;
 		$vv = new Ostan;
-		$ww = '&#1604;&#1740;&#1587;&#1578; &#1588;&#1593;&#1576; ' . $vv -> getName();
+		$ww = 'لیست شعب ' . $vv -> getName();
 		if (CUrl::segment(3) == 'print') {$uu -> operations = FALSE;
 			$uu -> noSort = TRUE;
 			$uu -> paginate = FALSE;
@@ -446,7 +444,7 @@ class branchController {
 			$r -> ptitle = '<h1>' . $ww . '</h1>';
 			$xx = new User;
 			$r -> producer = $xx -> producer();
-		} else {$r -> pb = '<center><p>' . CUrl::createLink('&#1606;&#1587;&#1582;&#1607; &#1670;&#1575;&#1662;&#1740;', 'branch/manage/print', 'class="box" target="_blank"') . '</p></center>';
+		} else {$r -> pb = '<center><p>' . CUrl::createLink('نسخه چاپی', 'branch/manage/print', 'class="box" target="_blank"') . '</p></center>';
 		}$r -> body = $uu -> run();
 		$r -> title = $ww;
 		$r -> run('branch/manage');
@@ -454,12 +452,12 @@ class branchController {
 
 	public function search() {$e = new CForm;
 		if (isset($_POST['submit'])) {$yy = new Branch;
-			if (!$yy -> getNameById($_POST['code'])) {$e -> setError('code', '&#1588;&#1593;&#1576;&#1607; &#1575;&#1740; &#1576;&#1575; &#1575;&#1740;&#1606; &#1705;&#1583; &#1608;&#1580;&#1608;&#1583; &#1606;&#1583;&#1575;&#1585;&#1583;.');
+			if (!$yy -> getNameById($_POST['code'])) {$e -> setError('code', 'شعبه ای با این کد وجود ندارد.');
 			}
 			if ($e -> validate() == TRUE) {CUrl::redirect('branch/view/' . $_POST['code']);
 			}
 		}$r = new CView;
-		$r -> title = '&#1580;&#1587;&#1578;&#1580;&#1608;&#1740; &#1588;&#1593;&#1576;&#1607;';
+		$r -> title = 'جستجوی شعبه';
 		$r -> form = $e -> run();
 		$r -> run();
 	}
@@ -470,28 +468,28 @@ class branchController {
 			$aaa = TRUE;
 		$bbb = new CDetail;
 		$bbb -> return = 'name';
-		$bbb -> headers = array('code', 'name', 'city' => array('format' => 'model[Cities,getById($value)]'), 'tel', 'fax', 'boss', 'mob', 'date_start' => array('format' => 'model[Cal,getDate($value)]', 'label' => '<b>&#1578;&#1575;&#1585;&#1740;&#1582; &#1588;&#1585;&#1608;&#1593;</b>'), 'zip', 'geo' => array('format' => 'model[Lookup,getById($value,geo)]'), 'address');
+		$bbb -> headers = array('code', 'name', 'city' => array('format' => 'model[Cities,getById($value)]'), 'tel', 'fax', 'boss', 'mob', 'date_start' => array('format' => 'model[Cal,getDate($value)]', 'label' => '<b>تاریخ شروع</b>'), 'zip', 'geo' => array('format' => 'model[Lookup,getById($value,geo)]'), 'address');
 		$bbb -> numberOfColumns = 5;
 		$r = new CView;
 		$r -> body = $bbb -> run();
 		$uu = new CGrid;
-		$ww = '&#1575;&#1591;&#1604;&#1575;&#1593;&#1575;&#1578; &#1588;&#1593;&#1576;&#1607; ' . $bbb -> getReturnResult() . '(' . $zz . ')';
+		$ww = 'اطلاعات شعبه ' . $bbb -> getReturnResult() . '(' . $zz . ')';
 		if ($aaa) {$uu -> operations = FALSE;
 			$uu -> noSort = TRUE;
 			$r -> layout = 'print2';
 			$r -> ptitle = '<h1>' . $ww . '</h1>';
 			$xx = new User;
 			$r -> producer = $xx -> producer();
-		} else {$r -> pb = '<center><p>' . CUrl::createLink('&#1606;&#1587;&#1582;&#1607; &#1670;&#1575;&#1662;&#1740;', 'branch/view/' . $zz . '/print', 'class="box" target="_blank"') . '</p></center>';
+		} else {$r -> pb = '<center><p>' . CUrl::createLink('نسخه چاپی', 'branch/view/' . $zz . '/print', 'class="box" target="_blank"') . '</p></center>';
 		}$uu -> paginate = FALSE;
 		$uu -> table = 'tbl_props';
-		$uu -> headers = array('name' => array('label' => '&#1593;&#1606;&#1608;&#1575;&#1606;', 'format' => 'model[Branch::getPropName($value)]'), 'quantity' => array('label' => '&#1578;&#1593;&#1583;&#1575;&#1583;'));
+		$uu -> headers = array('name' => array('label' => 'عنوان', 'format' => 'model[Branch::getPropName($value)]'), 'quantity' => array('label' => 'تعداد'));
 		$uu -> operations = FALSE;
 		$uu -> condition = array('branch_code' => $zz);
 		$r -> props = $uu -> run();
 		$r -> title = $ww;
 		if (!$aaa)
-			$r -> link = '<p><a href="' . PHP40::get() -> homeUrl . 'index.php/branch/manage" class="box">&#1576;&#1575;&#1586;&#1711;&#1588;&#1578;</a></p>';
+			$r -> link = '<p><a href="' . PHP40::get() -> homeUrl . 'index.php/branch/manage" class="box">بازگشت</a></p>';
 		$r -> degrees = Degree::degreeHistory($zz, FALSE, $aaa);
 		$r -> run('branch/view');
 	}
@@ -499,7 +497,7 @@ class branchController {
 	public function edit() {$ccc = CUrl::segment(3);
 		$e = new CForm;
 		if (isset($_POST['submit'])) {$eee = new Branch;
-			if (!($t = $eee -> getNameById($_POST['code']))) {$e -> setError('code', '&#1588;&#1593;&#1576;&#1607;&#8204;&#1575;&#1740; &#1576;&#1575; &#1575;&#1740;&#1606; &#1705;&#1583; &#1608;&#1580;&#1608;&#1583; &#1606;&#1583;&#1575;&#1585;&#1583;.');
+			if (!($t = $eee -> getNameById($_POST['code']))) {$e -> setError('code', 'شعبه‌ای با این کد وجود ندارد.');
 			}
 			if ($e -> validate() == TRUE) {
 				switch($ccc) {case  'info' :
@@ -517,23 +515,23 @@ class branchController {
 			}
 		}$r = new CView;
 		switch($ccc) {case  'info' :
-				$r -> title = '&#1608;&#1740;&#1585;&#1575;&#1740;&#1588; &#1605;&#1588;&#1582;&#1589;&#1575;&#1578; &#1662;&#1575;&#1740;&#1607; &#1588;&#1593;&#1576;&#1607;';
+				$r -> title = 'ویرایش مشخصات پایه شعبه';
 				break;
 			case  'props' :
-				$r -> title = '&#1608;&#1740;&#1585;&#1575;&#1740;&#1588; &#1575;&#1605;&#1705;&#1575;&#1606;&#1575;&#1578; &#1588;&#1593;&#1576;&#1607;';
+				$r -> title = 'ویرایش امکانات شعبه';
 				break;
 			case  'degree' :
-				$r -> title = '&#1608;&#1740;&#1585;&#1575;&#1740;&#1588; &#1578;&#1575;&#1585;&#1740;&#1582;&#1670;&#1607; &#1583;&#1585;&#1580;&#1575;&#1578; &#1588;&#1593;&#1576;&#1607;';
+				$r -> title = 'ویرایش تاریخچه درجات شعبه';
 				break;
 			default :
-				$r -> title = '&#1608;&#1740;&#1585;&#1575;&#1740;&#1588; &#1575;&#1591;&#1604;&#1575;&#1593;&#1575;&#1578; &#1588;&#1593;&#1576;&#1607;';
+				$r -> title = 'ویرایش اطلاعات شعبه';
 		}$r -> form = $e -> run();
 		$r -> run();
 	}
 
 	public function info() {$t = CUrl::segment(3);
 		$p = new CDatabase;
-		if (($cc = $p -> getByPk($t)) == FALSE) {$r -> error = '&#1588;&#1593;&#1576;&#1607;&#8204;&#1575;&#1740; &#1576;&#1575; &#1575;&#1740;&#1606; &#1705;&#1583; &#1608;&#1580;&#1608;&#1583; &#1606;&#1583;&#1575;&#1585;&#1583;.';
+		if (($cc = $p -> getByPk($t)) == FALSE) {$r -> error = 'شعبه‌ای با این کد وجود ندارد.';
 			$r -> run();
 		}$e = new CForm;
 		$e -> showFieldErrorText = FALSE;
@@ -550,11 +548,12 @@ class branchController {
 		$r -> d = $g -> date('d', $cc -> date_start);
 		$r -> y = $g -> date('Y', $cc -> date_start);
 		$r -> form = $e -> run();
-		$r -> title = '&#1608;&#1740;&#1585;&#1575;&#1740;&#1588; &#1575;&#1591;&#1604;&#1575;&#1593;&#1575;&#1578; &#1662;&#1575;&#1740;&#1607; &#1588;&#1593;&#1576;&#1607;';
+		$r -> title = 'ویرایش اطلاعات پایه شعبه';
 		$r -> run();
 	}
 
-	public function delete() {$t = CUrl::segment(3);
+	public function delete() {
+		$t = CUrl::segment(3);
 		$p = new CDatabase;
 		$p -> delete(array('code' => $t));
 		$p -> setTbl('tbl_props');

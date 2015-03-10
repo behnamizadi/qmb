@@ -25,7 +25,6 @@ class childController {
 		$k -> condition = array('clerk_id' => $a);
 		$k -> headers = array('name', 'code_melli', 'date_born' => array('format' => 'model[Cal,getDate($value)]'), 'city_born');
 		$b -> grid = $k -> run();
-		$b -> layout = 'jquery';
 		$b -> form = $d -> run();
 		$b -> title = 'مشخصات فرزندان ' . Profile::getName($a);
 		$b -> run('child/manage');

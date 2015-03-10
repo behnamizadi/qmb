@@ -82,7 +82,6 @@ class employmentController {
 		$e -> clerk_id = $a;
 		$e -> fileName = $i;
 		$e -> title = '&#1608;&#1740;&#1585;&#1575;&#1740;&#1588; &#1575;&#1591;&#1604;&#1575;&#1593;&#1575;&#1578; &#1588;&#1594;&#1604;&#1740; ' . Profile::getName($a);
-		$e -> layout = 'jquery';
 		$e -> run('employment/edit');
 	}
 

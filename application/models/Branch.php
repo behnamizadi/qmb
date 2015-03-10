@@ -6,7 +6,8 @@ class Branch {
 		return $c -> queryToArray($b, array('code' => 'name'));
 	}
 
-	public function getNameById($d) {$c = new CDatabase;
+	public function getNameById($d) {
+		$c = new CDatabase;
 		$d = $c -> escape($d);
 		$b = 'SELECT name FROM tbl_branch WHERE code="' . $d . '" AND ostan="' . PHP40::get() -> defines['ostan'] . '"';
 		$e = $c -> queryOne($b);

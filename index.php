@@ -10,4 +10,4 @@ define('FRAMEWORK','../PHP40h/');
 $config = ROOT.'application/config/config.php';
 require_once(FRAMEWORK.'PHP40.php');
 PHP40::get()->init($config);
-//ob_flush();
+//ob_flush();?>

@@ -6,11 +6,12 @@ class User {
 		return $c -> name;
 	}
 
-	public function producer() {$d = $this -> getName();
-		$e = '<p style="float:left;text-align:center;font-size:17px;font-weight:bold">&#1578;&#1607;&#1740;&#1607;&#8204;&#1705;&#1606;&#1606;&#1583;&#1607;: ';
+	public function producer() {
+		$d = $this -> getName();
+		$e = '<p style="float:left;text-align:center;font-size:17px;font-weight:bold">تهیه‌کننده: ';
 		$e .= $d;
 		$f = new CJcalendar;
-		$e .= '<br />&#1578;&#1575;&#1585;&#1740;&#1582;: ';
+		$e .= '<br />تاریخ: ';
 		$e .= $f -> date('Y/m/d');
 		$e .= '</p>';
 		return $e;

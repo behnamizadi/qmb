@@ -26,7 +26,6 @@ class vacationController {
 				}CUrl::redirect('vacation/summ/' . $e . '/' . $f);
 			}
 		}$a -> form = $b -> run();
-		$a -> layout = 'jquery';
 		$a -> run('vacation/index');
 	}
 
@@ -458,7 +457,6 @@ class vacationController {
 		$a -> m = $c -> date('m', FALSE, FALSE);
 		$a -> d = $c -> date('d', FALSE, FALSE);
 		$a -> form = $b -> run();
-		$a -> layout = 'jquery';
 		$a -> c_id = $nn;
 		$a -> title = 'ثبت مرخصی برای ' . Profile::getName($nn);
 		$a -> run('vacation/add');

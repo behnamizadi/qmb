@@ -21,7 +21,6 @@ class searchController {
 		$g = new CView;
 		$g -> form = $f -> run();
 		$g -> title = 'جستجو';
-		$g -> layout = 'jquery';
 		$g -> run('search/index');
 	}
 

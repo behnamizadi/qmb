@@ -92,7 +92,6 @@ class clerkController {
 				}
 			}
 		}$view -> form = $a -> run();
-		$view -> layout = 'jquery';
 		$view -> run('clerk/edit');
 	}
 
@@ -292,9 +291,9 @@ class clerkController {
 				} else {CUrl::redirect('clerk/search/' . $n);
 				}
 			}
-		}$view -> layout = 'jquery';
 		$view -> form = $a -> run();
 		$view -> run('clerk/index');
+	}
 	}
 
 	public function delete() {$d = CUrl::segment(3);

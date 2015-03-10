@@ -18,7 +18,8 @@ class Clerk {
 		return FALSE;
 	}
 
-	public static function doesExist($a, $f) {$c = 'SELECT COUNT(*) FROM tbl_clerk WHERE id=\'' . $a . '\' AND time_added=\'' . $f . '\'';
+	public static function doesExist($a, $f) {
+		$c = 'SELECT COUNT(*) FROM tbl_clerk WHERE id=\'' . $a . '\' AND time_added=\'' . $f . '\'';
 		$b = new CDatabase;
 		if ($b -> countRows($c))
 			return TRUE;

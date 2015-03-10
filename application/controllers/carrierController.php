@@ -17,7 +17,6 @@ class carrierController {
 		else
 			$d -> title = '&#1711;&#1586;&#1575;&#1585;&#1588; &#1605;&#1587;&#1740;&#1585; &#1588;&#1594;&#1604;&#1740;';
 		$d -> form = $a -> run();
-		$d -> layout = 'jquery';
 		$d -> run('clerk/edit');
 	}
 
@@ -132,7 +131,6 @@ class carrierController {
 			}
 		}$d = new CView;
 		$d -> f = $a;
-		$d -> layout = 'jquery';
 		$d -> title = '&#1575;&#1601;&#1586;&#1608;&#1583;&#1606; &#1605;&#1587;&#1740;&#1585;  &#1588;&#1594;&#1604;&#1740; ' . Profile::getName($c);
 		$d -> run('carrier/add');
 	}
@@ -184,7 +182,6 @@ class carrierController {
 		}$d -> model = $cc;
 		$d -> form = $a -> run();
 		$d -> title = '&#1608;&#1740;&#1585;&#1575;&#1740;&#1588; &#1605;&#1587;&#1740;&#1585; &#1588;&#1594;&#1604;&#1740; ' . Profile::getName($bb);
-		$d -> layout = 'jquery';
 		$d -> run('carrier/edit');
 	}
 

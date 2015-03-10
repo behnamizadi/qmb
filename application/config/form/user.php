@@ -1,3 +1,25 @@
 <?php
-return array('login' => array('login_form' => array('type' => 'form', 'action' => 'user/login', 'in' => 'class="login"'), 'username' => array('type' => 'text', 'in' => 'class="txt" maxlength="35"', 'validation' => array('required')), 'password' => array('type' => 'password', 'post' => FALSE, 'in' => 'class="txt"', 'validation' => array('required')),/* 'captcha' => array('type' => 'captcha', 'textLength' => 6, 'post' => FALSE, 'in' => 'class="txt"', 'validation' => array('required,captcha'), ), '<span class="hint">&#1705;&#1583; &#1575;&#1605;&#1606;&#1740;&#1578;&#1740; &#1576;&#1607; &#1581;&#1585;&#1608;&#1601; &#1705;&#1608;&#1670;&#1705;/ &#1576;&#1586;&#1585;&#1711; &#1581;&#1587;&#1575;&#1587; &#1606;&#1605;&#1740;&#8204;&#1576;&#1575;&#1588;&#1583;!</span>',*/ 'login' => array('type' => 'submit', 'value' => '&#1608;&#1585;&#1608;&#1583;', 'in' => 'class="box"', ), 'error' => array('type' => 'view_isset')), 'change_pass' => array('password' => array('type' => 'password', 'in' => 'class="txt"', 'post' => FALSE, 'validation' => array('required'), 'label' => '&#1585;&#1605;&#1586; &#1593;&#1576;&#1608;&#1585; &#1601;&#1593;&#1604;&#1740;'), 'new_password' => array('type' => 'password', 'in' => 'class="txt"', 'post' => FALSE, 'validation' => array('required,minLength[6]'), 'label' => '&#1585;&#1605;&#1586; &#1593;&#1576;&#1608;&#1585; &#1580;&#1583;&#1740;&#1583;'), 'verify_pass' => array('type' => 'password', 'in' => 'class="txt"', 'post' => FALSE, 'validation' => array('required,match[new_password]'), 'label' => '&#1578;&#1705;&#1585;&#1575;&#1585; &#1585;&#1605;&#1586; &#1593;&#1576;&#1608;&#1585; &#1580;&#1583;&#1740;&#1583;'), 'submit' => array('type' => 'submit', 'value' => '&#1578;&#1594;&#1740;&#1740;&#1585; &#1585;&#1605;&#1586; &#1593;&#1576;&#1608;&#1585;', 'in' => 'class="box"', ), ));
+return array('login' => array(
+	'login_form' => array(
+		'type' => 'form',
+		'action' => 'user/login', 
+		'in' => 'class="login"'
+		), 
+	'username' => array(
+		'type' => 'text', 
+		'in' => 'class="txt" maxlength="35"', 
+		'validation' => array('required')), 
+		'password' => array('type' => 'password', 
+			'post' => FALSE, 
+			'in' => 'class="txt"', 
+			'validation' => array('required')),
+			 //* 'captcha' => array('type' => 'captcha', 'textLength' => 6, 'post' => FALSE, 'in' => 'class="txt"', 'validation' => array('required,captcha'), ), '<span class="hint">کد امنیتی به حروف کوچک/ بزرگ حساس نمی‌باشد!</span>',
+			 'login' => array(
+			 	'type' => 'submit', 
+			 	'value' => 'ورود', 
+			 	'in' => 'class="box"', 
+				), 
+			'error' => array('type' => 'view_isset')), 
+			'change_pass' => array('password' => array('type' => 'password', 'in' => 'class="txt"', 'post' => FALSE, 'validation' => array('required'), 'label' => 'رمز عبور فعلی'), 
+			'new_password' => array('type' => 'password', 'in' => 'class="txt"', 'post' => FALSE, 'validation' => array('required,minLength[6]'), 'label' => 'رمز عبور جدید'), 'verify_pass' => array('type' => 'password', 'in' => 'class="txt"', 'post' => FALSE, 'validation' => array('required,match[new_password]'), 'label' => 'تکرار رمز عبور جدید'), 'submit' => array('type' => 'submit', 'value' => 'تغییر رمز عبور', 'in' => 'class="box"', ), ));
 ?>

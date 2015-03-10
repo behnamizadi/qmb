@@ -3,7 +3,7 @@ class notice_asrController {
 	public function add() {$a = new CForm;
 		if (isset($_POST['submit'])) {$b = new Branch;
 			if ($b -> getNameById($_POST['code']) === FALSE) {$c = new Sar;
-				if ($c -> getNameById($_POST['code']) === FALSE) {$a -> setError('code', '&#1588;&#1593;&#1576;&#1607; &#1740;&#1575; &#1587;&#1585;&#1662;&#1585;&#1587;&#1578;&#1740; &#1576;&#1575; &#1575;&#1740;&#1606; &#1705;&#1583; &#1583;&#1585; &#1587;&#1740;&#1587;&#1578;&#1605; &#1579;&#1576;&#1578; &#1606;&#1588;&#1583;&#1607; &#1575;&#1587;&#1578;');
+				if ($c -> getNameById($_POST['code']) === FALSE) {$a -> setError('code', 'شعبه یا سرپرستی با این کد در سیستم ثبت نشده است');
 				}
 			}
 			if ($a -> validate()) {$d = new CDatabase;
@@ -15,7 +15,7 @@ class notice_asrController {
 			}
 		}$g = new CView;
 		$g -> form = $a -> run();
-		$g -> title = '&#1579;&#1576;&#1578; &#1575;&#1582;&#1591;&#1575;&#1585; &#1578;&#1605;&#1583;&#1740;&#1583; &#1576;&#1575;&#1580;&#1607; &#1593;&#1589;&#1585; &#1740;&#1575; &#1587;&#1585;&#1662;&#1585;&#1587;&#1578;&#1740;';
+		$g -> title = 'ثبت اخطار تمدید باجه عصر یا سرپرستی';
 		$g -> run();
 	}
 
@@ -42,7 +42,7 @@ class notice_asrController {
 		$m -> operations['view'] = FALSE;
 		$m -> sort = 'date_end';
 		$m -> counter = TRUE;
-		$n = '&#1604;&#1740;&#1587;&#1578; &#1575;&#1582;&#1591;&#1575;&#1585; &#1578;&#1605;&#1583;&#1740;&#1583; &#1576;&#1575;&#1580;&#1607; &#1593;&#1589;&#1585; &#1608; &#1587;&#1585;&#1662;&#1585;&#1587;&#1578;&#1740;';
+		$n = 'لیست اخطار تمدید باجه عصر و سرپرستی';
 		$g = new CView;
 		if ($h) {$m -> operations = FALSE;
 			$m -> noSort = TRUE;
@@ -51,7 +51,7 @@ class notice_asrController {
 			$o = new User;
 			$g -> producer = $o -> producer();
 			$m -> paginate = FALSE;
-		} else {$g -> pb = '<center><p>' . CUrl::createLink('&#1606;&#1587;&#1582;&#1607; &#1670;&#1575;&#1662;&#1740;', 'notice_asr/manage/print', 'class="box" target="_blank"') . '</p></center>';
+		} else {$g -> pb = '<center><p>' . CUrl::createLink('نسخه چاپی', 'notice_asr/manage/print', 'class="box" target="_blank"') . '</p></center>';
 		}$g -> title = $n;
 		$g -> grid = $m -> run();
 		$g -> run();
@@ -76,9 +76,9 @@ class notice_asrController {
 		}$b = new Branch;
 		$g -> form = $a -> run();
 		if (($s = $b -> getNameById($p)) != FALSE)
-			$g -> title = '&#1608;&#1740;&#1585;&#1575;&#1740;&#1588; &#1575;&#1582;&#1591;&#1575;&#1585; &#1576;&#1575;&#1580;&#1607; &#1593;&#1589;&#1585; &#1588;&#1593;&#1576;&#1607; ' . $p . ' (' . $n . ')';
+			$g -> title = 'ویرایش اخطار باجه عصر شعبه ' . $p . ' (' . $n . ')';
 		else {$c = new Sar;
-			$g -> title = '&#1608;&#1740;&#1585;&#1575;&#1740;&#1588; &#1575;&#1582;&#1591;&#1575;&#1585; &#1587;&#1585;&#1662;&#1585;&#1587;&#1578;&#1740; ' . $p . ' (' . $c -> getNameById($p) . ')';
+			$g -> title = 'ویرایش اخطار سرپرستی ' . $p . ' (' . $c -> getNameById($p) . ')';
 		}$g -> run();
 	}
 

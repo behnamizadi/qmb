@@ -23,7 +23,6 @@ class profileController {
 					else
 						CUrl::redirect('employment/add/' . $a . '/' . $b);
 				}
-			}$c -> layout = 'jquery';
 			$c -> title = 'افزودن کارمند';
 			$c -> form = $f -> run();
 			$c -> run('profile/create');
@@ -93,7 +92,6 @@ class profileController {
 		else
 			$c -> takafol_display = '<td><div id="takafol_display"  class="display_none"><label>تعداد تحت تفکل<span class="error">*</span></label>';
 		$c -> form = $f -> run();
-		$c -> layout = 'jquery';
 		$c -> run('profile/create');
 	}
 

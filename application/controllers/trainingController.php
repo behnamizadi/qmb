@@ -18,7 +18,6 @@ class trainingController {
 		else
 			$e -> title = 'دوره‌های آموزشی گذرانده';
 		$e -> form = $b -> run();
-		$e -> layout = 'jquery';
 		$e -> run('clerk/edit');
 	}
 
