@@ -14,5 +14,6 @@
                 <?php include($view); ?>
 	    </div>
 	      <?php include('footer.php'); ?>
+<?php if (isset($scripts)) echo $scripts; ?>	      
 </body>
 </html>
