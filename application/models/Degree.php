@@ -1,6 +1,7 @@
 <?php
 class Degree {
-	public static function degreeHistory($a, $b = TRUE, $c = FALSE) {$d = new CGrid;
+	public static function degreeHistory($a, $b = TRUE, $c = FALSE) {
+		$d = new CGrid;
 		if ($c)
 			$d -> noSort = TRUE;
 		$d -> headers = array('degree' => array('format' => 'model[Lookup,getById($value,degree)]', 'label' => '&#1583;&#1585;&#1580;&#1607;'), 'degree_start' => array('label' => '&#1587;&#1575;&#1604;'), );

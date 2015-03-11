@@ -20,7 +20,8 @@ class branchController {
 		$r -> run();
 	}
 
-	public function degree() {$t = CUrl::segment(3);
+	public function degree() {
+		$t = CUrl::segment(3);
 		$p = new CDatabase;
 		$u = 'SELECT COUNT(*) FROM tbl_branch WHERE code=\'' . $t . '\' AND time_added=\'' . CUrl::segment(4) . '\'';
 		$r = new CView;
@@ -53,7 +54,8 @@ class branchController {
 		}
 	}
 
-	public function degrees() {$aa = CUrl::segment(3);
+	public function degrees() {
+		$aa = CUrl::segment(3);
 		$r = new CView;
 		$e = new CForm;
 		$e -> showFieldErrorText = FALSE;
