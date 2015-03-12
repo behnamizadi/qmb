@@ -39,10 +39,10 @@ class educationController {
 						}
 					}CUrl::redirect('clerk/manage');
 				}
-			}$a -> title = '&#1608;&#1585;&#1608;&#1583; &#1575;&#1591;&#1604;&#1575;&#1593;&#1575;&#1578; &#1578;&#1581;&#1589;&#1740;&#1604;&#1740; ' . Profile::getName($b);
+			}$a -> title = 'ورود اطلاعات تحصیلی ' . Profile::getName($b);
 			$a -> form = $f -> run();
 			$a -> run('education/add');
-		} else {$a -> error = '&#1605;&#1588;&#1705;&#1604;&#1740; &#1583;&#1585; &#1601;&#1585;&#1575;&#1740;&#1606;&#1583; &#1579;&#1576;&#1578; &#1576;&#1607; &#1608;&#1580;&#1608;&#1583; &#1570;&#1605;&#1583;&#1607; &#1575;&#1587;&#1578;.';
+		} else {$a -> error = 'مشکلی در فرایند ثبت به وجود آمده است.';
 			$a -> run();
 		}
 	}
@@ -61,12 +61,13 @@ class educationController {
 			} else
 				$_POST['error'] = 1;
 		}$n = new CGrid;
-		$n -> operations = array('view' => FALSE, 'edit' => FALSE, 'delete' => FALSE, 'education/edit/' . $b . '/$value->id' => array('icon' => 'public/images/edit.png', 'alt' => '&#1608;&#1740;&#1585;&#1575;&#1740;&#1588;', 'title' => '&#1608;&#1740;&#1585;&#1575;&#1740;&#1588;'), 'education/delete/' . $b . '/$value->id' => array('icon' => 'public/images/delete.png', 'alt' => '&#1581;&#1584;&#1601;', 'title' => '&#1581;&#1584;&#1601;'), );
+		$n -> operations = array('view' => FALSE, 'edit' => FALSE, 'delete' => FALSE, 'education/edit/' . $b . '/$value->id' => array('icon' => 'public/images/edit.png', 'alt' => 'ویرایش', 'title' => 'ویرایش'), 'education/delete/' . $b . '/$value->id' => array('icon' => 'public/images/delete.png', 'alt' => 'حذف', 'title' => 'حذف'), );
 		$n -> condition = array('clerk_id' => $b);
 		$n -> headers = array('study_degree' => array('format' => 'model[Lookup,getById($value,study_degree)]'), 'study_field' => array('format' => 'model[StudyField,getById($value)]'), 'date_get' => array('format' => 'model[Cal,getDate($value,Y)]'), 'place');
+		$a -> sfs = StudyField::getAll();
 		$a -> grid = $n -> run();
 		$a -> form = $f -> run();
-		$a -> title = '&#1575;&#1591;&#1604;&#1575;&#1593;&#1575;&#1578; &#1578;&#1581;&#1589;&#1740;&#1604;&#1740; ' . Profile::getName($b);
+		$a -> title = 'اطلاعات تحصیلی ' . Profile::getName($b);
 		$a -> run('education/manage');
 	}
 
@@ -95,7 +96,7 @@ class educationController {
 		}$a -> y = $l -> date('Y', $p -> date_get);
 		$a -> model = $p;
 		$a -> form = $f -> run();
-		$a -> title = '&#1608;&#1740;&#1585;&#1575;&#1740;&#1588; &#1575;&#1591;&#1604;&#1575;&#1593;&#1575;&#1578; &#1578;&#1581;&#1589;&#1740;&#1604;&#1740;';
+		$a -> title = 'ویرایش اطلاعات تحصیلی';
 		$a -> run('education/edit');
 	}
 

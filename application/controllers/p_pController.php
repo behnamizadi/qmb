@@ -3,7 +3,7 @@ class p_pController {
 	public function index() {$a = new CForm;
 		if (isset($_POST['submit'])) {$b = new Clerk;
 			$c = $b -> getId($_POST['clerk_number']);
-			if (!$c) {$a -> setError('clerk_number', '&#1585;&#1705;&#1608;&#1585;&#1583;&#1740; &#1576;&#1575; &#1575;&#1740;&#1606; &#1588;&#1605;&#1575;&#1585;&#1607; &#1705;&#1575;&#1585;&#1605;&#1606;&#1583;&#1740; &#1608;&#1580;&#1608;&#1583; &#1606;&#1583;&#1575;&#1585;&#1583;.');
+			if (!$c) {$a -> setError('clerk_number', 'رکوردی با این شماره کارمندی وجود ندارد.');
 			}
 			if ($a -> validate() == TRUE) {
 				if (CUrl::segment(3) == 'add') {$d = CUrl::segment(4);
@@ -14,11 +14,11 @@ class p_pController {
 		}$e = new CView;
 		if (CUrl::segment(3) == 'add') {
 			if (CUrl::segment(4) == 1)
-				$e -> title = '&#1579;&#1576;&#1578; &#1578;&#1588;&#1608;&#1740;&#1602;';
+				$e -> title = 'ثبت تشویق';
 			else
-				$e -> title = '&#1579;&#1576;&#1578; &#1578;&#1606;&#1576;&#1740;&#1607;';
+				$e -> title = 'ثبت تنبیه';
 		} else
-			$e -> title = '&#1711;&#1586;&#1575;&#1585;&#1588; &#1578;&#1588;&#1608;&#1740;&#1602;&#1575;&#1578;/ &#1578;&#1606;&#1576;&#1740;&#1607;&#1575;&#1578; &#1705;&#1575;&#1585;&#1605;&#1606;&#1583;';
+			$e -> title = 'گزارش تشویقات/ تنبیهات کارمند';
 		$e -> form = $a -> run();
 		$e -> run('clerk/edit');
 	}
@@ -26,7 +26,7 @@ class p_pController {
 	public function index2() {$a = new CForm;
 		if ($a -> validate() == TRUE) {CUrl::redirect('p_p/all/' . $_POST['type'] . '/' . $_POST['year']);
 		}$e = new CView;
-		$e -> title = '&#1711;&#1586;&#1575;&#1585;&#1588; &#1578;&#1588;&#1608;&#1740;&#1602;&#1575;&#1578;/&#1578;&#1606;&#1576;&#1740;&#1607;&#1575;&#1578; &#1705;&#1604; &#1705;&#1575;&#1585;&#1705;&#1606;&#1575;&#1606;';
+		$e -> title = 'گزارش تشویقات/تنبیهات کل کارکنان';
 		$e -> form = $a -> run();
 		$e -> run();
 	}
@@ -47,15 +47,15 @@ class p_pController {
 						WHERE tbl_profile.clerk_id=tbl_p_p.clerk_id AND tbl_p_p.type='$d' AND tbl_p_p.date_added BETWEEN $i AND $j";
 		$m = new CDatabase;
 		$k -> values = $m -> queryAll($l);
-		$k -> operations = array('view' => FALSE, 'edit' => FALSE, 'delete' => FALSE, 'p_p/edit/$value->id/0/' . $f . '/' . $d => array('icon' => 'public/images/edit.png', 'alt' => '&#1608;&#1740;&#1585;&#1575;&#1740;&#1588;', 'title' => '&#1608;&#1740;&#1585;&#1575;&#1740;&#1588;'), 'p_p/delete/$value->id/0/' . $f . '/' . $d => array('icon' => 'public/images/delete.png', 'alt' => '&#1581;&#1584;&#1601;', 'title' => '&#1581;&#1584;&#1601;', 'message' => '&#1608;&#1575;&#1602;&#1593;&#1575; &#1605;&#1740;&#8204;&#1582;&#1608;&#1575;&#1740; &#1581;&#1584;&#1601;&#1588; &#1705;&#1606;&#1740;&#1567;'));
+		$k -> operations = array('view' => FALSE, 'edit' => FALSE, 'delete' => FALSE, 'p_p/edit/$value->id/0/' . $f . '/' . $d => array('icon' => 'public/images/edit.png', 'alt' => 'ویرایش', 'title' => 'ویرایش'), 'p_p/delete/$value->id/0/' . $f . '/' . $d => array('icon' => 'public/images/delete.png', 'alt' => 'حذف', 'title' => 'حذف', 'message' => 'واقعا می‌خوای حذفش کنی؟'));
 		$k -> counter = TRUE;
 		$k -> sort = 'date_added DESC';
-		$k -> headers = array('name' => array('label' => '&#1606;&#1575;&#1605;'), 'lastname' => array('label' => '&#1606;&#1575;&#1605; &#1582;&#1575;&#1606;&#1608;&#1575;&#1583;&#1711;&#1740;'), 'title', 'type' => array('format' => 'type[1:&#1578;&#1588;&#1608;&#1740;&#1602;,2:&#1578;&#1606;&#1576;&#1740;&#1607;]'), 'date_added' => array('format' => 'model[Cal,getDate($value)]', 'label' => '&#1578;&#1575;&#1585;&#1740;&#1582; &#1575;&#1580;&#1585;&#1575;'), 'set_by', 'hokm_number', 'description');
+		$k -> headers = array('name' => array('label' => 'نام'), 'lastname' => array('label' => 'نام خانوادگی'), 'title', 'type' => array('format' => 'type[1:تشویق,2:تنبیه]'), 'date_added' => array('format' => 'model[Cal,getDate($value)]', 'label' => 'تاریخ اجرا'), 'set_by', 'hokm_number', 'description');
 		$e = new CView;
 		if ($d == 1)
-			$n = '&#1711;&#1586;&#1575;&#1585;&#1588; &#1578;&#1588;&#1608;&#1740;&#1602;&#1575;&#1578; &#1705;&#1604; &#1705;&#1575;&#1585;&#1705;&#1606;&#1575;&#1606; &#1583;&#1585; &#1587;&#1575;&#1604; ' . $f;
+			$n = 'گزارش تشویقات کل کارکنان در سال ' . $f;
 		else
-			$n = '&#1711;&#1586;&#1575;&#1585;&#1588; &#1578;&#1606;&#1576;&#1740;&#1607;&#1575;&#1578; &#1705;&#1604; &#1705;&#1575;&#1585;&#1705;&#1606;&#1575;&#1606; &#1583;&#1585; &#1587;&#1575;&#1604; ' . $f;
+			$n = 'گزارش تنبیهات کل کارکنان در سال ' . $f;
 		if ($h) {$k -> operations = FALSE;
 			$k -> noSort = TRUE;
 			$e -> layout = 'print';
@@ -63,7 +63,7 @@ class p_pController {
 			$o = new User;
 			$e -> producer = $o -> producer();
 			$k -> paginate = FALSE;
-		} else {$e -> pb = '<center><p>' . CUrl::createLink('&#1606;&#1587;&#1582;&#1607; &#1670;&#1575;&#1662;&#1740;', 'p_p/all/' . $d . '/' . $f . '/print', 'class="box" target="_blank"') . '</p></center>';
+		} else {$e -> pb = '<center><p>' . CUrl::createLink('نسخه چاپی', 'p_p/all/' . $d . '/' . $f . '/print', 'class="box" target="_blank"') . '</p></center>';
 		}$e -> title = $n;
 		$e -> grid = $k -> run();
 		$e -> run();
@@ -73,13 +73,13 @@ class p_pController {
 		$d = CUrl::segment(4);
 		$e = new CView;
 		if (!$c) {
-			if (!$d) {$e -> error = '&#1605;&#1588;&#1705;&#1604;&#1740; &#1583;&#1585; &#1585;&#1608;&#1606;&#1583; &#1579;&#1576;&#1578; &#1662;&#1740;&#1588; &#1570;&#1605;&#1583;&#1607; &#1575;&#1587;&#1578;';
+			if (!$d) {$e -> error = 'مشکلی در روند ثبت پیش آمده است';
 				$e -> run();
 			}CUrl::redirect('p_p/index/add/' . $d);
 		}
 		if ($d == 1)
-			$e -> title = '&#1579;&#1576;&#1578; &#1578;&#1588;&#1608;&#1740;&#1602; &#1576;&#1585;&#1575;&#1740; ' . Profile::getName($c);
-		else {$e -> title = '&#1579;&#1576;&#1578; &#1578;&#1606;&#1576;&#1740;&#1607; &#1576;&#1585;&#1575;&#1740; ' . Profile::getName($c);
+			$e -> title = 'ثبت تشویق برای ' . Profile::getName($c);
+		else {$e -> title = 'ثبت تنبیه برای ' . Profile::getName($c);
 		}$a = new CForm;
 		$a -> showFieldErrorText = FALSE;
 		if ($a -> validate()) {$g = new CJcalendar;
@@ -101,21 +101,21 @@ class p_pController {
 		$k = new CGrid;
 		$k -> condition = array('clerk_id' => $c);
 		$k -> sort = 'date_added DESC';
-		$k -> headers = array('title', 'type' => array('format' => 'type[1:&#1578;&#1588;&#1608;&#1740;&#1602;,2:&#1578;&#1606;&#1576;&#1740;&#1607;]'), 'date_added' => array('format' => 'model[Cal,getDate($value)]', 'label' => '&#1578;&#1575;&#1585;&#1740;&#1582; &#1575;&#1580;&#1585;&#1575;'), 'set_by', 'hokm_number', 'description');
-		$k -> operations = array('view' => FALSE, 'edit' => FALSE, 'delete' => FALSE, 'p_p/edit/$value->id/' . $c => array('icon' => 'public/images/edit.png', 'alt' => '&#1608;&#1740;&#1585;&#1575;&#1740;&#1588;', 'title' => '&#1608;&#1740;&#1585;&#1575;&#1740;&#1588;'), 'p_p/delete/$value->id/' . $c => array('icon' => 'public/images/delete.png', 'alt' => '&#1581;&#1584;&#1601;', 'title' => '&#1581;&#1584;&#1601;', 'message' => '&#1608;&#1575;&#1602;&#1593;&#1575; &#1605;&#1740;&#8204;&#1582;&#1608;&#1575;&#1740; &#1581;&#1584;&#1601;&#1588; &#1705;&#1606;&#1740;&#1567;'));
+		$k -> headers = array('title', 'type' => array('format' => 'type[1:تشویق,2:تنبیه]'), 'date_added' => array('format' => 'model[Cal,getDate($value)]', 'label' => 'تاریخ اجرا'), 'set_by', 'hokm_number', 'description');
+		$k -> operations = array('view' => FALSE, 'edit' => FALSE, 'delete' => FALSE, 'p_p/edit/$value->id/' . $c => array('icon' => 'public/images/edit.png', 'alt' => 'ویرایش', 'title' => 'ویرایش'), 'p_p/delete/$value->id/' . $c => array('icon' => 'public/images/delete.png', 'alt' => 'حذف', 'title' => 'حذف', 'message' => 'واقعا می‌خوای حذفش کنی؟'));
 		if ($h) {$k -> operations = FALSE;
 			$k -> noSort = TRUE;
 			$k -> paginate = FALSE;
 		}$e = new CView;
 		$e -> grid = $k -> run();
 		$e -> c_id = $c;
-		$e -> title = '&#1578;&#1588;&#1608;&#1740;&#1602;&#1575;&#1578; &#1608; &#1578;&#1606;&#1576;&#1740;&#1607;&#1575;&#1578; ' . Profile::getName($c);
+		$e -> title = 'تشویقات و تنبیهات ' . Profile::getName($c);
 		$e -> print = $h;
 		if ($h) {$e -> layout = 'print';
-			$e -> ptitle = '<h1>&#1578;&#1588;&#1608;&#1740;&#1602;&#1575;&#1578; &#1608; &#1578;&#1606;&#1576;&#1740;&#1607;&#1575;&#1578; ' . Profile::getName($c) . '</h1>';
+			$e -> ptitle = '<h1>تشویقات و تنبیهات ' . Profile::getName($c) . '</h1>';
 			$o = new User;
 			$e -> producer = $o -> producer();
-		} else {$e -> pb = '<center><p>' . CUrl::createLink('&#1606;&#1587;&#1582;&#1607; &#1670;&#1575;&#1662;&#1740;', 'p_p/summ/' . $c . '/print', 'class="box" target="_blank"') . '</p></center>';
+		} else {$e -> pb = '<center><p>' . CUrl::createLink('نسخه چاپی', 'p_p/summ/' . $c . '/print', 'class="box" target="_blank"') . '</p></center>';
 		}$e -> run('p_p/summ');
 	}
 
@@ -140,7 +140,7 @@ class p_pController {
 		$e -> ys = $g -> date('Y', $s -> date_added);
 		$e -> model = $s;
 		$e -> form = $a -> run();
-		$e -> title = '&#1608;&#1740;&#1585;&#1575;&#1740;&#1588; &#1578;&#1588;&#1608;&#1740;&#1602;/&#1578;&#1606;&#1576;&#1740;&#1607; ' . Profile::getName($r);
+		$e -> title = 'ویرایش تشویق/تنبیه ' . Profile::getName($r);
 		$e -> run();
 	}
 

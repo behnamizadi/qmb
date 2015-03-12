@@ -338,21 +338,21 @@ class vacationController {
 		$u = "SELECT tbl_profile.clerk_id,tbl_profile.name,tbl_profile.lastname FROM tbl_profile,tbl_carrier 
 		WHERE tbl_carrier.clerk_id=tbl_profile.clerk_id AND tbl_carrier.job_status='1' AND tbl_carrier.now_c='1' AND  tbl_carrier.hokm_type<>8";
 		$g = new CDatabase;
-		$tt = $g -> queryAll($u);
+		$clercks = $g -> queryAll($u);
 		$qq = array();
-		foreach ($tt as $d) {
-			$u = "SELECT clerk_number FROM tbl_clerk WHERE id='$d->clerk_id'";
+		foreach ($clercks as $clerck) {
+			$u = "SELECT clerk_number FROM tbl_clerk WHERE id='$clerck->clerk_id'";
 			$uu = $g -> queryOne($u) -> clerk_number;
-			$u = "SELECT * FROM tbl_vacation_year WHERE clerk_id='$d->clerk_id' AND year='$year'";
+			$u = "SELECT * FROM tbl_vacation_year WHERE clerk_id='$clerck->clerk_id' AND year='$year'";
 			if (($vv = $g -> queryOne($u)) !== FALSE) {
 				$ww = $vv -> all_v - $vv -> used;
-				$qq[] = (object) array('clerk_id' => $d -> clerk_id, 'clerk_number' => $uu, 'name' => $d -> name, 'lastname' => $d -> lastname, 'used' => $vv -> used, 'remaining' => $ww, 'wasted' => $vv -> wasted, 'saved' => $vv -> saved);
+				$qq[] = (object) array('clerk_id' => $clerck -> clerk_id, 'clerk_number' => $uu -> clerk_number, 'name' => $clerck -> name, 'lastname' => $clerck -> lastname, 'used' => $vv -> used, 'remaining' => $ww, 'wasted' => $vv -> wasted, 'saved' => $vv -> saved );
 			} else {
-				$u = "SELECT date_employed FROM tbl_employment WHERE clerk_id='$d->clerk_id'";
+				$u = "SELECT date_employed FROM tbl_employment WHERE clerk_id='$clerck->clerk_id'";
 				$xx = $g -> queryOne($u) -> date_employed;
 				if ($c -> date('Y', $xx) <= $year) {
-					$u = "SELECT SUM(period) FROM tbl_vacation WHERE clerk_id='$d->clerk_id' AND date_start BETWEEN $f AND $aa AND type='$vac_type'";
-					$yy = $g -> sumRows('period', $u);
+					$u = "SELECT SUM(period) FROM tbl_vacation WHERE clerk_id='$clerck->clerk_id' AND date_start BETWEEN $f AND $aa AND type='$vac_type' AND period>0";
+					$used = $g -> sumRows('period', $u);
 					if ($year >= 1392) {$zz = 26;
 						if ($year == $c -> date('Y', $xx)) {$aaa = $c -> date('d', $xx);
 							$zz = (12 - $c -> date('m', $xx)) * 2.17;
@@ -381,20 +381,20 @@ class vacationController {
 							elseif ($aaa > 20 && $aaa <= 25)
 								$zz += 0.5;
 						}
-					}$ww = $zz - $yy;
+					}
+					$ww = $zz - $used;
 					if ($ww > 15) {$bbb = 15;
 						$ccc = $ww - 15;
 					} else {$bbb = $ww;
 						$ccc = 0;
-					}$yy = round($yy);
-					if ($vac_type == 2) {
-						if ($yy != 0) {$qq[] = (object) array('clerk_id' => $d -> clerk_id, 'clerk_number' => $uu, 'name' => $d -> name, 'lastname' => $d -> lastname, 'used' => $yy, 'remaining' => round($ww), 'wasted' => round($ccc), 'saved' => round($bbb));
-						}
-					} else {$qq[] = (object) array('clerk_id' => $d -> clerk_id, 'clerk_number' => $uu, 'name' => $d -> name, 'lastname' => $d -> lastname, 'used' => $yy, 'remaining' => round($ww), 'wasted' => round($ccc), 'saved' => round($bbb));
 					}
+					$used = round($used);
+						if ($used != 0) {$qq[] = (object) array('clerk_id' => $clerck -> clerk_id, 'clerk_number' => $uu, 'name' => $clerck -> name, 'lastname' => $clerck -> lastname, 'used' => $used, 'remaining' => round($ww), 'wasted' => round($ccc), 'saved' => round($bbb));
+                        }
 				}
 			}
-		}$v = new CGrid;
+		}//end foreach
+		$v = new CGrid;
 		$v -> sort = 'used DESC';
 		$v -> operations = array('edit' => FALSE, 'delete' => FALSE, 'view' => FALSE, 'vacation/summ/$value->clerk_id/' . $year => array('in' => 'target="_blank"', 'icon' => 'public/images/view.png', 'alt' => 'مشاهده', 'title' => 'مشاهده'));
 		$v -> pk = 'clerk_id';

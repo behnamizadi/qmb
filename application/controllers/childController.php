@@ -1,6 +1,7 @@
 <?php
 class childController {
-	public function manage() {$a = CUrl::segment(3);
+	public function manage() {
+		$a = CUrl::segment(3);
 		$b = new CView;
 		$c = new Profile;
 		if ($c -> hasSpouse($a) == FALSE) {$b -> error = 'این کارمند مجرد می‌باشد یا تعداد افراد تحت تکفل صفر می‌باشد. لطفا ابتدا مشخصات فردی کارمند را ' . CUrl::createLink('ویرایش', 'clerk/edit/profile') . ' نمایید.';
@@ -57,6 +58,9 @@ class childController {
 		$b -> form = $d -> run();
 		$b -> title = 'ویرایش مشخصات فرزند';
 		$b -> run();
+	}
+	public function add(){
+		
 	}
 
 }

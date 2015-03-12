@@ -10,3 +10,8 @@ echo $form;
         });
     });
 </script>
+<table id="#add_tbl" style="display: none">
+	<tr>
+		<td></td>
+	</tr>
+</table>
