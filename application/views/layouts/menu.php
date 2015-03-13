@@ -1,12 +1,12 @@
 <div id="menu">
     <ul id="css3menu1" class="topmenu" style="margin-right:5px">
-    	 <li class="topfirst"><a href="#" style="height:17px;line-height:17px;"><span>کاربر</span></a>
+    	 <li class="topfirst"><a href="#" ><span>کاربر</span></a>
             <ul>
                 <li><a href="<?php echo $path; ?>index.php/user/change_pass">تغییر رمز عبور</a></li>
                 
             </ul>
         </li>
-        <li class="topmenu"><a href="#" style="height:17px;line-height:17px;"><span>اطلاعات پایه</span></a>
+        <li class="topmenu"><a href="#"><span>اطلاعات پایه</span></a>
             <ul>
                 <li><a href="#"><span>اطلاعات شغلی »</span></a>
                     <ul>
@@ -34,7 +34,7 @@
                 </li>
             </ul>
         </li>
-	<li class="topmenu"><a href="#" style="height:17px;line-height:17px;"><span>مدیریت شعب</span></a>
+	<li class="topmenu"><a href="#" ><span>مدیریت شعب</span></a>
         <ul>
             <li><a href="<?php echo $path; ?>index.php/branch/add">ثبت شعبه</a></li>
             <li><a href="<?php echo $path; ?>index.php/branch/manage">مشاهده شعب</a></li>
@@ -59,7 +59,7 @@
                 </ul>
             </li>
         </ul></li>
-        <li class="topmenu"><a href="#" style="height:17px;line-height:17px;"><span>مدیریت کارمندان</span></a>
+        <li class="topmenu"><a href="#" ><span>مدیریت کارمندان</span></a>
         <ul>
             <li><a href="<?php echo $path; ?>index.php/clerk/add">ثبت کارمند جدید</a></li>
             <li><a href="<?php echo $path; ?>index.php/clerk/manage">لیست کارمندان</a></li>
@@ -74,7 +74,7 @@
                 </ul>
             </li>
         </ul></li>
-        <li class="topmenu"><a href="#" style="height:17px;line-height:17px;"><span>مرخصی</span></a>
+        <li class="topmenu"><a href="#" ><span>مرخصی</span></a>
             <ul>
                 <li><a href="<?php echo $path; ?>index.php/vacation/index/add">ثبت مرخصی</a></li>
                 <li><a href="<?php echo $path; ?>index.php/vacation/index/addyear">ثبت مرخصی سالانه</a></li>
@@ -84,7 +84,7 @@
                 <li><a href="<?php echo $path; ?>index.php/vacation/t_search1">گزارش زمانی</a></li>
             </ul>
         </li>
-        <li class="topmenu"><a href="#" style="height:17px;line-height:17px;"><span>تشویقات و تنبیهات</span></a>
+        <li class="topmenu"><a href="#" ><span>تشویقات و تنبیهات</span></a>
             <ul>
                 <li><a href="<?php echo $path; ?>index.php/p_p/index/add/1">ثبت تشویق</a></li>
                 <li><a href="<?php echo $path; ?>index.php/p_p/index/add/2">ثبت تنبیه</a></li>
@@ -92,7 +92,7 @@
                 <li><a href="<?php echo $path; ?>index.php/p_p/index2">گزارش کل کارمندان</a></li>
             </ul>
         </li>
-        <li class="topmenu"><a href="#" style="height:17px;line-height:17px;"><span>دوره‌های آموزشی</span></a>
+        <li class="topmenu"><a href="#" ><span>دوره‌های آموزشی</span></a>
         <ul>
         	<li><a href="<?php echo $path; ?>index.php/training/index/add">ثبت دوره</a></li>
             <li><a href="<?php echo $path; ?>index.php/training/index">گزارش بر اساس کد پرسنلی</a></li>
@@ -101,18 +101,18 @@
             <!-- <li><a href="<?php echo $path; ?>index.php/training/search">گزارش دوره‌های کارمندان</a></li> -->
             <li><a href="<?php echo $path; ?>index.php/lookup/manage/training">مدیریت دوره‌ها</a></li>
         </ul></li>
-        <li class="topmenu"><a href="#" style="height:17px;line-height:17px;"><span>مسیر شغلی</span></a>
+        <li class="topmenu"><a href="#" ><span>مسیر شغلی</span></a>
         <ul>
             <li><a href="<?php echo $path; ?>index.php/carrier/index/add">ثبت مسیر شغلی</a></li>
             <li><a href="<?php echo $path; ?>index.php/carrier/index">گزارش</a></li>
         </ul></li>
-        <li class="topmenu"><a href="#" style="height:17px;line-height:17px;"><span>نمرات ارزشیابی</span></a>
+        <li class="topmenu"><a href="#" ><span>نمرات ارزشیابی</span></a>
         <ul>
             <li><a href="<?php echo $path; ?>index.php/evaluation/index/add">ثبت/ ویرایش نمره ارزشیابی</a></li>
             <li><a href="<?php echo $path; ?>index.php/evaluation/index">ثبت دسته‌ای نمره ارزشیابی</a></li>
             <li><a href="<?php echo $path; ?>index.php/evaluation/index2">گزارش</a></li>
         </ul></li>
-        <li class="topmenu"><a href="#" style="height:17px;line-height:17px;"><span>اخطار تمدید</span></a>
+        <li class="topmenu"><a href="#" ><span>اخطار تمدید</span></a>
         <ul>
             <li><a href="#">باجه عصر »</a>
             	<ul>
@@ -128,23 +128,19 @@
             </li>
 	    <li><a href="<?php echo $path; ?>index.php/notice_period/edit">تغییر بازه اخطار</a></li>
         </ul></li>
-        <li class="topmenu"><a href="#" style="height:17px;line-height:17px;"><span>گزارشات</span></a>
+        <li class="topmenu"><a href="#" ><span>گزارشات</span></a>
         <ul>
         	<li><a href="<?php echo $path; ?>index.php/report/shc">گزارش جامع</a></li>
             <li><a href="<?php echo $path; ?>index.php/report/study_degree">گزارش مقاطع تحصیلی</a></li>
 		<li><a href="<?php echo $path; ?>index.php/report/married">وضعیت تاهل کارکنان</a></li>
-            <!-- <li><a href="<?php echo $path; ?>index.php/employment/bimeh">شماره بیمه کارمندان</a></li>
-            <li><a href="<?php echo $path; ?>index.php/employment/date_employed">تاریخ استخدام کارمندان</a></li>
-		<li><a href="<?php echo $path; ?>index.php/employment/hesab">شماره حساب کارمندان</a></li>
-		<li><a href="<?php echo $path; ?>index.php/employment/bon">شماره بن‌کارت کارمندان</a></li> -->
 		<li><a href="<?php echo $path; ?>index.php/employment/mixed">اطلاعات کلی کارمندان</a></li>
 		<li><a href="<?php echo $path; ?>index.php/report/r2">اطلاعات جامع کارمندان</a></li>
 		<li><a href="<?php echo $path; ?>index.php/report/r3">اطلاعات تحصیلی کارمندان</a></li>
         </ul></li>
-	<li class="topmenu"><a href="#" style="height:17px;line-height:17px;"><span>درباره «یاغیش»</span></a>
+	<li class="topmenu"><a href="#" ><span>درباره «یاغیش»</span></a>
 	<ul>
 		<li><a href="<?php echo $path; ?>index.php/site/intro">معرفی</a></li>
 	</ul></li>
-        <li class="toplast"><a href="<?php echo $path; ?>index.php/user/logout" style="height:17px;line-height:17px;">خروج</a></li>
+        <li class="toplast"><a href="<?php echo $path; ?>index.php/user/logout" >خروج</a></li>
     </ul>
 </div>

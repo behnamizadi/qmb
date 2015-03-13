@@ -7,9 +7,9 @@
 </head>
 <body>
 	    <?php include("menu.php"); ?>
+	    
 	    <div class="page">
-	        <h2><?php if(isset($title)) echo $title; ?></h2>
-	        <hr />
+	        <h2 class="bigtitle"><?php if(isset($title)) echo $title; ?></h2>
                 <?php include($view); ?>
 	    </div>
 	      <?php include('footer.php'); ?>
