@@ -246,11 +246,11 @@ ul#css3menu1 a{
 ul#css3menu1 ul li{
 	float:none;margin:1px 0 0;border-bottom: 1px solid #ccc;min-width:155px;background-color:#eee;}
 ul#css3menu1 ul li:hover,ul#css3menu1 li:hover{
-	background-color:#ddd;}
+	background-color:#d5ed18;}
 ul#css3menu1 ul a{
 	text-align:center;background-color:#eee;border-width:0;font:16px byekan,tahoma,sans-serif;color:#333;text-decoration:none;}
 ul#css3menu1 li:hover>a,ul#css3menu1 li a.pressed{
-	background-color:#333;color:#fff;text-decoration:none;}
+	background-color:#d5ed18;color:#fff;text-decoration:none;}
 ul#css3menu1 span{
 	display:block;overflow:visible;background-position:right center;background-repeat:no-repeat;padding-right:0px;}
 ul#css3menu1 ul span{
