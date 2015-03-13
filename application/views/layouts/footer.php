@@ -16,8 +16,6 @@ if ($notice -> getAsr())
 	echo CUrl::createLink('تمدید باجه عصر!', 'notice_asr/manage','class="welcom_notice"');
 	echo '</span>';
 }
-	
-
 if ($notice -> getClerk())
 {
 	echo '<span class="welcom_notice" style="padding-right:45px;padding-left:15px;float:left">'; 

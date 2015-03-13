@@ -1,5 +1,5 @@
 <div id="search_box">
-    <a href="#" class="close"><img src="<?php echo PHP40::get()->homeUrl; ?>public/images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+    <a href="#" class="close"><img src="<?php echo $path; ?>public/images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
     <form method="post" action="#" id="search_form">
        <p>
            <label for="name">نام</label>
@@ -15,28 +15,7 @@
        </p>
     </form>
 </div>
-<style>
-#search_box{
-    display: none;
-    background-color: #EFEFEF;
-    border: 1px solid #D0D0D0;
-    border-radius: 10px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-    margin: 0 auto 20px;
-    padding: 19px 29px 29px;
-    position: fixed;
-    top: 35%;
-    left: 40%;
-    }
-    img.btn_close {
-    Position the close button
-    float: right;
-    margin: -28px -28px 0 0;
-}
-
-</style>
-<?php $scripts="
-<script>
+<?php $scripts="<script type='text/javascript'>
 $(document).ready(function(){
     $('#search').click(function(){ 
         $('#search_box').fadeIn();

@@ -1,7 +1,7 @@
 <?php
 //ob_start("ob_gzhandler");
 date_default_timezone_set('Asia/Tehran');
-//error_reporting(E_ALL);
+error_reporting(E_ALL);
 //ini_set('display_errors',1);
 define('ROOT',dirname(__FILE__).DIRECTORY_SEPARATOR);
 define('APP_ROOT',ROOT.'application'.DIRECTORY_SEPARATOR);
