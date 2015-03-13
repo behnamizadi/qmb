@@ -9,18 +9,16 @@
 <title>سامانه مدیریت منابع انسانی یاغیش- نسخه ۱</title>
 </head>
 <body>
-    <div class="container radius">  
-        <div id="header">
-            <div id="logo"><a href="<?php echo $path; ?>">سامانه مدیریت منابع انسانی بانک قرض‌الحسنه مهر ایران</a></div>
-        </div>
+    <div class="background-image"></div>
+    <div class="radius container">
+           
         <div class="page">
-            
+             <h2 class="bigtitle">سامانه مدیریت منابع انسانی بانک قرض‌الحسنه مهر ایران</h2>
             <div class="wrap">
                 <?php include($view); ?>
             </div>
           
         </div>
-          <?php include('footer.php'); ?>
     </div><!-- container -->
 </body>
 </html>

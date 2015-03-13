@@ -68,10 +68,12 @@ table.n_column td{font-size:17px;vertical-align:top;padding:.6em .6em}
     width:100%;
     height:40px;
     box-shadow:1px 0px 7px;
+    z-index: 99;
     }
+#menu a{padding:0px 5px 0px 5px;}
 #menu ul{margin:0;padding:0; position: relative;}
-#menu ul li{list-style:none;padding-right:6px;display: inline;
-padding-left: 6px;
+#menu ul li{list-style:none;margin-right:6px;margin-left:px;display: inline;
+
 }
 #menu ul li a{text-decoration: none;color:#666;height:40px;}
 #sliderFrame {position:relative;width:800px;margin: 0 auto;}
@@ -151,12 +153,16 @@ ul.list li{line-height:2;}
 ul.list li a{text-decoration:none;color:#414141;font-size: 13px;}
 ul.list li a:hover{text-decoration:underline}
 .login{background-color: #FFFFFF;
-    border: 1px solid #E5E5E5;
+    border: 2px solid #d5ed18;
+    border-right: 10px solid #d5ed18;
     border-radius: 5px 5px 5px 5px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-    margin: 0 auto 20px;
+    margin: 50px auto auto auto;
     max-width: 300px;
     padding: 19px 29px 29px;
+
+       animation-name: anbig;
+    	animation-duration: 1s;
     }
 .logo{float:left;text-align:left}
 .logoimg{margin:0;padding:0;border:0px;}
@@ -173,7 +179,7 @@ ul.list li a:hover{text-decoration:underline}
 	padding: 20px;
 	padding-top:50px;
 	margin:auto;
-	width:95%;overflow: hidden;min-width: 1200px}
+	width:95%;overflow: hidden;}
 .pageContent{padding-bottom: 100px;width: 100%;}
 .pagination{margin:3px;padding:3px}
 .pagination a{border:1px solid #AAD;text-decoration:none;color:#009;margin:2px;padding:2px 5px}
@@ -211,6 +217,7 @@ background-color: #FFFFFF;
 li a:hover,.breadcrumbUl a:hover{text-decoration:underline}
 .atxt{text-align:justify;list-style:none;font-size:13px;line-height:2;color:#777}
 .welcom_notice{color:red;text-decoration: blink}
+ul#css3menu1 a{padding:0px 5px 0px 5px}
 ul#css3menu1,ul#css3menu1 ul{
 	margin:0;list-style:none;padding:0;
 	background-color: #fff;
@@ -236,21 +243,21 @@ ul#css3menu1>li{
 ul#css3menu1 a:active, ul#css3menu1 a:focus{
 	outline-style:none;}
 ul#css3menu1 a{
-	display:block;vertical-align:middle;text-align:left;text-decoration:none;font:16px byekan,tahoma,sans-serif;color:#333;cursor:pointer;background-color:#eee;}
+	display:block;vertical-align:middle;text-align:left;text-decoration:none;font:16px byekan,tahoma,sans-serif;color:#666;cursor:pointer;background-color:#eee;}
 ul#css3menu1 ul li{
-	float:none;margin:1px 0 0;border-bottom: 1px solid #ccc;padding:0 10px;min-width:155px;background-color:#eee;}
+	float:none;margin:1px 0 0;border-bottom: 1px solid #ccc;min-width:155px;background-color:#eee;}
 ul#css3menu1 ul li:hover,ul#css3menu1 li:hover{
 	background-color:#ddd;}
 ul#css3menu1 ul a{
-	text-align:center;padding:1px;background-color:#eee;border-width:0;font:16px byekan,tahoma,sans-serif;color:#333;text-decoration:none;}
+	text-align:center;background-color:#eee;border-width:0;font:16px byekan,tahoma,sans-serif;color:#333;text-decoration:none;}
 ul#css3menu1 li:hover>a,ul#css3menu1 li a.pressed{
-	background-color:#ddd;color:#000000;text-decoration:none;}
+	background-color:#333;color:#fff;text-decoration:none;}
 ul#css3menu1 span{
 	display:block;overflow:visible;background-position:right center;background-repeat:no-repeat;padding-right:0px;}
 ul#css3menu1 ul span{
 	padding-right:12px;}
 ul#css3menu1 ul li:hover>a,ul#css3menu1 ul li a.pressed{
-	color:#000;text-decoration:none;}
+	color:#fff;text-decoration:none;}
 .amChartsDataSetSelector
 {
 	font-family:byekan,tahoma,sans-serif;font-size:16px;
@@ -286,4 +293,18 @@ ul#css3menu1 ul li:hover>a,ul#css3menu1 ul li a.pressed{
    border-style:solid;
    border-color:#CCCCCC;
    border-width:1px;
+}
+
+.background-image {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: -1;
+
+  display: block;
+  background-image: url('../images/qmbg.jpg');
+  background-repeat:no-repeat;
+  background-size:cover;
+  width: 100%;
+  height:100%;
 }
