@@ -156,13 +156,12 @@ ul.list li a:hover{text-decoration:underline}
     border: 2px solid #d5ed18;
     border-right: 10px solid #d5ed18;
     border-radius: 5px 5px 5px 5px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: 4px 4px 11px;
     margin: 50px auto auto auto;
     max-width: 300px;
     padding: 19px 29px 29px;
-
-       animation-name: anbig;
-    	animation-duration: 1s;
+    animation-name: anbig;
+    animation-duration: 1s;
     }
 .logo{float:left;text-align:left}
 .logoimg{margin:0;padding:0;border:0px;}

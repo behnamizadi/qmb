@@ -1,6 +1,7 @@
 <?php
 class User {
-	public function getName() {$a = 'SELECT name FROM tbl_user WHERE id ="' . PHP40::get() -> user . '"';
+	public function getName() {
+$a = 'SELECT name FROM tbl_user WHERE id ="' . PHP40::get() -> user . '"';
 		$b = new CDatabase;
 		$c = $b -> queryOne($a);
 		return $c -> name;
