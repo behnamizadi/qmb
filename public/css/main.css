@@ -8,8 +8,18 @@
 	font-weight: normal;
 	font-style: normal;
 }
-html,body{height:100%;font-family:byekan,tahoma,sans-serif;font-size:16px;direction:rtl;color:#333;margin:0;padding:0}
-body{background-color: #FCFCFC;/*background: url("../images/qmb.png") no-repeat;background-position:center;background-size: 700px;*/}
+html,body{width:100%;
+	height:100%;
+	font-family:byekan,tahoma,sans-serif;
+	font-size:14px;direction:rtl;
+	color:#333;margin:0;padding:0}
+body{background-color: #FCFCFC;
+/*background: url("../images/qmb.png") no-repeat;
+ * background-position:center;
+ * background-size: 700px;*/
+   height: 100%;
+   width: 100%;
+}
 caption{text-align: right }
 h1{color:#333;margin:0}
 h3,h2,h4{color:#333;margin:3px 0 0 0;}
@@ -25,13 +35,13 @@ h2.bigtitle {
 	    margin-top:10px;
 	    margin-bottom: 10px;
 	    animation-name: anbig;
-    	animation-duration: 1s;
+    	animation-duration: 2s;
 }
 h2{font-size: 23px;}
 h3{font-size: 18px;}
 h4{font-size: 15px;}
 @keyframes anbig {
-    from {border-right: 100px solid #CC0000;color:#fff;}
+    from {border-right: 300px solid #CC0000;color:#fff;}
     to {border-right: 10px solid #d5ed18;color:#000000;}
 }
 hr{background:url("../images/h2.png") no-repeat scroll right;border:none;margin:0 0 10px 0}
@@ -294,16 +304,13 @@ ul#css3menu1 ul li:hover>a,ul#css3menu1 ul li a.pressed{
    border-width:1px;
 }
 
+.background-container{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	overflow:hidden;
+	z-index: -1;
+}
 .background-image {
-  position: fixed;
-  left: 0;
-  right: 0;
-  z-index: -1;
-
-  display: block;
-  background-image: url('../images/qmbg.jpg');
-  background-repeat:no-repeat;
-  background-size:cover;
   width: 100%;
-  height:100%;
 }

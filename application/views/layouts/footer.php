@@ -7,7 +7,7 @@ $o = new Ostan;
 <span style="padding-right:5px;"><?php echo $c->date("l"); ?></span>  
 <span style="padding-right:5px;"><?php echo $c->date("Y/m/j"); ?></span>  
 <span style="padding-right:45px;"><?php echo $o->getName(); ?></span>
-<span style="padding-right:45px;"><?php echo $name->getName(); ?> (003136)</span>
+<span style="padding-right:45px;"><?php echo $name->getName(); ?></span>
 <?php
 $notice = new Notice;
 if ($notice -> getAsr())

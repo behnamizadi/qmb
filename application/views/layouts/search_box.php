@@ -35,12 +35,13 @@
 }
 
 </style>
+<?php $scripts="
 <script>
-$(function(){
-    $("#search").click(function(){ 
-        $("#search_box").fadeIn();
-        $("#name").focus();
-        $("form#search_form").submit(function(e){  
+$(document).ready(function(){
+    $('#search').click(function(){ 
+        $('#search_box').fadeIn();
+        $('#name').focus();
+        $('form#search_form').submit(function(e){  
             e.preventDefault();
             var name = $('#name').val();
             var lastname = $('#lastname').val();
@@ -48,27 +49,27 @@ $(function(){
             { 
                 $.ajax({
                     cache: false,
-                    url: '<?php echo PHP40::get()->homeUrl; ?>index.php/search/clerk_number/',
+                    url: '". PHP40::get()->homeUrl ."index.php/search/clerk_number/',
                     type: 'POST',
                     data:{name:name,lastname:lastname},
                     success:function(result){
-                        if(result == "NO")
+                        if(result == 'NO')
                         {
                             alert('هیچ نتیجه‌ای پیدا نشد.');
                         }
-                        else if(result == "MORE")
+                        else if(result == 'MORE')
                         {
                             alert('بیش از یک نتیجه پیدا شد.');
                         }
                         else{
-                            $("#clerk_number").val(result);
-                            $("#search_box").fadeOut(1);
+                            $('#clerk_number').val(result);
+                            $('#search_box').fadeOut(1);
                         }
                     }
                 });
             }
         }); 
     });
-    $(".close").click(function(){ $("#search_box").fadeOut(); });
+    $('.close').click(function(){ $('#search_box').fadeOut(); });
 });
-</script>
+</script>"; ?>
