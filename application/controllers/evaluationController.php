@@ -109,7 +109,14 @@ class evaluationController {
 		$l = new CDatabase;
 		$h = new CJcalendar(FALSE);
 		$r = $h -> mktime(0, 0, 0, 1, 1, $i + 1) - 86400;
-		$k = "SELECT tbl_clerk.*,tbl_profile.name,tbl_profile.lastname,tbl_employment.clerk_id FROM tbl_clerk,tbl_profile,tbl_employment WHERE tbl_clerk.id=tbl_profile.clerk_id AND tbl_clerk.id=tbl_employment.clerk_id AND tbl_employment.date_employed <= $r ORDER BY tbl_clerk.clerk_number";
+		$k = "
+		select emp.* from 
+		(select prf.* from (
+		select tbl_clerk.*,tbl_profile.name,tbl_profile.lastname from tbl_clerk left join tbl_profile on tbl_clerk.id=tbl_profile.clerk_id) as prf 
+		left join tbl_employment on prf.id=tbl_employment.clerk_id where tbl_employment.date_employed <= $r) as emp 
+		left join tbl_carrier on emp.id=tbl_carrier.clerk_id 
+		where tbl_carrier.job_status=1 
+		group by clerk_id order BY emp.clerk_number";
 		$s = $l -> queryAll($k);
 		$cview = new CView;
 		$cview -> title = "ثبت نمره ارزشیابی دسته‌ای سال $i";
