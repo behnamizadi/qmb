@@ -32,6 +32,7 @@ class notice_clerkController {
 	}
 
 	public function manage() {
+	    $j = False;
 		if (CUrl::segment(3) === 'print')
 			$j = TRUE;
 		$e = "SELECT tbl_notice_clerk.clerk_id,tbl_notice_clerk.post,tbl_notice_clerk.place,tbl_notice_clerk.date_end,tbl_profile.name,tbl_profile.lastname FROM tbl_notice_clerk,tbl_profile WHERE tbl_notice_clerk.clerk_id=tbl_profile.clerk_id";
