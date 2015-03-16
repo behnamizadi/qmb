@@ -6,7 +6,7 @@
 <body><?php include 'menu.php'; ?>
     <div class="page">
         <h2 class="bigtitle">
-            <?php if(isset($title)){echo $title;} ?>
+            <?php if (isset($title)) echo($title); ?>
         </h2><?php include($view); ?>
     </div>
         
