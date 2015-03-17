@@ -3,7 +3,7 @@ class carrierController {
 	public function index() {$a = new CForm;
 		if (isset($_POST['submit'])) {$b = new Clerk;
 			$c = $b -> getId($_POST['clerk_number']);
-			if (!$c) {$a -> setError('clerk_number', '&#1585;&#1705;&#1608;&#1585;&#1583;&#1740; &#1576;&#1575; &#1575;&#1740;&#1606; &#1588;&#1605;&#1575;&#1585;&#1607; &#1705;&#1575;&#1585;&#1605;&#1606;&#1583;&#1740; &#1608;&#1580;&#1608;&#1583; &#1606;&#1583;&#1575;&#1585;&#1583;.');
+			if (!$c) {$a -> setError('clerk_number', 'رکوردی با این شماره کارمندی وجود ندارد.');
 			}
 			if ($a -> validate() == TRUE) {
 				if (CUrl::segment(3) == 'add')
@@ -13,9 +13,9 @@ class carrierController {
 			}
 		}$d = new CView;
 		if (CUrl::segment(3) == 'add')
-			$d -> title = '&#1579;&#1576;&#1578; &#1605;&#1587;&#1740;&#1585; &#1588;&#1594;&#1604;&#1740; &#1705;&#1575;&#1585;&#1605;&#1606;&#1583;';
+			$d -> title = 'ثبت مسیر شغلی کارمند';
 		else
-			$d -> title = '&#1711;&#1586;&#1575;&#1585;&#1588; &#1605;&#1587;&#1740;&#1585; &#1588;&#1594;&#1604;&#1740;';
+			$d -> title = 'گزارش مسیر شغلی';
 		$d -> form = $a -> run();
 		$d -> run('clerk/edit');
 	}
@@ -29,16 +29,16 @@ class carrierController {
 		$f = new CGrid;
 		$f -> condition = array('clerk_id' => $c);
 		$f -> sort = 'start';
-		$f -> headers = array('employment_status' => array('format' => 'model[Lookup,getById($value,employment_status)]', 'label' => '&#1608;&#1590;&#1593;&#1740;&#1578; &#1575;&#1587;&#1578;&#1582;&#1583;&#1575;&#1605;'), 'job_status' => array('format' => 'model[Lookup,getById($value,job_status)]', 'label' => '&#1608;&#1590;&#1593;&#1740;&#1578; &#1575;&#1588;&#1578;&#1594;&#1575;&#1604;'), 'post' => array('format' => 'model[Lookup,getById($value,post)]', 'label' => '&#1662;&#1587;&#1578; &#1587;&#1575;&#1586;&#1605;&#1575;&#1606;&#1740;'), 'hokm_type' => array('format' => 'model[Lookup,getById($value,hokm_type)]', 'label' => '&#1606;&#1608;&#1593; &#1581;&#1705;&#1605;'), 'branch_id' => array('format' => 'model[Carrier::comletePlace($value)]', 'label' => '&#1605;&#1581;&#1604; &#1582;&#1583;&#1605;&#1578;'), 'branch_id2' => array('format' => 'type[0:7800]', 'label' => '&#1705;&#1583; &#1605;&#1581;&#1604; &#1582;&#1583;&#1605;&#1578;'), 'start' => array('format' => 'model[Cal,getDate($value)]', 'label' => '&#1578;&#1575;&#1585;&#1740;&#1582; &#1588;&#1585;&#1608;&#1593;'), 'end' => array('format' => 'model[Cal,getDate($value)]', 'label' => '&#1578;&#1575;&#1585;&#1740;&#1582; &#1662;&#1575;&#1740;&#1575;&#1606;'), 'emtiaz_shoghl' => array('label' => '&#1575;&#1605;&#1578;&#1740;&#1575;&#1586; &#1588;&#1594;&#1604;'), );
+		$f -> headers = array('employment_status' => array('format' => 'model[Lookup,getById($value,employment_status)]', 'label' => 'وضعیت استخدام'), 'job_status' => array('format' => 'model[Lookup,getById($value,job_status)]', 'label' => 'وضعیت اشتغال'), 'post' => array('format' => 'model[Lookup,getById($value,post)]', 'label' => 'پست سازمانی'), 'hokm_type' => array('format' => 'model[Lookup,getById($value,hokm_type)]', 'label' => 'نوع حکم'), 'branch_id' => array('format' => 'model[Carrier::comletePlace($value)]', 'label' => 'محل خدمت'), 'branch_id2' => array('format' => 'type[0:7800]', 'label' => 'کد محل خدمت'), 'start' => array('format' => 'model[Cal,getDate($value)]', 'label' => 'تاریخ شروع'), 'end' => array('format' => 'model[Cal,getDate($value)]', 'label' => 'تاریخ پایان'), 'emtiaz_shoghl' => array('label' => 'امتیاز شغل'), );
 		$d = new CView;
-		$f -> operations = array('view' => FALSE, 'edit' => FALSE, 'delete' => FALSE, 'carrier/edit/$value->id/' . $c => array('icon' => 'public/images/edit.png', 'alt' => '&#1608;&#1740;&#1585;&#1575;&#1740;&#1588;', 'title' => '&#1608;&#1740;&#1585;&#1575;&#1740;&#1588;'), 'carrier/delete/$value->id/' . $c => array('icon' => 'public/images/delete.png', 'alt' => '&#1581;&#1584;&#1601;', 'title' => '&#1581;&#1584;&#1601;', 'message' => '&#1608;&#1575;&#1602;&#1593;&#1575; &#1605;&#1740;&#8204;&#1582;&#1608;&#1575;&#1740; &#1581;&#1584;&#1601;&#1588; &#1705;&#1606;&#1740;&#1567;'));
+		$f -> operations = array('view' => FALSE, 'edit' => FALSE, 'delete' => FALSE, 'carrier/edit/$value->id/' . $c => array('icon' => 'public/images/edit.png', 'alt' => 'ویرایش', 'title' => 'ویرایش'), 'carrier/delete/$value->id/' . $c => array('icon' => 'public/images/delete.png', 'alt' => 'حذف', 'title' => 'حذف', 'message' => 'واقعا می‌خوای حذفش کنی؟'));
 		if ($e) {$f -> operations = FALSE;
 			$f -> noSort = TRUE;
 			$d -> layout = 'print';
-			$d -> ptitle = '<h1>&#1711;&#1586;&#1575;&#1585;&#1588; &#1605;&#1587;&#1740;&#1585;  &#1588;&#1594;&#1604;&#1740; ' . Profile::getName($c) . '</h1>';
+			$d -> ptitle = '<h1>گزارش مسیر  شغلی ' . Profile::getName($c) . '</h1>';
 			$g = new User;
 			$d -> producer = $g -> producer();
-		} else {$d -> pb = '<center><p>' . CUrl::createLink('&#1606;&#1587;&#1582;&#1607; &#1670;&#1575;&#1662;&#1740;', 'carrier/summ/' . $c . '/print', 'class="box" target="_blank"') . '</p></center>';
+		} else {$d -> pb = '<center><p>' . CUrl::createLink('نسخه چاپی', 'carrier/summ/' . $c . '/print', 'class="box" target="_blank"') . '</p></center>';
 		}$h = new CDatabase;
 		$j = "SELECT * FROM tbl_carrier WHERE clerk_id='" . CUrl::segment(3) . "'";
 		$l = $h -> queryAll($j);
@@ -46,7 +46,7 @@ class carrierController {
 		}$f -> values = $l;
 		$d -> grid = $f -> run();
 		$d -> c_id = $c;
-		$d -> title = '&#1605;&#1587;&#1740;&#1585;  &#1588;&#1594;&#1604;&#1740; ' . Profile::getName($c);
+		$d -> title = 'مسیر  شغلی ' . Profile::getName($c);
 		$d -> print = $e;
 		$d -> run('carrier/summ');
 	}
@@ -85,7 +85,7 @@ class carrierController {
 					}
 					if (isset($_POST['hokm_type' . $q]) && $_POST['hokm_type' . $q] != 8) {
 					}
-					if (empty($_POST['place' . $q])) {$a -> setError('place' . $q, '&#1608;&#1585;&#1608;&#1583; &#1601;&#1740;&#1604;&#1583; &#1605;&#1581;&#1604; &#1582;&#1583;&#1605;&#1578; &#1575;&#1604;&#1586;&#1575;&#1605;&#1740;&#1587;&#1578;.');
+					if (empty($_POST['place' . $q])) {$a -> setError('place' . $q, 'ورود فیلد محل خدمت الزامیست.');
 					}
 					if (empty($_POST['d_start' . $q])) {$a -> setError('d_start' . $q, 'e');
 					}
@@ -131,7 +131,7 @@ class carrierController {
 			}
 		}$d = new CView;
 		$d -> f = $a;
-		$d -> title = '&#1575;&#1601;&#1586;&#1608;&#1583;&#1606; &#1605;&#1587;&#1740;&#1585;  &#1588;&#1594;&#1604;&#1740; ' . Profile::getName($c);
+		$d -> title = 'افزودن مسیر  شغلی ' . Profile::getName($c);
 		$d -> run('carrier/add');
 	}
 
@@ -174,14 +174,14 @@ class carrierController {
 		$d -> de = empty($cc -> end) ? 0 : $s -> date('d', $cc -> end);
 		$d -> ye = empty($cc -> end) ? 0 : $s -> date('Y', $cc -> end);
 		$d -> degree = $cc -> post2;
-		if ($cc -> branch_id != 0) {$d -> branch_display = '</td></tr><tr><td><div id="branch_display"><label>&#1588;&#1593;&#1576;&#1607;<span class="error">*</span></label>';
+		if ($cc -> branch_id != 0) {$d -> branch_display = '</td></tr><tr><td><div id="branch_display"><label>شعبه<span class="error">*</span></label>';
 			$d -> place_id = 2;
 			$d -> branch = $cc -> branch_id;
-		} else {$d -> branch_display = '</td></tr><tr><td><div id="branch_display" class="display_none"><label>&#1588;&#1593;&#1576;&#1607;<span class="error">*</span></label>';
+		} else {$d -> branch_display = '</td></tr><tr><td><div id="branch_display" class="display_none"><label>شعبه<span class="error">*</span></label>';
 			$d -> place_id = 1;
 		}$d -> model = $cc;
 		$d -> form = $a -> run();
-		$d -> title = '&#1608;&#1740;&#1585;&#1575;&#1740;&#1588; &#1605;&#1587;&#1740;&#1585; &#1588;&#1594;&#1604;&#1740; ' . Profile::getName($bb);
+		$d -> title = 'ویرایش مسیر شغلی ' . Profile::getName($bb);
 		$d -> run('carrier/edit');
 	}
 
