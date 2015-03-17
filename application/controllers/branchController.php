@@ -446,7 +446,7 @@ class branchController {
 			$r -> ptitle = '<h1>' . $ww . '</h1>';
 			$xx = new User;
 			$r -> producer = $xx -> producer();
-		} else {$r -> pb = '<center><p>' . CUrl::createLink('نسخه چاپی', 'branch/manage/print', 'class="box" target="_blank"') . '</p></center>';
+		} else {$r -> pb = '<center><p>' . CUrl::createLink('نسخه چاپی', 'branch/manage/print', 'class="btn btn-primary" target="_blank"') . '</p></center>';
 		}$r -> body = $uu -> run();
 		$r -> title = $ww;
 		$r -> run('branch/manage');
@@ -482,7 +482,7 @@ class branchController {
 			$r -> ptitle = '<h1>' . $ww . '</h1>';
 			$xx = new User;
 			$r -> producer = $xx -> producer();
-		} else {$r -> pb = '<center><p>' . CUrl::createLink('نسخه چاپی', 'branch/view/' . $zz . '/print', 'class="box" target="_blank"') . '</p></center>';
+		} else {$r -> pb = '<center><p>' . CUrl::createLink('نسخه چاپی', 'branch/view/' . $zz . '/print', 'class="btn btn-primary" target="_blank"') . '</p></center>';
 		}$uu -> paginate = FALSE;
 		$uu -> table = 'tbl_props';
 		$uu -> headers = array('name' => array('label' => 'عنوان', 'format' => 'model[Branch::getPropName($value)]'), 'quantity' => array('label' => 'تعداد'));
@@ -491,7 +491,7 @@ class branchController {
 		$r -> props = $uu -> run();
 		$r -> title = $ww;
 		if (!$aaa)
-			$r -> link = '<p><a href="' . PHP40::get() -> homeUrl . 'index.php/branch/manage" class="box">بازگشت</a></p>';
+			$r -> link = '<p><a href="' . PHP40::get() -> homeUrl . 'index.php/branch/manage" class="btn btn-primary">بازگشت</a></p>';
 		$r -> degrees = Degree::degreeHistory($zz, FALSE, $aaa);
 		$r -> run('branch/view');
 	}

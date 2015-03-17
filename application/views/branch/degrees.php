@@ -2,7 +2,7 @@
 echo $body;
 echo $form;
 ?>
-<a href="#" id="show_add" class="box">ثبت درجه</a>
+<a href="#" id="show_add" class="btn btn-primary">ثبت درجه</a>
 <script>
     $(function(){
         $('#show_add').click(function(){

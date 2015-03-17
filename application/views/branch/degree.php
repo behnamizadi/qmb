@@ -56,7 +56,7 @@ else: ?>
 <?php endif; ?>
 </table>
 <img src="<?php echo PHP40::get()->homeUrl; ?>public/images/plus.png" style="cursor:pointer" alt="افزودن درجه"  class="add_degree" />
-<p><label>&nbsp;</label><input type="submit" name="submit" value="ثبت" class="box" /></p>
+<p><label>&nbsp;</label><input type="submit" name="submit" value="ثبت" class="btn btn-primary" /></p>
 </form>
 <script>
 $(function(){

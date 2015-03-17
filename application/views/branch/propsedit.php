@@ -477,7 +477,7 @@ else {
 echo $form->makeField('submit', array(
             'type'=>'submit',
             'value'=>'ویرایش',
-            'in'=>'class="box"'
+            'in'=>'class="btn btn-primary"'
         ));
 ?>
 </form>

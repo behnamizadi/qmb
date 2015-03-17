@@ -1,5 +1,5 @@
 <?php
 echo $form; 
-echo CUrl::createLink('بازگشت','branch/degrees/'.$branchCode,'class="box"');
+echo CUrl::createLink('بازگشت','branch/degrees/'.$branchCode,'class="btn btn-primary"');
 ?>
 </form>
