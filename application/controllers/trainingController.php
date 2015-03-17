@@ -71,6 +71,7 @@ class trainingController {
 	}
 
 	public function notitle() {$f = CUrl::segment(3);
+        $g = FALSE;
 		if (!$f)
 			CUrl::redirect('training/index2/2');
 		if (CUrl::segment(4) === 'print')
