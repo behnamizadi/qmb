@@ -28,6 +28,7 @@ h2.bigtitle {
 	    border-top:1px solid #D5ED18;
 	    border-bottom:1px solid #D5ED18;
 	    border-right: 10px solid #d5ed18;
+	    color:#999;
 	    background-color:#fff;
 	    border-radius:5px;
 	    padding:10px 30px 10px 10px;
@@ -41,8 +42,12 @@ h2{font-size: 23px;}
 h3{font-size: 18px;}
 h4{font-size: 15px;}
 @keyframes anbig {
-    from {border-right: 300px solid #CC0000;color:#fff;}
-    to {border-right: 10px solid #d5ed18;color:#000000;}
+    from {border-right: 400px solid #CC0000;color:#fff;
+    	    border-left:1px solid #CC0000;
+		    border-top:1px solid #CC0000;
+	    	border-bottom:1px solid #CC0000;
+    }
+    to {}
 }
 hr{background:url("../images/h2.png") no-repeat scroll right;border:none;margin:0 0 10px 0}
 label{color:#333;float:right;font-size:15px;width:90px;}
@@ -106,9 +111,6 @@ div.mc-caption{font: bold 14px/20px Arial;color:#EEE;z-index:4;padding:10px 0;te
     width:100%; table-layout: fixed;
     }
 .create p{margin: 5px 0}
-.description{border:1px solid #CFCFCF;float:left;width:190px;margin:10px 3px 0 0}
-.description ul{margin:0;padding:5px 10px 5px 8px;text-align:justify}
-.description li{line-height:2;list-style:none;text-indent:5px}
 .display_none{display: none;margin:0;padding:0}
 .error{color:red;font-size:13px}
 .even{background:#E5F1F4}
@@ -135,10 +137,6 @@ div.mc-caption{font: bold 14px/20px Arial;color:#EEE;z-index:4;padding:10px 0;te
 .operationCss{text-align:center;width:80px}
 .info{background:#d5edf8;color:#205791;border-color:#92cae4}
 .items{text-decoration:none;color:#414141;font-size:13px;text-align:justify;line-height:2}
-ul.list{}
-ul.list li{line-height:2;}
-ul.list li a{text-decoration:none;color:#414141;font-size: 13px;}
-ul.list li a:hover{text-decoration:underline}
 .login{background-color: #FFFFFF;
     border: 2px solid #d5ed18;
     border-right: 10px solid #d5ed18;
@@ -174,13 +172,6 @@ ul.list li a:hover{text-decoration:underline}
 .red{background:#FBE3E4;color:#8a1f11;border-color:#FBC2C4}
 .search{margin-top:4px;padding:0}
 .select{min-width:150px;}
-.sidebar{border:1px solid #CFCFCF;float:right;width:150px;text-align:center;margin:10px 3px 0 0;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px}
-.sidebar ul{margin:0;padding:0}
-.sidebar ul a{text-decoration:none;color:#414141;font-size:13px}
-.sidebar ul a:hover{background:#99D799;text-decoration:none}
-.sidebar_title{border-bottom:1px solid #CFCFCF;text-align:center;padding:5px}
-.sidebar li{list-style:none;line-height:2}
-.sidebar li a{display:block}
 .success{background:#BAEFBE;color:#264409;border-color:#65D562}
 .title{color:#333;text-shadow:1px 1px 0 #999;margin:10px 3px 5px 0;font-size:14px}
 .txt{width:150px;background-color: #FFFFFF;
@@ -195,7 +186,6 @@ background-color: #FFFFFF;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
     transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
     border-radius: 3px 3px 3px 3px;}
-li a:hover,.breadcrumbUl a:hover{text-decoration:underline}
 .atxt{text-align:justify;list-style:none;font-size:13px;line-height:2;color:#777}
 .welcom_notice{color:red;text-decoration: blink}
 .amChartsButtonSelected
@@ -257,15 +247,22 @@ li a:hover,.breadcrumbUl a:hover{text-decoration:underline}
 ul.nav li.dropdown:hover > ul.dropdown-menu {
     display: block;    
 }
+ul.dropdown-menu{
+	width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+	
+}
+
 .navbar{
 	min-height:0;
+
 }
 .dropdown-menu {right:0;min-width:140px;
-white-space:nowrap;top:98%;
+top:98%;
 margin:0px;
 padding:0px;}
 .dropdown-menu .dropdown-menu {right:100%;top:0px;}
-.nav li {float:right;}
 .footer-reserve{
 	height:30px;
 }
@@ -277,7 +274,17 @@ padding:0px;}
 	display: inline-block;
 	
 }
+.nav{
+		text-align:right;
+}
+.nav-pills > li  {
+	float:right;
+}
 .nav li a{
+	display:block;
 	padding:0px;
-	display: block;
+}
+ul.nav li.dropdown:hover > ul.dropdown-menu{
+	direction:rtl;
+	text-align: right;
 }
