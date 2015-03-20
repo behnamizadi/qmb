@@ -305,7 +305,7 @@
 				</ul>
 			</li>
 			<li class="toplast">
-				<a href="<?php echo $path; ?>index.php/user/logout" ><span>خروج</span></span></a>
+				<a href="<?php echo $path; ?>index.php/user/logout" ><span>خروج</span></a>
 			</li>
 		</ul>
 	</div><!--/.nav-collapse -->

@@ -122,10 +122,11 @@ div.mc-caption{font: bold 14px/20px Arial;color:#EEE;z-index:4;padding:10px 0;te
 .footer {
 	background:#EDEDED;
     border-top: 1px solid #DDDDDD;
+    color:#999;
     margin: 0 auto;
     padding: 3px 0;
     clear: both;
-    font-size: 14px;
+    font-size: 12px;
     position:fixed;bottom:0;left:0;width:100%
 }
 .footer ul{margin:0;padding:10px}
@@ -301,4 +302,21 @@ nav{
 }
 .navbar-collapse.in{
 	overflow-y: visible;
+}
+#view{
+        border-left:1px solid #ddd;
+        border-top:1px solid #ddd;
+        border-bottom:1px solid #ddd;
+        border-right: 10px solid #ddd;
+        color:#333;
+        background-color:#fff;
+        border-radius:5px;
+        padding:10px 30px 10px 10px;
+        font-size: 14px;
+        margin-top:10px;
+        margin-bottom: 10px;
+ 
+}
+#add_tbl{
+ display: none;   
 }

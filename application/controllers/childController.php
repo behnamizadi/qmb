@@ -61,9 +61,6 @@ class childController {
 		$b -> title = 'ویرایش مشخصات فرزند';
 		$b -> run();
 	}
-	public function add(){
-		
-	}
 
 }
 ?>

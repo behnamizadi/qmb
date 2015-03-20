@@ -1,6 +1,7 @@
 <?php
 class reportController {
-	public function study_degree() {$a = "SELECT MAX(study_degree),tbl_education.clerk_id,tbl_carrier.job_status FROM tbl_education,tbl_carrier 
+	public function study_degree() {
+	    $a = "SELECT MAX(study_degree),tbl_education.clerk_id,tbl_carrier.job_status FROM tbl_education,tbl_carrier 
 		WHERE tbl_education.clerk_id=tbl_carrier.clerk_id AND  tbl_carrier.job_status='1' AND hokm_type<>8 AND tbl_carrier.now_c='1' GROUP BY tbl_education.clerk_id";
 		$b = new CDatabase;
 		$c = $b -> queryAll($a, TRUE);
@@ -97,12 +98,14 @@ class reportController {
                 chart.write("chartdiv");
             });
         </script>';
-		if (CUrl::segment(3) === 'print') {$d -> layout = 'chart_print';
+		if (CUrl::segment(3) === 'print') {
+		    $d -> layout = 'chart_print';
 			$l = new User;
 			$d -> producer = $l -> producer();
 		} else {$d -> layout = 'chart';
 			$d -> pb = '<center><p>' . CUrl::createLink('نسخه چاپی', 'report/study_degree/print', 'class="box" target="_blank"') . '</p></center>';
-		}$d -> script = $h;
+		}
+		$d -> scripts = $h;
 		$d -> run();
 	}
 
@@ -189,7 +192,7 @@ SELECT tbl_carrier.clerk_id FROM tbl_carrier WHERE  tbl_carrier.job_status='1' A
 			$d -> producer = $l -> producer();
 		} else {$d -> layout = 'chart';
 			$d -> pb = '<center><p>' . CUrl::createLink('نسخه چاپی', 'report/married/print', 'class="box" target="_blank"') . '</p></center>';
-		}$d -> script = $h;
+		}$d -> scripts = $h;
 		$d -> run();
 	}
 

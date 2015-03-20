@@ -346,7 +346,7 @@ class vacationController {
 			$u = "SELECT * FROM tbl_vacation_year WHERE clerk_id='$clerck->clerk_id' AND year='$year'";
 			if (($vv = $g -> queryOne($u)) !== FALSE) {
 				$ww = $vv -> all_v - $vv -> used;
-				$qq[] = (object) array('clerk_id' => $clerck -> clerk_id, 'clerk_number' => $uu -> clerk_number, 'name' => $clerck -> name, 'lastname' => $clerck -> lastname, 'used' => $vv -> used, 'remaining' => $ww, 'wasted' => $vv -> wasted, 'saved' => $vv -> saved );
+				$qq[] = (object) array('clerk_id' => $clerck -> clerk_id, 'clerk_number' => $uu, 'name' => $clerck -> name, 'lastname' => $clerck -> lastname, 'used' => $vv -> used, 'remaining' => $ww, 'wasted' => $vv -> wasted, 'saved' => $vv -> saved );
 			} else {
 				$u = "SELECT date_employed FROM tbl_employment WHERE clerk_id='$clerck->clerk_id'";
 				$xx = $g -> queryOne($u) -> date_employed;
@@ -566,3 +566,4 @@ class vacationController {
 	}
 
 }
+?>

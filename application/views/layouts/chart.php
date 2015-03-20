@@ -1,23 +1,40 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="language" content="fa" />
-<link rel="stylesheet" type="text/css" href="<?php $path=PHP40::get()->homeUrl; echo $path; ?>public/css/main.css"  />
-<script type="text/javascript" src="<?php  echo $path;?>public/jscript/amcharts.js"></script>
-<script type="text/javascript" src="<?php  echo $path;?>public/jscript/jquery-1.8.3.min.js"></script>
-<script src="<?php echo $path;?>public/jscript/focus.js"></script>
-<?php echo $script; ?>
-<title>سامانه مدیریت منابع انسانی یاغیش- نسخه ۱</title>
-</head>
+<!DOCTYPE html>
+<html lang="fa">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <link href="<?php $path = PHP40::get() -> homeUrl;echo $path; ?>public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+        <link rel="stylesheet" type="text/css" href="<?php echo $path; ?>public/css/main.css" >
+        <title>سامانه مدیریت منابع انسانی یاغیش</title>
+        <?php include 'favicon.php';?>
+    </head>
 <body>
-        <?php include("menu.php"); ?>
-        <div class="page">
-            <h2><?php if(isset($title)) echo $title; ?></h2>
-            <hr />
-            	<div id="chartdiv" style="width: 700px; height: 600px;"></div>
-		<?php if(isset($pb)) echo $pb; ?>
-        </div>
-          <?php include('footer.php'); ?>
-</body>
-</html>
+    <div class="container-fluid"><?php include('menu.php'); ?>
+    <div class="header-reserve"></div>
+    <h2 class="bigtitle">
+            <?php if (isset($title)) echo($title); ?>
+        </h2>
+        <div id="view">
+                   <div id="chartdiv" style="width: 600px; height: 600px;margin:auto"></div>
+    
+    <?php if(isset($pb)) echo $pb; ?>
+    </div>        
+        <div class="footer-reserve"></div>
+        <?php include 'footer.php'; ?>
+    </div>
+<script type="text/javascript" src="<?php echo $path; ?>public/jscript/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo $path; ?>public/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<?php echo $path; ?>public/jscript/focus.js"></script>
+<script type="text/javascript" src="<?php echo $path; ?>public/jscript/spin.min.js"></script>
+<script type="text/javascript" src="<?php  echo $path;?>public/jscript/amcharts.js"></script>
+<script type="text/javascript" src="<?php  echo $path;?>public/jscript/print.js"></script>
+<?php if (isset($scripts)) echo $scripts; ?></body></html>

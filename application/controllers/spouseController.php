@@ -86,16 +86,20 @@ class spouseController {
     public function edit() {$c = CUrl::segment(3);
         $b = new CView;
         $q = new Profile;
-        if ($q -> hasSpouse($c) == FALSE) {$b -> error = 'این کارمند مجرد می‌باشد یا تعداد افراد تحت تکفل صفر می‌باشد. لطفا ابتدا مشخصات فردی کارمند را ' . CUrl::createLink('ویرایش', 'clerk/edit/profile') . ' نمایید.';
+        if ($q -> hasSpouse($c) == FALSE) {
+            $b -> error = 'این کارمند مجرد می‌باشد یا تعداد افراد تحت تکفل صفر می‌باشد. لطفا ابتدا مشخصات فردی کارمند را ' . CUrl::createLink('ویرایش', 'clerk/edit/profile') . ' نمایید.';
             $b -> run();
-        }$e = new CDatabase;
+        }
+        $e = new CDatabase;
         $e -> pk = 'clerk_id';
-        if (($s = $e -> getByPk($c)) == FALSE) {$d = "SELECT time_added FROM tbl_clerk WHERE id='$c'";
+        if (($s = $e -> getByPk($c)) == FALSE) {
+            $d = "SELECT time_added FROM tbl_clerk WHERE id='$c'";
             $e = new CDatabase;
             $h = $e -> queryOne($d);
             if ($h) {$t = $h -> time_added;
                 CUrl::redirect('spouse/add/' . $c . '/' . $t);
-            } else {$b -> error = 'کارمندی با این شماره کارمندی وجود ندارد یا مشخصات خانواده کارمند ثبت نشده است.';
+            } else {
+                $b -> error = 'کارمندی با این شماره کارمندی وجود ندارد یا مشخصات خانواده کارمند ثبت نشده است.';
                 $b -> run();
             }
         }$m = new CJcalendar(FALSE);
@@ -110,7 +114,9 @@ class spouseController {
         $b -> sfs = $u -> getByDegree($s -> study_degree);
         $a = new CForm;
         $a -> showFieldErrorText = FALSE;
-        if ($a -> validate()) {$n = $m -> mktime(0, 0, 0, (int)$_POST['m_born'], (int)$_POST['d_born'], (int)$_POST['y_born']) + 14400;
+        if ($a -> validate()) 
+        {
+            $n = $m -> mktime(0, 0, 0, (int)$_POST['m_born'], (int)$_POST['d_born'], (int)$_POST['y_born']) + 14400;
             $o = $m -> mktime(0, 0, 0, (int)$_POST['m_married'], (int)$_POST['d_married'], (int)$_POST['y_married']) + 14400;
             $e -> additional = array('date_born' => $n, 'date_married' => $o);
             $e -> update(array('clerk_id' => $c));

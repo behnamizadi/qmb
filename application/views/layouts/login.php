@@ -7,6 +7,7 @@
 <script type="text/javascript" src="<?php echo $path;?>public/jscript/jquery-1.8.3.min.js"></script>
 <script src="<?php echo $path;?>public/jscript/focus.js"></script>
 <title>سامانه مدیریت منابع انسانی یاغیش- نسخه ۱</title>
+ <?php include 'favicon.php';?>
 </head>
 <body>
     <div class="background-container">
