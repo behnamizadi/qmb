@@ -28,4 +28,6 @@
 <script type="text/javascript" src="<?php echo $path; ?>public/jscript/jquery.min.js"></script>
 <script type="text/javascript" src="<?php echo $path; ?>public/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<?php echo $path; ?>public/jscript/focus.js"></script>
+<script type="text/javascript" src="<?php echo $path; ?>public/jscript/spin.min.js"></script>
+
 <?php if (isset($scripts)) echo $scripts; ?></body></html>

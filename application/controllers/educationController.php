@@ -47,7 +47,8 @@ class educationController {
 		}
 	}
 
-	public function manage() {$b = CUrl::segment(3);
+	public function manage() {
+	    $b = CUrl::segment(3);
 		$a = new CView;
 		$f = new CForm;
 		$f -> showFieldErrorText = FALSE;
@@ -58,9 +59,10 @@ class educationController {
 				$d = new CDatabase;
 				$d -> additional = array('clerk_id' => $b, 'date_get' => $m);
 				$d -> insert();
-			} else
-				$_POST['error'] = 1;
-		}$n = new CGrid;
+			} else{
+				$_POST['error'] = 1;}
+		}
+		$n = new CGrid;
 		$n -> operations = array('view' => FALSE, 'edit' => FALSE, 'delete' => FALSE, 'education/edit/' . $b . '/$value->id' => array('icon' => 'public/images/edit.png', 'alt' => 'ویرایش', 'title' => 'ویرایش'), 'education/delete/' . $b . '/$value->id' => array('icon' => 'public/images/delete.png', 'alt' => 'حذف', 'title' => 'حذف'), );
 		$n -> condition = array('clerk_id' => $b);
 		$n -> headers = array('study_degree' => array('format' => 'model[Lookup,getById($value,study_degree)]'), 'study_field' => array('format' => 'model[StudyField,getById($value)]'), 'date_get' => array('format' => 'model[Cal,getDate($value,Y)]'), 'place');

@@ -20,7 +20,8 @@ class StudyField {
 		$d = $b -> queryAll($c);
 		$e = array();
 		if ($d !== FALSE) {
-			foreach ($d as $f) {$e[$f -> id] = $f -> title;
+			foreach ($d as $f) {
+			    $e[$f -> id] = $f -> title;
 			}
 		}
 		return $e;	

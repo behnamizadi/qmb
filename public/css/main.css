@@ -299,3 +299,6 @@ ul.nav li.dropdown:hover > ul.dropdown-menu{
 nav{
 	box-shadow: 0px 0px 2px;
 }
+.navbar-collapse.in{
+	overflow-y: visible;
+}
