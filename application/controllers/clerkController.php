@@ -291,12 +291,14 @@ class clerkController {
 				} else {CUrl::redirect('clerk/search/' . $n);
 				}
 			}
+        }
 		$view -> form = $a -> run();
 		$view -> run('clerk/index');
-	}
+	
 	}
 
-	public function delete() {$d = CUrl::segment(3);
+	public function delete() {
+        $d = CUrl::segment(3);
 		$nn = array('id' => $d);
 		$e = new CDatabase;
 		$e -> delete($nn);
@@ -327,3 +329,4 @@ class clerkController {
 	}
 
 }
+?>

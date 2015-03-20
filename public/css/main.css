@@ -42,12 +42,17 @@ h2{font-size: 23px;}
 h3{font-size: 18px;}
 h4{font-size: 15px;}
 @keyframes anbig {
-    from {border-right: 400px solid #CC0000;color:#fff;
+    from {border-right: 400px solid #CC0000;
     	    border-left:1px solid #CC0000;
 		    border-top:1px solid #CC0000;
 	    	border-bottom:1px solid #CC0000;
     }
-    to {}
+    to {
+    	 border-left:1px solid #D5ED18;
+	    border-top:1px solid #D5ED18;
+	    border-bottom:1px solid #D5ED18;
+	    border-right: 10px solid #d5ed18;
+    }
 }
 hr{background:url("../images/h2.png") no-repeat scroll right;border:none;margin:0 0 10px 0}
 label{color:#333;float:right;font-size:15px;width:90px;}
@@ -287,4 +292,10 @@ padding:0px;}
 ul.nav li.dropdown:hover > ul.dropdown-menu{
 	direction:rtl;
 	text-align: right;
+}
+.dropdown-menu > li > a:hover {
+	border-radius: 5px;
+}
+nav{
+	box-shadow: 0px 0px 2px;
 }

@@ -4,7 +4,8 @@ class childController {
 		$a = CUrl::segment(3);
 		$b = new CView;
 		$c = new Profile;
-		if ($c -> hasSpouse($a) == FALSE) {$b -> error = 'این کارمند مجرد می‌باشد یا تعداد افراد تحت تکفل صفر می‌باشد. لطفا ابتدا مشخصات فردی کارمند را ' . CUrl::createLink('ویرایش', 'clerk/edit/profile') . ' نمایید.';
+		if ($c -> hasSpouse($a) == FALSE) {
+		    $b -> error = 'این کارمند مجرد می‌باشد یا تعداد افراد تحت تکفل صفر می‌باشد. لطفا ابتدا مشخصات فردی کارمند را ' . CUrl::createLink('ویرایش', 'clerk/edit/profile') . ' نمایید.';
 			$b -> run();
 		}
 		$b = new CView;
@@ -21,7 +22,8 @@ class childController {
 				$g -> insert($j);
 			} else
 				$_POST['error'] = 1;
-		}$k = new CGrid;
+		}
+		$k = new CGrid;
 		$k -> operations = array('view' => FALSE, 'edit' => FALSE, 'delete' => FALSE, 'child/edit/' . $a . '/$value->id' => array('icon' => 'public/images/edit.png', 'alt' => 'ویرایش', 'title' => 'ویرایش'), 'child/delete/' . $a . '/$value->id' => array('icon' => 'public/images/delete.png', 'alt' => 'ویرایش', 'title' => 'ویرایش'), );
 		$k -> condition = array('clerk_id' => $a);
 		$k -> headers = array('name', 'code_melli', 'date_born' => array('format' => 'model[Cal,getDate($value)]'), 'city_born');
@@ -64,3 +66,4 @@ class childController {
 	}
 
 }
+?>
