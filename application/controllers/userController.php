@@ -56,7 +56,6 @@ class userController
         $view->form = $form->run();
 		$view->run('user/login');
 	}
-    
     public function logout()
     {
         $auth = new CAuth;
@@ -134,8 +133,30 @@ class userController
 		$view->form = $form->run();
 		$view->run();
 	}
-	public function add()
+	public function add_user()
 	{
 		
 	}
+    public function set_pass(){
+        // hard reset user password
+        $form = new CForm;
+        $view = new CView;
+        $view->title = 'تغییر رمز عبور';
+        if(isset($_POST['submit']))
+        {
+            $db = new CDatabase;
+            $passwordCoding = PHP40::get()->auth['default']['passwordCoding'];
+            $id = $_POST['user_id'];
+            if($form -> validate())
+            {
+                $values = array('password'=>$passwordCoding($_POST['new_password']));
+                $db->update(array('id'=>$id),$values);
+                $db->update(array('id'=>$id),array('last_pass_change'=>time()));
+                $view->success = 'تغییر رمز با موفقیت انجام گرفت';
+                $view->run();
+            }
+        }
+        $view->form = $form->run();
+        $view->run();
+    }
 }

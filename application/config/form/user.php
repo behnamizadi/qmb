@@ -21,5 +21,14 @@ return array('login' => array(
 				), 
 			'error' => array('type' => 'view_isset')), 
 			'change_pass' => array('password' => array('type' => 'password', 'in' => 'class="txt"', 'post' => FALSE, 'validation' => array('required'), 'label' => 'رمز عبور فعلی'), 
-			'new_password' => array('type' => 'password', 'in' => 'class="txt"', 'post' => FALSE, 'validation' => array('required,minLength[6]'), 'label' => 'رمز عبور جدید'), 'verify_pass' => array('type' => 'password', 'in' => 'class="txt"', 'post' => FALSE, 'validation' => array('required,match[new_password]'), 'label' => 'تکرار رمز عبور جدید'), 'submit' => array('type' => 'submit', 'value' => 'تغییر رمز عبور', 'in' => 'class="btn btn-primary"', ), ));
+			'new_password' => array('type' => 'password', 'in' => 'class="txt"', 'post' => FALSE, 'validation' => array('required,minLength[6]'), 'label' => 'رمز عبور جدید'), 'verify_pass' => array('type' => 'password', 'in' => 'class="txt"', 'post' => FALSE, 'validation' => array('required,match[new_password]'), 'label' => 'تکرار رمز عبور جدید'), 'submit' => array('type' => 'submit', 'value' => 'تغییر رمز عبور', 'in' => 'class="btn btn-primary"', ), ),
+            
+            'set_pass' => array('user_id' => array('type' => 'text', 'in' => 'class="txt"', 'post' => FALSE, 'validation' => array('required'), 'label' => 'کاربر'), 
+            'new_password' => array('type' => 'password', 'in' => 'class="txt"', 'post' => FALSE, 'validation' => array('required,minLength[6]'), 'label' => 'رمز عبور جدید'), 'verify_pass' => array('type' => 'password', 'in' => 'class="txt"', 'post' => FALSE, 'validation' => array('required,match[new_password]'), 'label' => 'تکرار رمز عبور جدید'), 'submit' => array('type' => 'submit', 'value' => 'تغییر رمز عبور', 'in' => 'class="btn btn-primary"', ), )
+            
+            
+            
+            
+            
+            );
 ?>
