@@ -1,12 +1,16 @@
+/* ------------ base colors ----------------- 
+light green : #D5ED18
+
+
+
+------------ base colors ----------------- */
+
 @font-face {
 	font-family:'byekan';
 	src: 	url('fonts/byekan.eot') format('eot'),
 			url('fonts/byekan.eot#iefix') format('embedded-opentype'), 
 			url('fonts/byekan.woff') format('woff'),
 			url('fonts/byekan.ttf') format('truetype');
-		
-	font-weight: normal;
-	font-style: normal;
 }
 html,body,input,form,select,textarea,text{
 	font-family:byekan;
@@ -54,20 +58,10 @@ h4{font-size: 15px;}
 	    border-right: 10px solid #d5ed18;
     }
 }
-hr{background:url("../images/h2.png") no-repeat scroll right;border:none;margin:0 0 10px 0}
-label{color:#333;float:right;font-size:15px;width:90px;}
+label{float:right;width:90px;}
 form p{clear:right}
 fieldset{border:1px solid #99D799;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px}
-table.clist{border-collapse:collapse;background-color: #FFFFFF;
-    border: 1px solid #E5E5E5;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-    margin: 0 auto 10px;
-    width:100%; table-layout: fixed;}
-table.clist th,table.clist td{border: 1px solid #fff;font-size:15px;vertical-align:top;padding:.3em .6em;text-align: center}
-table.clist th{text-align: center;background:url('../images/th.gif') repeat-x;}
-table.clist th a{color:#414141;}
-table.n_column{width:100%;border:1px #99D799 solid;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;}
-table.n_column td{font-size:17px;vertical-align:top;padding:.6em .6em}
+th{text-align: right;}
 #header {
     border-bottom: 1px solid #99D799;
     margin: 0 20px;
@@ -107,15 +101,6 @@ div.mc-caption{font: bold 14px/20px Arial;color:#EEE;z-index:4;padding:10px 0;te
 .content{width:600px;float:right}
 .content2{width:620px;float:right}
 .content_shadow{background: url('../images/main_shadow.jpg') center top no-repeat;height: 7px;width: 100%;}
-.create{background-color: #FFFFFF;
-    border: 1px solid #E5E5E5;
-    border-radius: 10px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-    margin: 0 auto 20px;
-    padding: 19px 29px 29px;
-    width:100%; table-layout: fixed;
-    }
-.create p{margin: 5px 0}
 .display_none{display: none;margin:0;padding:0}
 .error{color:red;font-size:13px}
 .even{background:#E5F1F4}
@@ -167,9 +152,9 @@ div.mc-caption{font: bold 14px/20px Arial;color:#EEE;z-index:4;padding:10px 0;te
 	width:95%;overflow: hidden;}
 .pageContent{padding-bottom: 100px;width: 100%;}
 .pagination{margin:3px;padding:3px}
-.pagination a{border:1px solid #AAD;text-decoration:none;color:#009;margin:2px;padding:2px 5px}
-.pagination a:hover,div.pagination a:active{border:1px solid #009;color:#000}
-.pagination span.current{border:1px solid #009;background-color:#099;color:#FFF;margin:2px;padding:2px 5px}
+.pagination a{border:1px solid #aaa;text-decoration:none;;margin:2px;padding:2px 5px}
+.pagination a:hover,div.pagination a:active{border:1px solid #009;background-color:#D5ED18;}
+.pagination span.current{border:1px solid #999;background-color:#D5ED18;color:#FFF;margin:2px;padding:2px 5px}
 .pagination span.disabled{border:1px solid #EEE;color:#DDD;margin:2px;padding:2px 5px}
 .props{width: 55px;}
 .radius{-webkit-border-radius:16px;-moz-border-radius:16px;border-radius:16px}
@@ -245,10 +230,7 @@ background-color: #FFFFFF;
     top: 35%;
     left: 40%;
 }
-    img.btn_close {
-    float: right;
-    margin: -28px -28px 0px 0px;
-}
+  
 /*make bootstrap menu on hover*/  
 ul.nav li.dropdown:hover > ul.dropdown-menu {
     display: block;    
@@ -319,4 +301,8 @@ nav{
 }
 #add_tbl{
  display: none;   
+}
+.form-control{
+    margin:1px;
+    line-height: 1em;
 }
