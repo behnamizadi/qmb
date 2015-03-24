@@ -144,12 +144,6 @@ div.mc-caption{font: bold 14px/20px Arial;color:#EEE;z-index:4;padding:10px 0;te
 .main_left{float:left;width:455px}
 .notice{background:#FFF6BF;color:#514721;border-color:#FFD324}
 .notice li{margin-right:15px}
-.odd{background:#F8F8F8}
-.page{
-	padding: 20px;
-	padding-top:50px;
-	margin:auto;
-	width:95%;overflow: hidden;}
 .pageContent{padding-bottom: 100px;width: 100%;}
 .pagination{margin:3px;padding:3px}
 .pagination a{border:1px solid #aaa;text-decoration:none;;margin:2px;padding:2px 5px}
