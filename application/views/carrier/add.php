@@ -56,7 +56,7 @@ $branches['default'] = $employment_status['default'] = $job_status['default'] = 
            echo $f->select('y_start1',array(
                     'decoration'=>FALSE,
                     'type'=>'select',
-                    'options'=>'years_1386_1393'
+                    'options'=>'lastTenYears'
                 )); 
            ?>     
         </td>
@@ -178,7 +178,7 @@ for($i = 2; $i <= 10;$i++):
            echo $f->select('y_start'.$i,array(
                     'decoration'=>FALSE,
                     'type'=>'select',
-                    'options'=>'years_1386_1393'
+                    'options'=>'lastTenYears'
                 )); 
            ?>     
         </td>
@@ -199,7 +199,7 @@ for($i = 2; $i <= 10;$i++):
            echo $f->select('y_end'.$i,array(
                     'decoration'=>FALSE,
                     'type'=>'select',
-                    'options'=>'years_1386_1393'
+                    'options'=>'lastTenYears'
                 )); 
            ?>
         </td>
