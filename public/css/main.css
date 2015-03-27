@@ -292,3 +292,7 @@ nav{
 .form-control{
    
 }
+
+div.jtable-main-container > div.jtable-bottom-panel select{
+    color:#000000;
+}
