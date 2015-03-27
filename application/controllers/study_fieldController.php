@@ -36,7 +36,7 @@ class study_fieldController {
 		if (empty($e))
 			CUrl::redirect('study_field/filter');
 		$f = new CGrid;
-		$f -> operations = array('edit' => FALSE, 'view' => FALSE, 'delete' => FALSE, "study_field/view/\$value->id/$e" => array('icon' => 'public/images/view.png', 'alt' => 'مشاهده', 'title' => 'مشاهده و ویرایش'), "study_field/delete/\$value->id/$e" => array('icon' => 'public/images/delete.png', 'alt' => 'حذف', 'title' => 'حذف'), );
+		$f -> operations = array('view' => array('href'=>"study_field/view/".$value->id."/$e" , 'alt' => 'مشاهده', 'title' => 'مشاهده و ویرایش'), 'delete'=>array('href'=>"study_field/delete/".$value->id."/$e" ,'alt' => 'حذف', 'title' => 'حذف'), );
 		$f -> condition = array('where' => array('study_degree' => $e));
 		$f -> headers = array('title', 'study_degree' => array('format' => 'model[Lookup,getById($value,study_degree)]', 'label' => 'مقطع تحصیلی'));
 		$b = new CView;

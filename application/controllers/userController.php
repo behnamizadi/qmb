@@ -107,7 +107,14 @@ class userController {
     }
 
     public function add_user() {
-
+        $db= new CDatabase;
+        $result = $db -> queryToJson("select * from tbl_user");
+        echo $result;
+    }
+    
+    public function add(){
+        $view = new CView;
+        $view -> run('user/add'); 
     }
 
     public function set_pass() {

@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <link href="<?php $path = PHP40::get() -> homeUrl;echo $path; ?>public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+     <link href="<?php echo $path; ?>public/jquery-ui-1.11.4/jquery-ui.theme.css" rel="stylesheet">
+          <link href="<?php echo $path; ?>public/jtable.2.4.0/themes/metro/green/jtable.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -28,6 +30,9 @@
         <?php include 'footer.php'; ?>
     </div>
 <script type="text/javascript" src="<?php echo $path; ?>public/jscript/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo $path; ?>public/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+<script type="text/javascript" src="<?php echo $path; ?>public/jtable.2.4.0/jquery.jtable.min.js"></script>
+<script type="text/javascript" src="<?php echo $path; ?>public/jtable.2.4.0/localization/jquery.jtable.fa.js"></script>
 <script type="text/javascript" src="<?php echo $path; ?>public/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<?php echo $path; ?>public/jscript/focus.js"></script>
 <script type="text/javascript" src="<?php echo $path; ?>public/jscript/spin.min.js"></script>
