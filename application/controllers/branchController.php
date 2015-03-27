@@ -442,7 +442,7 @@ class branchController {
 		if (CUrl::segment(3) == 'print') {$uu -> operations = FALSE;
 			$uu -> noSort = TRUE;
 			$uu -> paginate = FALSE;
-			$r -> layout = 'print2';
+			$r -> layout = 'print';
 			$r -> ptitle = '<h1>' . $ww . '</h1>';
 			$xx = new User;
 			$r -> producer = $xx -> producer();
@@ -478,7 +478,7 @@ class branchController {
 		$ww = 'اطلاعات شعبه ' . $bbb -> getReturnResult() . '(' . $zz . ')';
 		if ($aaa) {$uu -> operations = FALSE;
 			$uu -> noSort = TRUE;
-			$r -> layout = 'print2';
+			$r -> layout = 'print';
 			$r -> ptitle = '<h1>' . $ww . '</h1>';
 			$xx = new User;
 			$r -> producer = $xx -> producer();

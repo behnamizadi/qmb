@@ -33,7 +33,7 @@ class clerkController {
 		if ($h) {$g -> operations = FALSE;
 			$g -> noSort = TRUE;
 			$g -> paginate = FALSE;
-			$view -> layout = 'print2';
+			$view -> layout = 'print';
 			$view -> ptitle = "<h1>$k</h1>";
 			$l = new User;
 			$view -> producer = $l -> producer();
@@ -265,7 +265,7 @@ class clerkController {
 		$view -> p2Count = $e -> countRows($j);
 		//----------------------------------------------------------
 		if ($h) {
-			$view -> layout = 'print2';
+			$view -> layout = 'print';
 			$view -> ptitle = '<h1>گزارش جامع اطلاعات ' . Profile::getName($clerkid) . '</h1>';
 			$l = new User;
 			$view -> producer = $l -> producer();

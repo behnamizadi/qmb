@@ -62,7 +62,7 @@ class evaluationController {
 		if ($j) {$m -> operations = FALSE;
 			$m -> noSort = TRUE;
 			$m -> paginate = FALSE;
-			$cview -> layout = 'print2';
+			$cview -> layout = 'print';
 			$cview -> ptitle = "<h1>$n</h1>";
 			$o = new User;
 			$cview -> producer = $o -> producer();

@@ -121,7 +121,7 @@ class trainingController {
 		}$e = new CView;
 		$e -> grid = $o -> run();
 		$e -> c_id = $d;
-		if ($g) {$e -> layout = 'print2';
+		if ($g) {$e -> layout = 'print';
 			$e -> ptitle = '<h1>دوره‌های آموزشی ' . Profile::getName($d) . '</h1>';
 			$s = new User;
 			$e -> producer = $s -> producer();

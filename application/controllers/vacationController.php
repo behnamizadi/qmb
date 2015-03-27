@@ -175,7 +175,7 @@ class vacationController {
 				if ($ee) {$v -> operations = FALSE;
 					$v -> noSort = TRUE;
 					$v -> paginate = FALSE;
-					$a -> layout = 'print2';
+					$a -> layout = 'print';
 					$a -> ptitle = '<h1>' . $dd . '</h1>';
 					$ff = new User;
 					$a -> producer = $ff -> producer();
@@ -235,7 +235,7 @@ class vacationController {
 		if ($ee) {$v -> operations = FALSE;
 			$v -> noSort = TRUE;
 			$v -> paginate = FALSE;
-			$a -> layout = 'print2';
+			$a -> layout = 'print';
 			$a -> ptitle = '<h1>' . $dd . '</h1>';
 			$ff = new User;
 			$a -> producer = $ff -> producer();
@@ -415,7 +415,7 @@ class vacationController {
 		if ($ee) {$v -> operations = FALSE;
 			$v -> noSort = TRUE;
 			$v -> paginate = FALSE;
-			$a -> layout = 'print2';
+			$a -> layout = 'print';
 			$a -> ptitle = "<h1>$dd</h1>";
 			$ff = new User;
 			$a -> producer = $ff -> producer();

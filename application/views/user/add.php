@@ -3,6 +3,8 @@
  $scripts="
 <script type='text/javascript'>
         $('#PersonTableContainer').jtable({
+            paging: true,
+            pageSize: 3,
             title: 'لیست کاربران',
             actions: {
                 listAction: '".PHP40::get() -> homeUrl."index.php/user/add_user',

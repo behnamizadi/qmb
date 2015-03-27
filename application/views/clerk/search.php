@@ -57,7 +57,7 @@ echo $carrier;
 endif;
 ?>
 <h3>نمرات ارزشیابی</h3>
-        <table class="clist">
+        <table class="table table-striped table-bordered">
 		<tr>
 		<?php foreach($evResult as $year=>$grade): ?>
 			<th class="grid_th">سال <?php echo $year; ?></th>
@@ -70,7 +70,7 @@ endif;
 		</tr>
         </table>
 <h3>سایر</h3>
-<table class="clist">
+<table class="table table-striped table-bordered">
 	<tr>
 		<th class="grid_th">تعداد تشویق</th>
 		<th class="grid_th">تعداد تنبیه</th>

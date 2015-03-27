@@ -109,7 +109,7 @@ class sarController {
 		$t -> numberOfColumns = 5;
 		$g = new CView;
 		$g -> body = $t -> run();
-		if ($s) {$g -> layout = 'print2';
+		if ($s) {$g -> layout = 'print';
 			$g -> ptitle = '<h1>&#1575;&#1591;&#1604;&#1575;&#1593;&#1575;&#1578; ' . $t -> getReturnResult() . '</h1>';
 			$u = new User;
 			$g -> producer = $u -> producer();

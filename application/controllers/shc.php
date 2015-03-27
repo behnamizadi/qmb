@@ -1,6 +1,6 @@
 <?php
 $a=new Lookup;$b=$a->getAll('geo');?>
-<table class="clist">
+<table class="table table-striped table-bordered">
 	<tr>
 		<th>&nbsp;</th>
 		<th>&#1578;&#1593;&#1583;&#1575;&#1583; &#1588;&#1593;&#1576;&#1607;</th>

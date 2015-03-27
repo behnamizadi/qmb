@@ -109,7 +109,8 @@ class reportController {
 		$d -> run();
 	}
 
-	public function married() {$a = "SELECT COUNT(tbl_profile.married),tbl_profile.married FROM tbl_profile WHERE tbl_profile.clerk_id IN (
+	public function married() {
+$a = "SELECT COUNT(tbl_profile.married),tbl_profile.married FROM tbl_profile WHERE tbl_profile.clerk_id IN (
 SELECT tbl_carrier.clerk_id FROM tbl_carrier WHERE  tbl_carrier.job_status='1' AND hokm_type <> 8 AND tbl_carrier.now_c='1') GROUP BY tbl_profile.married";
 		$b = new CDatabase;
 		$c = $b -> queryAll($a, TRUE);
@@ -247,7 +248,7 @@ SELECT tbl_carrier.clerk_id FROM tbl_carrier WHERE  tbl_carrier.job_status='1' A
 		if ($y) {$z = new Lookup;
 			$d -> sarDeg = $z -> getById($y -> degree, 'sar_degree');
 		}$d -> posts = $w;
-		if ($m) {$d -> layout = 'print2';
+		if ($m) {$d -> layout = 'print';
 			$d -> ptitle = '<h1>' . $v . '</h1>';
 			$l = new User;
 			$d -> producer = $l -> producer();
@@ -274,7 +275,7 @@ SELECT tbl_carrier.clerk_id FROM tbl_carrier WHERE  tbl_carrier.job_status='1' A
 		if ($m) {$aa -> operations = FALSE;
 			$aa -> noSort = TRUE;
 			$aa -> paginate = FALSE;
-			$d -> layout = 'print2';
+			$d -> layout = 'print';
 			$d -> ptitle = "<h1>$v</h1>";
 			$l = new User;
 			$d -> producer = $l -> producer();
@@ -302,7 +303,7 @@ FROM tbl_education  WHERE tbl_education.clerk_id=edu.clerk_id) GROUP BY tbl_cler
 		if ($m) {$aa -> operations = FALSE;
 			$aa -> noSort = TRUE;
 			$aa -> paginate = FALSE;
-			$d -> layout = 'print2';
+			$d -> layout = 'print';
 			$d -> ptitle = "<h1>$v</h1>";
 			$l = new User;
 			$d -> producer = $l -> producer();

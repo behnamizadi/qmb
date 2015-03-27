@@ -3,7 +3,7 @@
 $lookup = new Lookup;
 $geos = $lookup -> getAll('geo');
 ?>
-<table class="clist">
+<table class="table table-striped table-bordered">
 	<tr>
 		<th>&nbsp;</th>
 		<th>تعداد شعبه</th>
@@ -29,7 +29,7 @@ $geos = $lookup -> getAll('geo');
 		$bCount = $cCount = 0;
 		foreach ($branchCount as $geo => $branch):
 		?>
-		<tr class="<?php echo $i%2 == 0 ? 'even' : 'odd'; ?>">
+		<tr>
 			<td><?php echo $geos[$geo]; ?></td>
 			<td><?php echo $branch; $bCount += $branch; ?></td>
 			<td>
@@ -123,7 +123,7 @@ $geos = $lookup -> getAll('geo');
 			<td>&nbsp;</td>
 			<td>&nbsp;</td>
 		</tr>
-		<tr class="<?php echo $i%2 == 0 ? 'even' : 'odd';  ?>">
+		<tr>
 			<td>جمع</td>
 			<td><?php echo $bCount; ?></td>
 			<td><?php echo $cCount; ?></td>
@@ -141,7 +141,8 @@ $geos = $lookup -> getAll('geo');
 $lookup = new Lookup;
 $eStatuses = $lookup -> getAll('employment_status');
 ?>
-<table class="clist">
+<table class="table table-striped table-bordered">
+    <tbody>
 	<tr>
 		<th>&nbsp;</th>
 		<th>تعداد</th>
@@ -179,7 +180,7 @@ $eStatuses = $lookup -> getAll('employment_status');
 		$i = 0;
 		foreach($eStatuses as $code => $eStatus):
 		?>
-			<tr class="<?php echo $i%2 == 0 ? 'even' : 'odd'; ?>">
+			<tr >
 				<td><?php echo $eStatus; ?></td>
 				<td><?php echo isset($cEmp[$code]) ? $cEmp[$code] : '۰'; ?></td>
 				<td><?php echo isset($cMarried[$code][1]) ? $cMarried[$code][1] : '۰'; ?></td>
@@ -191,7 +192,7 @@ $eStatuses = $lookup -> getAll('employment_status');
 		$i++;
 		endforeach;
 		?>
-		<tr class="<?php echo $i%2 == 0 ? 'even' : 'odd'; ?>">
+		<tr>
 			<td>جمع</td>
 			<td><?php echo $tCount; ?></td>
 			<td><?php echo $sCount; ?></td>
@@ -199,6 +200,7 @@ $eStatuses = $lookup -> getAll('employment_status');
 			<td><?php echo $woman; ?></td>
 			<td><?php echo $man; ?></td>
 		</tr>
+		</tbody>
 </table>
 <?php 
 $postCount = count($posts);
@@ -209,29 +211,19 @@ $maxTR = ceil($postCount/$tblNumber);
 $index = 1;
 for($i = 0; $i < $tblNumber; $i++):
 ?>
-	<table class="clist" style="width:<?php echo $tblWidth; ?>%;<?php if(($tblNumber-$i) == 1) echo 'float:left;'; else{ echo 'float:right;'; echo 'margin-left:'; echo $marginLeft; echo '%;'; } ?>margin-top:20px;">
+	<table class="table table-striped table-bordered" style="width:<?php echo $tblWidth; ?>%;<?php if(($tblNumber-$i) == 1) echo 'float:left;'; else{ echo 'float:right;'; echo 'margin-left:'; echo $marginLeft; echo '%;'; } ?>margin-top:20px;">
 		<tr>
 			<th style="width: 10%;">ردیف</th>
 			<th style="width: 75%;">پست</th>
 			<th style="width: 15%;">تعداد</th>
 		</tr>
-		<?php 
-		//for($j = 0; $j < $maxTR; $j++):
-			//$index = $i * $maxTR + $j + 1;
-		?>
-			<!-- <tr class="<?php echo $j%2 == 0 ? 'even' : 'odd'; ?>">
-				<td><?php $tmp = $index + 1; echo $tmp; ?></td>
-				<td><?php if(isset($posts[$index])) echo $posts[$index]['name']; else echo '&nbsp;'; ?> </td>
-				<td><?php if(isset($posts[$index])) echo $posts[$index]['COUNT(tbl_carrier.id)']; else echo '&nbsp;'; ?></td>
-			</tr> -->
 			<?php 
 			for($x = 1; $x <= $postCount; $x++)
 			{
 				$tmp = 1;
 				if(isset($posts[28]) && $posts[28]['set'] == 0)
 				{
-					$class = $tmp%2 == 0 ? 'even' : 'odd'; 
-					echo '<tr class="'.$class.'"><td>'.$index.'</td><td>'.$posts[28]['name'].'</td><td>'.$posts[28]['count'].'</tr>';
+					echo '<tr><td>'.$index.'</td><td>'.$posts[28]['name'].'</td><td>'.$posts[28]['count'].'</tr>';
 					$posts[28]['set'] = 1;
 					$index++;
 					$tmp++;
@@ -240,8 +232,8 @@ for($i = 0; $i < $tblNumber; $i++):
 				}
 				if(isset($posts[30]) && $posts[30]['set'] == 0)
 				{
-					$class = $tmp%2 == 0 ? 'even' : 'odd'; 
-					echo '<tr class="'.$class.'"><td>'.$index.'</td><td>'.$posts[30]['name'].'</td><td>'.$posts[30]['count'].'</tr>';
+					
+					echo '<tr><td>'.$index.'</td><td>'.$posts[30]['name'].'</td><td>'.$posts[30]['count'].'</tr>';
 					$posts[30]['set'] = 1;
 					$index++;
 					$tmp++;
@@ -250,8 +242,8 @@ for($i = 0; $i < $tblNumber; $i++):
 				}
 				if(isset($posts[21]) && $posts[21]['set'] == 0)
 				{
-					$class = $tmp%2 == 0 ? 'even' : 'odd'; 
-					echo '<tr class="'.$class.'"><td>'.$index.'</td><td>'.$posts[21]['name'].'</td><td>'.$posts[21]['count'].'</tr>';
+				
+					echo '<tr><td>'.$index.'</td><td>'.$posts[21]['name'].'</td><td>'.$posts[21]['count'].'</tr>';
 					$posts[21]['set'] = 1;
 					$index++;
 					$tmp++;
@@ -260,8 +252,7 @@ for($i = 0; $i < $tblNumber; $i++):
 				}
 				if(isset($posts[12]) && $posts[12]['set'] == 0)
 				{
-					$class = $tmp%2 == 0 ? 'even' : 'odd'; 
-					echo '<tr class="'.$class.'"><td>'.$index.'</td><td>'.$posts[12]['name'].'</td><td>'.$posts[12]['count'].'</tr>';
+					echo '<tr><td>'.$index.'</td><td>'.$posts[12]['name'].'</td><td>'.$posts[12]['count'].'</tr>';
 					$posts[12]['set'] = 1;
 					$index++;
 					$tmp++;
@@ -270,8 +261,8 @@ for($i = 0; $i < $tblNumber; $i++):
 				}
 				if(isset($posts[13]) && $posts[13]['set'] == 0)
 				{
-					$class = $tmp%2 == 0 ? 'even' : 'odd'; 
-					echo '<tr class="'.$class.'"><td>'.$index.'</td><td>'.$posts[13]['name'].'</td><td>'.$posts[13]['count'].'</tr>';
+					
+					echo '<tr ><td>'.$index.'</td><td>'.$posts[13]['name'].'</td><td>'.$posts[13]['count'].'</tr>';
 					$posts[13]['set'] = 1;
 					$index++;
 					$tmp++;
@@ -280,8 +271,8 @@ for($i = 0; $i < $tblNumber; $i++):
 				}
 				if(isset($posts[14]) && $posts[14]['set'] == 0)
 				{
-					$class = $tmp%2 == 0 ? 'even' : 'odd'; 
-					echo '<tr class="'.$class.'"><td>'.$index.'</td><td>'.$posts[14]['name'].'</td><td>'.$posts[14]['count'].'</tr>';
+					
+					echo '<tr ><td>'.$index.'</td><td>'.$posts[14]['name'].'</td><td>'.$posts[14]['count'].'</tr>';
 					$posts[14]['set'] = 1;
 					$index++;
 					$tmp++;
@@ -290,8 +281,8 @@ for($i = 0; $i < $tblNumber; $i++):
 				}
 				if(isset($posts[20]) && $posts[20]['set'] == 0)
 				{
-					$class = $tmp%2 == 0 ? 'even' : 'odd'; 
-					echo '<tr class="'.$class.'"><td>'.$index.'</td><td>'.$posts[20]['name'].'</td><td>'.$posts[20]['count'].'</tr>';
+					
+					echo '<tr><td>'.$index.'</td><td>'.$posts[20]['name'].'</td><td>'.$posts[20]['count'].'</tr>';
 					$posts[20]['set'] = 1;
 					$index++;
 					$tmp++;
@@ -300,8 +291,7 @@ for($i = 0; $i < $tblNumber; $i++):
 				}
 				if(isset($posts[29]) && $posts[29]['set'] == 0)
 				{
-					$class = $tmp%2 == 0 ? 'even' : 'odd'; 
-					echo '<tr class="'.$class.'"><td>'.$index.'</td><td>'.$posts[29]['name'].'</td><td>'.$posts[29]['count'].'</tr>';
+					echo '<tr ><td>'.$index.'</td><td>'.$posts[29]['name'].'</td><td>'.$posts[29]['count'].'</tr>';
 					$posts[29]['set'] = 1;
 					$index++;
 					$tmp++;
@@ -310,8 +300,8 @@ for($i = 0; $i < $tblNumber; $i++):
 				}
 				if(isset($posts[15]) && $posts[15]['set'] == 0)
 				{
-					$class = $tmp%2 == 0 ? 'even' : 'odd'; 
-					echo '<tr class="'.$class.'"><td>'.$index.'</td><td>'.$posts[15]['name'].'</td><td>'.$posts[15]['count'].'</tr>';
+					
+					echo '<tr><td>'.$index.'</td><td>'.$posts[15]['name'].'</td><td>'.$posts[15]['count'].'</tr>';
 					$posts[15]['set'] = 1;
 					$index++;
 					$tmp++;
@@ -320,8 +310,8 @@ for($i = 0; $i < $tblNumber; $i++):
 				}
 				if(isset($posts[2]) && $posts[2]['set'] == 0)
 				{
-					$class = $tmp%2 == 0 ? 'even' : 'odd'; 
-					echo '<tr class="'.$class.'"><td>'.$index.'</td><td>'.$posts[2]['name'].'</td><td>'.$posts[2]['count'].'</tr>';
+				
+					echo '<tr><td>'.$index.'</td><td>'.$posts[2]['name'].'</td><td>'.$posts[2]['count'].'</tr>';
 					$posts[2]['set'] = 1;
 					$index++;
 					$tmp++;
@@ -460,9 +450,6 @@ for($i = 0; $i < $tblNumber; $i++):
 				}
 			}
 			?>
-		<?php
-		//endfor;
-		?>
 	</table>
 <?php endfor; ?>
 <?php if(isset($pb)) echo $pb; ?>
