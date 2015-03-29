@@ -296,3 +296,8 @@ nav{
 div.jtable-main-container > div.jtable-bottom-panel select{
     color:#000000;
 }
+div.btn-group{
+    min-width:max-content;
+    min-width:-moz-max-content;
+    min-width:-webkit-max-content;
+}
