@@ -1,4 +1,6 @@
 ﻿<?php
+ini_set('display_errors', 'On');
+error_reporting(E_ALL | E_STRICT);
 return array(
 	'defines'=>array(
 		'admin_email'=>'mgaghdam@gmail.com',

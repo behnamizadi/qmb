@@ -56,6 +56,7 @@ div.jtable-main-container table.jtable thead th {
 }
 div.jtable-main-container table.jtable thead th.jtable-column-header div.jtable-column-header-container {
   position: relative;
+  text-align: center;
 }
 div.jtable-main-container table.jtable thead th.jtable-column-header div.jtable-column-header-container span.jtable-column-header-text {
   display: inline-block;
