@@ -125,7 +125,7 @@ div.mc-caption{font: bold 14px/20px Arial;color:#EEE;z-index:4;padding:10px 0;te
     border-radius: 5px 5px 5px 5px;
     box-shadow: 4px 4px 11px;
     margin: 50px auto auto auto;
-    max-width: 300px;
+    max-width: 500px;
     padding: 19px 29px 29px;
     animation-name: anbig;
     animation-duration: 1s;
@@ -150,18 +150,6 @@ div.mc-caption{font: bold 14px/20px Arial;color:#EEE;z-index:4;padding:10px 0;te
 .select{min-width:150px;}
 .success{background:#BAEFBE;color:#264409;border-color:#65D562}
 .title{color:#333;text-shadow:1px 1px 0 #999;margin:10px 3px 5px 0;font-size:14px}
-.txt{width:150px;background-color: #FFFFFF;
-    border: 1px solid #CCCCCC;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
-    transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
-    border-radius: 3px 3px 3px 3px;}
-textarea
-{
-background-color: #FFFFFF;
-    border: 1px solid #CCCCCC;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
-    transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
-    border-radius: 3px 3px 3px 3px;}
 .atxt{text-align:justify;list-style:none;font-size:13px;line-height:2;color:#777}
 .welcom_notice{color:red;text-decoration: blink}
 .amChartsButtonSelected
