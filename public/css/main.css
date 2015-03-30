@@ -51,8 +51,6 @@ h4{font-size: 15px;}
 	    border-right: 10px solid #d5ed18;
     }
 }
-label{float:right;width:90px;}
-form p{clear:right}
 fieldset{border:1px solid #99D799;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px}
 th{text-align: right;}
 #header {
@@ -289,9 +287,6 @@ nav{
 #add_tbl{
  display: none;   
 }
-.form-control{
-   
-}
 
 div.jtable-main-container > div.jtable-bottom-panel select{
     color:#000000;
@@ -300,4 +295,10 @@ div.btn-group{
     min-width:max-content;
     min-width:-moz-max-content;
     min-width:-webkit-max-content;
+}
+select.form-control{
+    padding:0px;
+}
+div.form-group > *{
+    float:right;
 }
