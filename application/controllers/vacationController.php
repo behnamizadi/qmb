@@ -8,27 +8,13 @@ class vacationController {
                 echo Vacation::listYearlyVacation($clerk_id);
                 break;
             case 'create' :
-                echo Vacation::createYearlyVacation(array(
-                    'clerk_id'=>$clerk_id,
-                    'year'=>$_REQUEST['year'],
-                    'all_v'=>$_REQUEST['all_v'],
-                    'used'=>$_REQUEST['used'],
-                    'wasted'=>$_REQUEST['wasted'],
-                    'saved'=>$_REQUEST['saved']
-                    ));
+                echo Vacation::createYearlyVacation(array('clerk_id' => $clerk_id, 'year' => $_REQUEST['year'], 'all_v' => $_REQUEST['all_v'], 'used' => $_REQUEST['used'], 'wasted' => $_REQUEST['wasted'], 'saved' => $_REQUEST['saved']));
                 break;
             case 'update' :
-                echo Vacation::updateYearlyVacation(array(
-                    'clerk_id'=>$clerk_id,
-                    'year'=>$_REQUEST['year'],
-                    'all_v'=>$_REQUEST['all_v'],
-                    'used'=>$_REQUEST['used'],
-                    'wasted'=>$_REQUEST['wasted'],
-                    'saved'=>$_REQUEST['saved']
-                    ));
+                echo Vacation::updateYearlyVacation(array('clerk_id' => $clerk_id, 'year' => $_REQUEST['year'], 'all_v' => $_REQUEST['all_v'], 'used' => $_REQUEST['used'], 'wasted' => $_REQUEST['wasted'], 'saved' => $_REQUEST['saved']));
                 break;
             case 'delete' :
-                Vacation::deleteYearlyVacation($clerk_id,$_REQUEST['year']);
+                Vacation::deleteYearlyVacation($clerk_id, $_REQUEST['year']);
                 break;
             default :
                 echo 1;
@@ -38,7 +24,7 @@ class vacationController {
 
     public function yearly() {
         $view = new CView;
-        $view-> title = Resource::get('yearly vacation');
+        $view -> title = Resource::get('yearly vacation');
         $view -> run('vacation/yearly');
     }
 
@@ -308,8 +294,7 @@ class vacationController {
         CUrl::redirect('vacation/summ/' . CUrl::segment(4) . '/' . CUrl::segment(5));
     }
 
- 
-       public function summ() {$nn = CUrl::segment(3);
+    public function summ() {$nn = CUrl::segment(3);
         if (!$nn)
             CUrl::redirect('vacation/index');
         $v = new CGrid;
@@ -339,7 +324,6 @@ class vacationController {
         $pp -> numberOfColumns = 3;
         $a -> detail = $pp -> run();
         $a -> run('vacation/summ');
-  
 
     }
 
@@ -383,20 +367,22 @@ class vacationController {
     }
 
     public function all() {
+        $ONE_DAY = 86400;
+        $ONE_YEAR = 31536000;
         $year = CUrl::segment(3);
-        $ee = FALSE;
+        $vac_type = CUrl::segment(4);
+        $is_print = FALSE;
         if (CUrl::segment(5) === 'print')
-            $ee = TRUE;
+            $is_print = TRUE;
         $year = (int)$year;
         if (!$year)
             CUrl::redirect('vacation/index2');
-        $vac_type = CUrl::segment(4);
         $a = new CView;
         $c = new CJcalendar(FALSE);
         $f = $c -> mktime(0, 0, 0, 1, 1, $year);
-        $aa = $f + 31536000;
-        if ($c -> checkdate(12, 30, (int)$year))
-            $aa += 86400;
+        $aa = $f + $ONE_YEAR;
+        if ($c -> checkdate(12, 30, $year))
+            $aa += $ONE_DAY;
         $u = "SELECT tbl_profile.clerk_id,tbl_profile.name,tbl_profile.lastname FROM tbl_profile,tbl_carrier 
 		WHERE tbl_carrier.clerk_id=tbl_profile.clerk_id AND tbl_carrier.job_status='1' AND tbl_carrier.now_c='1' AND  tbl_carrier.hokm_type<>8";
         $g = new CDatabase;
@@ -404,16 +390,16 @@ class vacationController {
         $qq = array();
         foreach ($clercks as $clerck) {
             $u = "SELECT clerk_number FROM tbl_clerk WHERE id='$clerck->clerk_id'";
-            $uu = $g -> queryOne($u) -> clerk_number;
+            $clerk_number = $g -> queryOne($u) -> clerk_number;
             $u = "SELECT * FROM tbl_vacation_year WHERE clerk_id='$clerck->clerk_id' AND year='$year'";
             if (($vv = $g -> queryOne($u)) !== FALSE) {
                 $ww = $vv -> all_v - $vv -> used;
-                $qq[] = (object) array('clerk_id' => $clerck -> clerk_id, 'clerk_number' => $uu, 'name' => $clerck -> name, 'lastname' => $clerck -> lastname, 'used' => $vv -> used, 'remaining' => $ww, 'wasted' => $vv -> wasted, 'saved' => $vv -> saved);
+                $qq[] = (object) array('clerk_id' => $clerck -> clerk_id, 'clerk_number' => $clerk_number, 'name' => $clerck -> name, 'lastname' => $clerck -> lastname, 'used' => $vv -> used, 'remaining' => $ww, 'wasted' => $vv -> wasted, 'saved' => $vv -> saved);
             } else {
                 $u = "SELECT date_employed FROM tbl_employment WHERE clerk_id='$clerck->clerk_id'";
                 $xx = $g -> queryOne($u) -> date_employed;
                 if ($c -> date('Y', $xx) <= $year) {
-                    $u = "SELECT SUM(period) FROM tbl_vacation WHERE clerk_id='$clerck->clerk_id' AND date_start BETWEEN $f AND $aa AND type='$vac_type' AND period>0";
+                    $u = "SELECT SUM(period) FROM tbl_vacation WHERE clerk_id='$clerck->clerk_id' AND date_start BETWEEN $f AND $aa AND type='$vac_type'";
                     $used = $g -> sumRows('period', $u);
                     if ($year >= 1392) {$zz = 26;
                         if ($year == $c -> date('Y', $xx)) {$aaa = $c -> date('d', $xx);
@@ -451,8 +437,7 @@ class vacationController {
                         $ccc = 0;
                     }
                     $used = round($used);
-                    if ($used != 0) {$qq[] = (object) array('clerk_id' => $clerck -> clerk_id, 'clerk_number' => $uu, 'name' => $clerck -> name, 'lastname' => $clerck -> lastname, 'used' => $used, 'remaining' => round($ww), 'wasted' => round($ccc), 'saved' => round($bbb));
-                    }
+                    $qq[] = (object) array('clerk_id' => $clerck -> clerk_id, 'clerk_number' => $clerk_number, 'name' => $clerck -> name, 'lastname' => $clerck -> lastname, 'used' => $used, 'remaining' => round($ww), 'wasted' => round($ccc), 'saved' => round($bbb));
                 }
             }
         }//end foreach
@@ -474,15 +459,18 @@ class vacationController {
             $dd = 'گزارش مرخصی ' . $cc . ' کل کارمندان سال ' . $year . ' تا تاریخ ' . $year . '/12/29';
         else
             $dd = 'گزارش مرخصی ' . $cc . ' کل کارمندان سال ' . $year . ' تا تاریخ ' . $c -> date('Y/m/d');
-        if ($ee) {$v -> operations = FALSE;
+        if ($is_print) {
+            $v -> operations = FALSE;
             $v -> noSort = TRUE;
             $v -> paginate = FALSE;
             $a -> layout = 'print';
             $a -> ptitle = "<h1>$dd</h1>";
             $ff = new User;
             $a -> producer = $ff -> producer();
-        } else {$a -> pb = '<center><p>' . CUrl::createLink('نسخه چاپی', 'vacation/all/' . $year . '/' . $vac_type . '/print', 'class="box" target="_blank"') . '</p></center>';
-        }$a -> grid = $v -> run();
+        } else {
+            $a -> pb = '<center><p>' . CUrl::createLink('نسخه چاپی', 'vacation/all/' . $year . '/' . $vac_type . '/print', 'target="_blank"') . '</p></center>';
+        }
+        $a -> grid = $v -> run();
         $a -> title = $dd;
         $a -> run();
     }
