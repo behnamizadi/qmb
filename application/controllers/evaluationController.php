@@ -56,7 +56,7 @@ class evaluationController {
 		$m -> values = $l -> queryAll($k);
 		$m -> operations = FALSE;
 		$m -> counter = TRUE;
-		$m -> headers = array('clerk_number' => array('label' => 'کد کارمندی'), 'name' => array('label' => 'نام'), 'lastname' => array('label' => 'نام خانوادگی'), 'grade' => array('label' => 'نمره ارزشیابی', 'onEmpty' => '-'), );
+		$m -> headers = array('clerk_number' => array('label' => 'کد پرسنلی'), 'name' => array('label' => 'نام'), 'lastname' => array('label' => 'نام خانوادگی'), 'grade' => array('label' => 'نمره ارزشیابی', 'onEmpty' => '-'), );
 		$n = 'نمرات ارزشیابی همکاران در سال ' . $i;
 		$cview = new CView;
 		if ($j) {$m -> operations = FALSE;
