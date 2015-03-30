@@ -3,7 +3,7 @@ class notice_clerkController {
 	public function index() {$a = new CForm;
 		if (isset($_POST['submit'])) {$b = new Clerk;
 			$c = $b -> getId($_POST['clerk_number']);
-			if (!$c) {$a -> setError('clerk_number', 'رکوردی با این شماره کارمندی وجود ندارد.');
+			if (!$c) {$a -> setError('clerk_number', 'رکوردی با این کد پرسنلی وجود ندارد.');
 			}$d = new CDatabase;
 			$e = 'SELECT COUNT(*) FROM tbl_notice_clerk WHERE clerk_id=\'' . $c . '\'';
 			if ($d -> countRows($e)) {$a -> setError('clerk_number', 'قبلا برای این کارمند اخطار تمدید قرارداد ثبت شده است.');

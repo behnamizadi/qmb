@@ -12,7 +12,7 @@ class evaluationController {
 		if (isset($_POST['submit'])) {
 			if (!isset($e)) {$f = new Clerk;
 				$g = $f -> getId($_POST['clerk_number']);
-				if (!$g) {$d -> setError('clerk_number', 'رکوردی با این شماره کارمندی وجود ندارد.');
+				if (!$g) {$d -> setError('clerk_number', 'رکوردی با این کد پرسنلی وجود ندارد.');
 				}
 			}
 			if ($d -> validate()) {
@@ -40,7 +40,7 @@ class evaluationController {
 		$h = new CJcalendar;
 		$cview -> y = $h -> date('Y', FALSE, FALSE);
 		$cview -> form = $d -> run();
-		$cview -> title = 'گزارش نمرات ارزشیابی کل کارکنان';
+		$cview -> title = 'گزارش نمرات ارزشیابی کل کارمندان';
 		$cview -> run();
 	}
 

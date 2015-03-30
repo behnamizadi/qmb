@@ -3,7 +3,7 @@ class p_pController {
 	public function index() {$a = new CForm;
 		if (isset($_POST['submit'])) {$b = new Clerk;
 			$c = $b -> getId($_POST['clerk_number']);
-			if (!$c) {$a -> setError('clerk_number', 'رکوردی با این شماره کارمندی وجود ندارد.');
+			if (!$c) {$a -> setError('clerk_number', 'رکوردی با این کد پرسنلی وجود ندارد.');
 			}
 			if ($a -> validate() == TRUE) {
 				if (CUrl::segment(3) == 'add') {$d = CUrl::segment(4);
@@ -26,7 +26,7 @@ class p_pController {
 	public function index2() {$a = new CForm;
 		if ($a -> validate() == TRUE) {CUrl::redirect('p_p/all/' . $_POST['type'] . '/' . $_POST['year']);
 		}$e = new CView;
-		$e -> title = 'گزارش تشویقات/تنبیهات کل کارکنان';
+		$e -> title = 'گزارش تشویقات/تنبیهات کل کارمندان';
 		$e -> form = $a -> run();
 		$e -> run();
 	}
@@ -53,9 +53,9 @@ class p_pController {
 		$k -> headers = array('name' => array('label' => 'نام'), 'lastname' => array('label' => 'نام خانوادگی'), 'title', 'type' => array('format' => 'type[1:تشویق,2:تنبیه]'), 'date_added' => array('format' => 'model[Cal,getDate($value)]', 'label' => 'تاریخ اجرا'), 'set_by', 'hokm_number', 'description');
 		$e = new CView;
 		if ($d == 1)
-			$n = 'گزارش تشویقات کل کارکنان در سال ' . $f;
+			$n = 'گزارش تشویقات کل کارمندان در سال ' . $f;
 		else
-			$n = 'گزارش تنبیهات کل کارکنان در سال ' . $f;
+			$n = 'گزارش تنبیهات کل کارمندان در سال ' . $f;
 		if ($h) {$k -> operations = FALSE;
 			$k -> noSort = TRUE;
 			$e -> layout = 'print';

@@ -91,7 +91,7 @@ class vacationController {
         }$c = new CJcalendar;
         $a -> y = $c -> date('Y', FALSE, FALSE);
         $a -> form = $b -> run();
-        $a -> title = 'گزارش مرخصی کل کارکنان';
+        $a -> title = 'گزارش مرخصی کل کارمندان';
         $a -> run();
     }
 
@@ -128,7 +128,7 @@ class vacationController {
         $a -> title = 'گزارش مرخصی';
         $a -> info = 'برای مرخصی‌های قبل از سال ۱۳۹۲، نوع مرخصی فقط استحقاقی در نظر گرفته خواهد شد.
 		<br/>
-		برای مشاهده مجموع مرخصی کارمندان از گزارش کل مرخصی کارکنان استفاده نمایید. نتیجه این گزارش برای مرخصی(و نه مجموع مرخصی‌ها) می‌باشد.
+		برای مشاهده مجموع مرخصی کارمندان از گزارش کل مرخصی کارمندان استفاده نمایید. نتیجه این گزارش برای مرخصی(و نه مجموع مرخصی‌ها) می‌باشد.
 		<br/>
 		«بیشتر» یا «کمتر» به معنی خود می‌باشند و مساوی را شامل نمی‌شوند. برای شمول مساوی یک رقم کمتر یا بیشتر از عدد مورد نظرتان را وارد نمایید.';
         if ($b -> validate()) {$o = !empty($_POST['type']) ? $_POST['type'] : 0;
@@ -271,7 +271,7 @@ class vacationController {
         $a = new CView;
         $bb = new Lookup;
         $cc = $bb -> getById($o, 'vacation');
-        $dd = "گزارش مرخصی $cc کارکنان از تاریخ $gg/$hh/$ii تا تاریخ $jj/$kk/$ll";
+        $dd = "گزارش مرخصی $cc کارمندان از تاریخ $gg/$hh/$ii تا تاریخ $jj/$kk/$ll";
         $a -> title = $dd;
         $q = '';
         if (!empty($o)) {$x = "tbl_vacation.type='$o'";
@@ -471,9 +471,9 @@ class vacationController {
         $bb = new Lookup;
         $cc = $bb -> getById($vac_type, 'vacation');
         if ($year < 1393)
-            $dd = 'گزارش مرخصی ' . $cc . ' کل کارکنان سال ' . $year . ' تا تاریخ ' . $year . '/12/29';
+            $dd = 'گزارش مرخصی ' . $cc . ' کل کارمندان سال ' . $year . ' تا تاریخ ' . $year . '/12/29';
         else
-            $dd = 'گزارش مرخصی ' . $cc . ' کل کارکنان سال ' . $year . ' تا تاریخ ' . $c -> date('Y/m/d');
+            $dd = 'گزارش مرخصی ' . $cc . ' کل کارمندان سال ' . $year . ' تا تاریخ ' . $c -> date('Y/m/d');
         if ($ee) {$v -> operations = FALSE;
             $v -> noSort = TRUE;
             $v -> paginate = FALSE;

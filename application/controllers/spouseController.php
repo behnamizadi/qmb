@@ -99,7 +99,7 @@ class spouseController {
             if ($h) {$t = $h -> time_added;
                 CUrl::redirect('spouse/add/' . $c . '/' . $t);
             } else {
-                $b -> error = 'کارمندی با این شماره کارمندی وجود ندارد یا مشخصات خانواده کارمند ثبت نشده است.';
+                $b -> error = 'کارمندی با این کد پرسنلی وجود ندارد یا مشخصات خانواده کارمند ثبت نشده است.';
                 $b -> run();
             }
         }$m = new CJcalendar(FALSE);

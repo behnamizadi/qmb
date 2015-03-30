@@ -3,7 +3,7 @@ class carrierController {
 	public function index() {$a = new CForm;
 		if (isset($_POST['submit'])) {$b = new Clerk;
 			$c = $b -> getId($_POST['clerk_number']);
-			if (!$c) {$a -> setError('clerk_number', 'رکوردی با این شماره کارمندی وجود ندارد.');
+			if (!$c) {$a -> setError('clerk_number', 'رکوردی با این کد پرسنلی وجود ندارد.');
 			}
 			if ($a -> validate() == TRUE) {
 				if (CUrl::segment(3) == 'add')

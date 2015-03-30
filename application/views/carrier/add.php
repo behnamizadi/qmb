@@ -25,13 +25,13 @@ $branches['default'] = $employment_status['default'] = $job_status['default'] = 
             <?php
             echo $f -> select('hokm_type1', array('options' => $hokm_type, 'label' => 'نوع حکم<span class="error">*</span>'));
             ?>
-
-           <label>تاریخ شروع<span class="error">*</span></label>
+        <div class="form-group">
+           <label class="col-xs-3 col-md-3 col-sm-3 ">تاریخ شروع<span class="error">*</span></label>
            <?php
         echo $f -> select('d_start1', array('decoration' => FALSE, 'type' => 'select', 'options' => 'days_of_month'));
         echo $f -> select('m_start1', array('decoration' => FALSE, 'type' => 'select', 'options' => 'months_of_year'));
         echo $f -> select('y_start1', array('decoration' => FALSE, 'type' => 'select', 'options' => 'lastTenYears'));
-           ?>     
+           ?>     </div>
 
 
  

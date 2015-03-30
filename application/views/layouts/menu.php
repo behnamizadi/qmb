@@ -171,7 +171,7 @@
 						<a href="<?php echo $path; ?>index.php/vacation/index"><span>گزارش مرخصی کارمند</span></a>
 					</li>
 					<li>
-						<a href="<?php echo $path; ?>index.php/vacation/index2"><span>گزارش کل مرخصی کارکنان</span></a>
+						<a href="<?php echo $path; ?>index.php/vacation/index2"><span>گزارش کل مرخصی کارمندان</span></a>
 					</li>
 					<li>
 						<a href="<?php echo $path; ?>index.php/vacation/search1"><span>گزارش(جستجو)</span></a>
@@ -283,7 +283,7 @@
 						<a href="<?php echo $path; ?>index.php/report/study_degree"><span>گزارش مقاطع تحصیلی</span></a>
 					</li>
 					<li>
-						<a href="<?php echo $path; ?>index.php/report/married"><span>وضعیت تاهل کارکنان</span></a>
+						<a href="<?php echo $path; ?>index.php/report/married"><span>وضعیت تاهل کارمندان</span></a>
 					</li>
 					<li>
 						<a href="<?php echo $path; ?>index.php/employment/mixed"><span>اطلاعات کلی کارمندان</span></a>

@@ -1,13 +1,15 @@
 <?php
 echo $form;
 ?>
+<?php $scripts="
 <script>
 $(function(){
-    $('#fadein').change(function(){
-        $('#takafol_display').fadeIn();
+    $('#mojarad').change(function(){
+        $('#takafol').fadeIn();
     });
-    $('#fadeout').change(function(){
-        $('#takafol_display').fadeOut();
+    $('#motahel').change(function(){
+        $('#takafol').fadeOut();
     });
 });
-</script>
+</script>";
+?>
