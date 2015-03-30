@@ -6,18 +6,20 @@
         <h4 class="modal-title">جستجوی کارمند</h4>
       </div>
       <div class="modal-body">
-           <form method="post" action="#" id="search_form">
-       <p>
-           <label for="name">نام</label>
-           <input type="text" name="name" id="name" class="txt" />
-       </p>
-       <p>
-           <label for="lastname">نام خانوادگی</label>
+           <form class="form-horizontal" method="post" action="#" id="search_form">
+      <div class="form-group">
+           <label class="col-md-3"  for="name">نام</label>
+           <input  type="text" name="name" id="name" class="txt" />
+      </div>
+      <div class="form-group"> 
+           <label class="col-md-3" for="lastname">نام خانوادگی</label>
            <input type="text" name="lastname" id="lastname" class="txt" />
-       </p>
-       <p>
-                     <input type="submit" name="search_clerk" id="search_clerk" value="جستجو" class="box" />
-       </p>
+      </div>
+      <div class="form-group">
+          <div class="col-md-3" for="lastname">
+        <input class="btn btn-success" type="submit" name="search_clerk" id="search_clerk" value="جستجو" />
+        </div>
+       </div>
     </form>
       </div>
       <div class="modal-footer">

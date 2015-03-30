@@ -45,6 +45,7 @@ class evaluationController {
 	}
 
 	public function all() {$i = CUrl::segment(3);
+        $j=FALSE;
 		if (!$i)
 			CUrl::redirect('evaluation/index2');
 		if (CUrl::segment(4) === 'print')

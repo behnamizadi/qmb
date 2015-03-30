@@ -6,7 +6,8 @@ return array(
         'set_by'=>'صادرکننده',
         'hokm_number'=>'شماره حکم',
         'description'=>'توضیحات',
-        'type'=>'نوع حکم'
+        'type'=>'نوع حکم',
+        'search'=>'جستجو',
     )
 );
 ?>
