@@ -2,7 +2,8 @@
 return array(
     '*'=>array(
         'username'=>'نام کاربری',
-        'password'=>'کلمه عبور'
+        'password'=>'کلمه عبور',
+        'ostan'=>'استان',
     )
 );
 ?>

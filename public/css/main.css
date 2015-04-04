@@ -93,15 +93,10 @@ div.mc-caption{font: bold 14px/20px Arial;color:#EEE;z-index:4;padding:10px 0;te
     border-top: 1px solid #DDDDDD;
     color:#999;
     margin: 0 auto;
-    padding: 3px 0;
+    padding: 5px;
     clear: both;
-    font-size: 12px;
     position:fixed;bottom:0;left:0;width:100%
 }
-.footer ul{margin:0;padding:10px}
-.footer ul li a{color:#4D5F72;text-decoration:none;font-size:12px}
-.footer ul li a:hover{color:#000}
-.footer ul li{display:inline;padding-left:8px;}
 .header{width:800px;min-width:600px;display:block;overflow:hidden;margin:auto}
 .hleft{float:right}
 .hint{font-size:11px;color:#999}

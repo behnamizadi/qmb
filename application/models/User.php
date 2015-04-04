@@ -2,6 +2,7 @@
 class User {
     private $db;
     private $_username;
+    private $_id;
 
     public function __construct() {
         $this -> db = new CDatabase;
@@ -9,6 +10,14 @@ class User {
 
     public function set_username($username) {
         $this ->_username = $username;
+    }
+    
+    public static function getDatabaseId($username)
+    {
+        $db= new Database;
+        $query="select id from tbl_user where username='".$username."'";
+        $result = $db -> queryOne($query);
+        return $result->id;
     }
 
     public function getName() {

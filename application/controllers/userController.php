@@ -8,6 +8,7 @@ class userController {
         if ($form -> validate()) {
             $user = new User;
             $username = $_POST['username'];
+            $ostan = $_POST['ostan'];
             $user -> set_username($username);
             $lastPass = $user -> get_last_pass_change();
             if ($lastPass) {
@@ -22,13 +23,22 @@ class userController {
                 $error = TRUE;
             }
             if (!$error) {
-                $auth = new CAuth;
-                if ($auth -> authorize($_POST['username'], $_POST['password']) === FALSE) {
-                    $view -> error = '<span class="error">رمز عبور یا نام کاربری اشتباه می باشد.</span>';
+                $userid=User::getDatabaseId($username);
+                if (Ostan::userAllowed($userid,$ostan)) {
+                    $auth = new CAuth;
+                    if ($auth -> authorize($username, $_POST['password']) === FALSE) {
+                        $view -> error = '<span class="error">رمز عبور یا نام کاربری اشتباه می باشد.</span>';
+                    } else {
+                        $user -> update_last_login();
+                        $_SESSION['ostan']=$ostan;
+                        CUrl::redirect('user/welcome');
+
+                    }
+
                 } else {
-                    $user -> update_last_login();
-                    CUrl::redirect('user/welcome');
+                    $view -> error = '<span class="error">شما اجازه دسترسی به اطلاعات این استان را ندارید.</span>';
                 }
+
             }
         }
 
@@ -107,14 +117,14 @@ class userController {
     }
 
     public function add_user() {
-        $db= new CDatabase;
+        $db = new CDatabase;
         $result = $db -> queryToJson("select * from tbl_user");
         echo $result;
     }
-    
-    public function add(){
+
+    public function add() {
         $view = new CView;
-        $view -> run('user/add'); 
+        $view -> run('user/add');
     }
 
     public function set_pass() {

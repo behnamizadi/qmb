@@ -1,4 +1,5 @@
 <?php
+$ostanha=Ostan::getAll();
 return array('login' => array(
 	'login_form' => array(
 		'type' => 'form',
@@ -10,6 +11,12 @@ return array('login' => array(
 		'password' => array('type' => 'password', 
 			'post' => FALSE, 
 			'validation' => array('required')),
+		'ostan'=>array(
+            'type'=>'select',
+            'options'=>$ostanha,
+            'validation' => array('required'),
+        
+        ),
 			 //* 'captcha' => array('type' => 'captcha', 'textLength' => 6, 'post' => FALSE, 'in' => 'class="txt"', 'validation' => array('required,captcha'), ), '<span class="hint">کد امنیتی به حروف کوچک/ بزرگ حساس نمی‌باشد!</span>',
 			 'login' => array(
 			 	'type' => 'submit', 

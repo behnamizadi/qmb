@@ -1,6 +1,6 @@
 <?php
 class Carrier {
-	public static function comletePlace($a) {$b = 'SELECT name FROM tbl_ostan WHERE id="' . PHP40::get() -> defines['ostan'] . '"';
+	public static function comletePlace($a) {$b = 'SELECT name FROM tbl_ostan WHERE id="' . $_SESSION['ostan'] . '"';
 		$c = new CDatabase;
 		$d = '';
 		if (($e = $c -> queryOne($b)))

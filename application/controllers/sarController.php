@@ -6,7 +6,7 @@ class sarController {
 		if ($a -> validate()) {$c = $b -> mktime(0, 0, 0, (int)$_POST['m_start'], (int)$_POST['d_start'], (int)$_POST['y_start']);
 			$d = new CDatabase;
 			$e = time();
-			$d -> additional = array('date_start' => $c, 'time_added' => $e, 'ostan' => PHP40::get() -> defines['ostan']);
+			$d -> additional = array('date_start' => $c, 'time_added' => $e, 'ostan' => $_SESSION['ostan']);
 			$d -> insert();
 			CUrl::redirect('sar/degree/' . $_POST['code']);
 		}$g = new CView;

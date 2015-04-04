@@ -1,6 +1,7 @@
 <?php
 class Cities {
-	public static function getCities() {$a = 'SELECT * FROM tbl_city WHERE ostan_id="' . PHP40::get() -> defines['ostan'] . '"';
+	public static function getCities() {
+	    $a = 'SELECT * FROM tbl_city WHERE ostan_id="' . $_SESSION['ostan'] . '"';
 		$b = new CDatabase;
 		return $b -> queryToArray($a, array('id' => 'name'));
 	}

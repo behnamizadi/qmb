@@ -4,7 +4,6 @@ error_reporting(E_ALL | E_STRICT);
 return array(
 	'defines'=>array(
 		'admin_email'=>'mgaghdam@gmail.com',
-		'ostan' => 2,//ag
 	),
 	'homeUrl'=>'/qmb/',
 	'appName'=>'سامانه مدیریت منابع انسانی یاغیش- نسخه ۱.۱',

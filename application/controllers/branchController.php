@@ -10,7 +10,7 @@ class branchController {
 			$n = $g -> mktime($j, $k, $l, (int)$_POST['m_start'], (int)$_POST['d_start'], (int)$_POST['y_start']);
 			$p = new CDatabase;
 			$q = time();
-			$p -> additional = array('date_start' => $n, 'time_added' => $q, 'ostan' => PHP40::get() -> defines['ostan']);
+			$p -> additional = array('date_start' => $n, 'time_added' => $q, 'ostan' => $_SESSION['ostan']);
 			$p -> insert();
 			CUrl::redirect('branch/props/' . $_POST['code'] . '/' . $q);
 		}$r = new CView;
