@@ -294,8 +294,8 @@ class vacationController {
         CUrl::redirect('vacation/summ/' . CUrl::segment(4) . '/' . CUrl::segment(5));
     }
 
-    public function summ() {$nn = CUrl::segment(3);
-        if (!$nn)
+    public function summ() {$clerk_id = CUrl::segment(3);
+        if (!$clerk_id)
             CUrl::redirect('vacation/index');
         $v = new CGrid;
         $v -> counter = TRUE;
@@ -304,9 +304,9 @@ class vacationController {
             $aa = $f + 31536000;
             if ($c -> checkdate(12, 30, (int)$oo))
                 $aa += 86400;
-            $v -> condition = "WHERE date_start BETWEEN $f AND $aa AND clerk_id='$nn'";
-        } else {$v -> condition = "WHERE clerk_id='$nn'";
-        }$v -> operations = array('view' => FALSE, 'edit' => FALSE, 'delete' => FALSE, 'vacation/edit/$value->id/' . $nn . '/' . $oo => array('icon' => 'public/images/edit.png', 'alt' => 'ویرایش', 'title' => 'ویرایش'), 'vacation/delete/$value->id/' . $nn . '/' . $oo => array('icon' => 'public/images/delete.png', 'alt' => 'ویرایش', 'title' => 'ویرایش'), );
+            $v -> condition = "WHERE date_start BETWEEN $f AND $aa AND clerk_id='$clerk_id'";
+        } else {$v -> condition = "WHERE clerk_id='$clerk_id'";
+        }$v -> operations = array('view' => FALSE, 'edit' => FALSE, 'delete' => FALSE, 'vacation/edit/$value->id/' . $clerk_id . '/' . $oo => array('icon' => 'public/images/edit.png', 'alt' => 'ویرایش', 'title' => 'ویرایش'), 'vacation/delete/$value->id/' . $clerk_id . '/' . $oo => array('icon' => 'public/images/delete.png', 'alt' => 'ویرایش', 'title' => 'ویرایش'), );
         $v -> sort = 'hokm_number DESC';
         $v -> headers = array('date_added' => array('format' => 'model[Cal,getDate($value)]', 'label' => 'تاریخ حکم'), 'hokm_number', 'date_start' => array('format' => 'model[Cal,getDate($value)]', 'label' => 'تاریخ شروع'), 'date_end' => array('format' => 'model[Cal,getDate($value)]', 'label' => 'تاریخ پایان'), 'period', 'type' => array('format' => 'model[Lookup,getById($value,vacation)]', ), 'description');
         $a = new CView;
@@ -315,11 +315,11 @@ class vacationController {
         if (empty($oo)) {$oo = $c -> date('Y', FALSE, FALSE);
         }$qq = $v -> run();
         if ($qq == CGrid::NOTFOUND && $oo < 1392) {$qq = '';
-            $pp -> additional = Vacation::getStat($nn, $oo, TRUE);
-        } else {$pp -> additional = Vacation::getStat($nn, $oo);
+            $pp -> additional = Vacation::getStat($clerk_id, $oo, TRUE);
+        } else {$pp -> additional = Vacation::getStat($clerk_id, $oo);
         }$a -> grid = $qq;
-        $a -> c_id = $nn;
-        $a -> title = 'گزارش مرخصی ' . Profile::getName($nn);
+        $a -> c_id = $clerk_id;
+        $a -> title = 'گزارش مرخصی ' . Profile::getName($clerk_id);
         $a -> y = $oo;
         $pp -> numberOfColumns = 3;
         $a -> detail = $pp -> run();
@@ -328,8 +328,8 @@ class vacationController {
     }
 
     public function summprint() {
-        $nn = CUrl::segment(3);
-        if (!$nn)
+        $clerk_id = CUrl::segment(3);
+        if (!$clerk_id)
             CUrl::redirect('vacation/index');
         $v = new CGrid;
         $v -> counter = TRUE;
@@ -338,15 +338,15 @@ class vacationController {
             $aa = $f + 31536000;
             if ($c -> checkdate(12, 30, (int)$oo))
                 $aa += 86400;
-            $v -> condition = "WHERE date_start BETWEEN $f AND $aa AND clerk_id='$nn'";
-        } else {$v -> condition = "WHERE clerk_id='$nn'";
+            $v -> condition = "WHERE date_start BETWEEN $f AND $aa AND clerk_id='$clerk_id'";
+        } else {$v -> condition = "WHERE clerk_id='$clerk_id'";
         }$v -> sort = 'hokm_number DESC';
         $v -> headers = array('date_added' => array('format' => 'model[Cal,getDate($value)]', 'label' => 'تاریخ حکم'), 'hokm_number', 'date_start' => array('format' => 'model[Cal,getDate($value)]', 'label' => 'تاریخ شروع'), 'date_end' => array('format' => 'model[Cal,getDate($value)]', 'label' => 'تاریخ پایان'), 'period' => array('format' => ' روز'), 'type' => array('format' => 'model[Lookup,getById($value,vacation)]', ), );
         $v -> operations = FALSE;
         $v -> noSort = array('date_added', 'hokm_number', 'date_start', 'date_end', 'period', 'type');
         $v -> paginate = FALSE;
         $a = new CView;
-        $dd = Profile::getName($nn);
+        $dd = Profile::getName($clerk_id);
         if ($oo) {$dd .= ' در سال ' . $oo;
         }$a -> title = $dd;
         $pp = new CDetail;
@@ -355,8 +355,8 @@ class vacationController {
         if (empty($oo)) {$oo = $c -> date('Y', FALSE, FALSE);
         }$qq = $v -> run();
         if ($qq == CGrid::NOTFOUND && $oo < 1392) {$qq = '';
-            $pp -> additional = Vacation::getStat($nn, $oo, TRUE);
-        } else {$pp -> additional = Vacation::getStat($nn, $oo);
+            $pp -> additional = Vacation::getStat($clerk_id, $oo, TRUE);
+        } else {$pp -> additional = Vacation::getStat($clerk_id, $oo);
         }$a -> detail = $pp -> run();
         $a -> layout = 'vacationview';
         $a -> grid = $v -> run();
@@ -476,18 +476,19 @@ class vacationController {
     }
 
     public function add() {
-        $nn = CUrl::segment(3);
-        if (!$nn)
+        $clerk_id = CUrl::segment(3);
+        if (!$clerk_id)
             CUrl::redirect('vacation/index/add');
         $b = new CForm;
         $b -> showFieldErrorText = FALSE;
         $c = new CJcalendar;
-        if ($b -> validate()) {$g = new CDatabase;
+        if ($b -> validate()) {
+            $g = new CDatabase;
             $j = $c -> mktime(0, 0, 0, (int)$_POST['m_start'], (int)$_POST['d_start'], (int)$_POST['y_start']) + 14400;
             if ($_POST['type'] == 6) {$g -> setTbl('tbl_vacation_hour');
-                $g -> additional = array('clerk_id' => $nn, 'date_start' => $j);
+                $g -> additional = array('clerk_id' => $clerk_id, 'date_start' => $j);
                 $g -> insert();
-                $this -> checkHour($j, $nn);
+                $this -> checkHour($j, $clerk_id);
             } else {$k = ($_POST['period'] + $_POST['off_day']) * 24 * 3600;
                 $m = $j + $k - 28800;
                 $u = "SELECT hokm_number FROM tbl_vacation ORDER BY id DESC LIMIT 0,1";
@@ -499,43 +500,43 @@ class vacationController {
                 $n = $_POST['description'];
                 if ($_POST['off_day'] > 0)
                     $n .= ' ' . $_POST['off_day'] . ' روز تعطیلی بین مرخصی';
-                $g -> additional = array('clerk_id' => $nn, 'date_start' => $j, 'date_end' => $m, 'hokm_number' => $ddd, 'date_added' => time(), 'description' => $n);
+                $g -> additional = array('clerk_id' => $clerk_id, 'date_start' => $j, 'date_end' => $m, 'hokm_number' => $ddd, 'date_added' => time(), 'description' => $n);
                 $g -> insert();
             }$oo = $c -> date('Y', FALSE, FALSE);
-            CUrl::redirect('vacation/summ/' . $nn . '/' . $oo);
+            CUrl::redirect('vacation/summ/' . $clerk_id . '/' . $oo);
         }$a = new CView;
         $a -> y = $c -> date('Y', FALSE, FALSE);
         $a -> m = $c -> date('m', FALSE, FALSE);
         $a -> d = $c -> date('d', FALSE, FALSE);
         $a -> form = $b -> run();
-        $a -> c_id = $nn;
-        $a -> title = 'ثبت مرخصی برای ' . Profile::getName($nn);
+        $a -> c_id = $clerk_id;
+        $a -> title = 'ثبت مرخصی برای ' . Profile::getName($clerk_id);
         $a -> run('vacation/add');
     }
 
     public function addyear() {
-        $nn = CUrl::segment(3);
+        $clerk_id = CUrl::segment(3);
         $f = CUrl::segment(4);
-        if (!$nn || !$f)
+        if (!$clerk_id || !$f)
             CUrl::redirect('vacation/index/addyear');
         $b = new CForm;
         $b -> showFieldErrorText = FALSE;
         $a = new CView;
-        $eee = Profile::getName($nn);
+        $eee = Profile::getName($clerk_id);
         $g = new CDatabase;
-        $u = "SELECT COUNT(*) FROM tbl_vacation_year WHERE clerk_id='$nn' AND year='$f'";
+        $u = "SELECT COUNT(*) FROM tbl_vacation_year WHERE clerk_id='$clerk_id' AND year='$f'";
         $g = new CDatabase;
-        if ($g -> countRows($u)) {$a -> error = 'قبلا برای ' . Profile::getName($nn) . ' مرخصی سالانه برای سال ' . $f . ' وارد شده است. برای ویرایش روی این ' . CUrl::createLink('لینک', 'vacation/edityear/' . $nn . '/' . $f) . ' کلیک کنید.';
+        if ($g -> countRows($u)) {$a -> error = 'قبلا برای ' . Profile::getName($clerk_id) . ' مرخصی سالانه برای سال ' . $f . ' وارد شده است. برای ویرایش روی این ' . CUrl::createLink('لینک', 'vacation/edityear/' . $clerk_id . '/' . $f) . ' کلیک کنید.';
             $a -> run();
-        }$u = "SELECT date_employed FROM tbl_employment WHERE clerk_id='$nn'";
+        }$u = "SELECT date_employed FROM tbl_employment WHERE clerk_id='$clerk_id'";
         $xx = $g -> queryOne($u) -> date_employed;
         $c = new CJcalendar(FALSE);
-        if ($c -> date('Y', $xx) > $f) {$a -> error = Profile::getName($nn) . ' در سال ' . $c -> date('Y', $xx) . ' استخدام شده است و امکان ثبت مرخصی سالانه برای سال ' . $f . ' برای ایشان امکان‌پذیر نمی‌باشد!';
+        if ($c -> date('Y', $xx) > $f) {$a -> error = Profile::getName($clerk_id) . ' در سال ' . $c -> date('Y', $xx) . ' استخدام شده است و امکان ثبت مرخصی سالانه برای سال ' . $f . ' برای ایشان امکان‌پذیر نمی‌باشد!';
             $a -> run();
         }
         if (isset($_POST['submit'])) {
             if ($b -> validate()) {$g -> setTbl('tbl_vacation_year');
-                $g -> additional = array('clerk_id' => $nn, 'year' => $f);
+                $g -> additional = array('clerk_id' => $clerk_id, 'year' => $f);
                 $g -> insert();
                 CUrl::redirect('vacation/index/addyear');
             }
@@ -545,25 +546,25 @@ class vacationController {
     }
 
     public function edityear() {
-        $nn = CUrl::segment(3);
+        $clerk_id = CUrl::segment(3);
         $f = CUrl::segment(4);
-        if (!$nn || !$f)
+        if (!$clerk_id || !$f)
             CUrl::redirect(404);
         $g = new CDatabase;
-        $u = "SELECT * FROM tbl_vacation_year WHERE clerk_id='$nn' AND year='$f'";
+        $u = "SELECT * FROM tbl_vacation_year WHERE clerk_id='$clerk_id' AND year='$f'";
         if (($i = $g -> queryOne($u)) == FALSE)
             CUrl::redirect(404);
-        $eee = Profile::getName($nn);
-        $u = "SELECT date_employed FROM tbl_employment WHERE clerk_id='$nn'";
+        $eee = Profile::getName($clerk_id);
+        $u = "SELECT date_employed FROM tbl_employment WHERE clerk_id='$clerk_id'";
         $xx = $g -> queryOne($u) -> date_employed;
         $c = new CJcalendar(FALSE);
         $a = new CView;
-        if ($c -> date('Y', $xx) > $f) {$a -> error = Profile::getName($nn) . ' در سال ' . $c -> date('Y', $xx) . ' استخدام شده است و امکان ثبت مرخصی سالانه برای سال ' . $f . ' برای ایشان امکان‌پذیر نمی‌باشد!';
+        if ($c -> date('Y', $xx) > $f) {$a -> error = Profile::getName($clerk_id) . ' در سال ' . $c -> date('Y', $xx) . ' استخدام شده است و امکان ثبت مرخصی سالانه برای سال ' . $f . ' برای ایشان امکان‌پذیر نمی‌باشد!';
             $a -> run();
         }$b = new CForm;
         $b -> showFieldErrorText = FALSE;
         if ($b -> validate()) {$g -> setTbl('tbl_vacation_year');
-            $q = array('clerk_id' => $nn, 'year' => $f);
+            $q = array('clerk_id' => $clerk_id, 'year' => $f);
             $g -> update($q);
             CUrl::redirect('vacation/all/' . $f);
         }$a -> title = 'ویرایش مرخصی سالانه ' . $eee . '-سال ' . $f;
@@ -572,7 +573,7 @@ class vacationController {
         $a -> run();
     }
 
-    private function checkHour($fff, $nn) {
+    private function checkHour($fff, $clerk_id) {
         $u = "SELECT id,period FROM tbl_vacation_hour WHERE date_start='$fff' AND omitted='0'";
         $g = new CDatabase;
         if (($ggg = $g -> queryAll($u)) !== FALSE) {$hhh = 0;
@@ -588,7 +589,7 @@ class vacationController {
                     $ddd = $ddd -> hokm_number + 1;
                 else
                     $ddd = 1;
-                $jjj = array('clerk_id' => $nn, 'type' => 1, 'date_start' => $fff, 'date_end' => $fff + 86399, 'period' => 1, 'hokm_number' => $ddd, 'description' => 'مرخصی ساعتی بیشتر از ۳ ساعت در یک روز ' . $_POST['description']);
+                $jjj = array('clerk_id' => $clerk_id, 'type' => 1, 'date_start' => $fff, 'date_end' => $fff + 86399, 'period' => 1, 'hokm_number' => $ddd, 'description' => 'مرخصی ساعتی بیشتر از ۳ ساعت در یک روز ' . $_POST['description']);
                 $g -> insert($jjj);
             }
         }$c = new CJcalendar;
@@ -613,7 +614,7 @@ class vacationController {
                     $ddd = $ddd -> hokm_number + 1;
                 else
                     $ddd = 1;
-                $jjj = array('clerk_id' => $nn, 'type' => 1, 'date_start' => $fff, 'date_end' => $fff + 86399, 'period' => 1, 'hokm_number' => $ddd, 'description' => 'مرخصی ساعتی بیشتر از 7 ساعت در یک هفته ' . $_POST['description']);
+                $jjj = array('clerk_id' => $clerk_id, 'type' => 1, 'date_start' => $fff, 'date_end' => $fff + 86399, 'period' => 1, 'hokm_number' => $ddd, 'description' => 'مرخصی ساعتی بیشتر از 7 ساعت در یک هفته ' . $_POST['description']);
                 $g -> insert($jjj);
             }
         }
