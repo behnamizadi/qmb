@@ -100,5 +100,16 @@ class Vacation {
         " where clerk_id=".$parameters['clerk_id'] . " and year=" . $parameters['year'] . " " ;
         return $db->JTableUpdate($query);
     }
-
+    public static function generateHokmNumber($year,$ostan){
+        $calendar = new CJcalendar;
+        $yearstart = $calendar -> mktime(0, 0, 0, 1, 1, $year) + 14400;
+        $yearend = $calendar -> mktime(0, 0, 0, 12, 29, $year) + 14400;
+        $ddd = 1;
+        $db=new Database;
+        $u = "SELECT * FROM tbl_vacation where date_start BETWEEN '$yearstart' AND '$yearend' ORDER BY id DESC LIMIT 0,1";
+        $result = $db -> queryOne($u);
+        if ($result)
+            $ddd = $result -> hokm_number + 1;
+       return $ddd;
+    }
 }

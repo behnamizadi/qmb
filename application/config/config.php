@@ -8,7 +8,7 @@ return array(
 	'homeUrl'=>'/qmb/',
 	'appName'=>'سامانه مدیریت منابع انسانی یاغیش- نسخه ۱.۱',
 	'language'=>'persian',
-	'debug'=>FALSE,
+	'debug'=>TRUE,
 	/*
 	 * routing related params
 	 */
