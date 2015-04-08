@@ -7,7 +7,8 @@ class userController {
         $view = new CView;
         if ($form -> validate()) {
             $user = new User;
-            $username = $_POST['username'];
+            $username ='';
+            if (isset($_POST['username'])) $username=$_POST['username'];
             $ostan = $_POST['ostan'];
             $user -> set_username($username);
             $lastPass = $user -> get_last_pass_change();

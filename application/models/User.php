@@ -21,9 +21,13 @@ class User {
     }
 
     public function getName() {
-        $a = 'SELECT name FROM tbl_user WHERE id ="' . PHP40::get() -> user . '"';
-        $c = $this -> db -> queryOne($a);
+        if(isset(PHP40::get() -> user)){
+            $a = 'SELECT name FROM tbl_user WHERE id ="' . PHP40::get() -> user . '"';
+            $c = $this -> db -> queryOne($a);
         return $c -> name;
+        }else{
+            return '';
+        }
     }
 
     public function producer() {

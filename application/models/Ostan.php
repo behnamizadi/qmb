@@ -1,11 +1,14 @@
 <?php
 class Ostan {
     public function getName() {
+        if (isset($_SESSION['ostan'])) {
         $a = 'SELECT name FROM tbl_ostan WHERE id="' . $_SESSION['ostan'] . '"';
         $b = new CDatabase;
         if (($c = $b -> queryOne($a)))
             return 'استان ' . $c -> name;
-        return;
+        }
+       return '';
+     
     }
 
     public static function checkOstan() {

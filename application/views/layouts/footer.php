@@ -4,14 +4,18 @@
 $name = new User;
 $c = new CJcalendar;
 $o = new Ostan;
+$ostan='';
+if (null!==$o->getName()) $ostan=$o->getName();
+$username='';
+if (null!==$name->getName()) $username=$name->getName();
 ?> <div class="col-md-1 pull-right ">
 <button class="btn btn-default btn-xs"><?php echo $c->date("l"); ?><?php echo $c->date("Y/m/j"); ?></button>
 </div>  
 <div class="col-md-2 pull-right ">
-<button class="btn btn-default btn-xs"><?php echo $o->getName(); ?></button>
+<button class="btn btn-default btn-xs"><?php echo $ostan ?></button>
 </div>
 <div class="col-md-2 pull-right ">
-<button class="btn btn-default btn-xs"><?php echo $name->getName(); ?></button>
+<button class="btn btn-default btn-xs"><?php echo $username; ?></button>
 </div>
 <?php
 $notice = new Notice;
