@@ -5,61 +5,51 @@ class Vacation {
 
     }
 
-    public static function getStat($a, $b, $c = FALSE) {
-        $d = array();
-        $e = new CDatabase;
+    public static function getStat($clerk_id, $year, $c = FALSE) {
+        $data = array();
+        $db= new CDatabase;
         if ($c !== FALSE) {
-            $f = "SELECT * FROM tbl_vacation_year WHERE clerk_id='$a' AND year='$b'";
-            $g = $e -> queryOne($f);
-            $d['جمع مرخصی استحقاقی استفاده شده'] = $g -> used;
-            $d['مانده مرخصی استحقاقی'] = $g -> all_v - $g -> used;
-            $d['ذخیره مرخصی استحقاقی'] = $g -> saved;
-            return $d;
+            $f = "SELECT * FROM tbl_vacation_year WHERE clerk_id='$clerk_id' AND year='$year'";
+            $g = $db-> queryOne($f);
+            $data['جمع مرخصی استحقاقی استفاده شده'] = $g -> used;
+            $data['مانده مرخصی استحقاقی'] = $g -> all_v - $g -> used;
+            $data['ذخیره مرخصی استحقاقی'] = $g -> saved;
+            return $data;
         }
-        $f = "SELECT date_employed FROM tbl_employment WHERE clerk_id='$a'";
-        $h = $e -> queryOne($f) -> date_employed;
-        $i = new CJcalendar(FALSE);
-        $j = $i -> mktime(0, 0, 0, 1, 1, $b);
-        $k = $i -> mktime(23, 59, 59, 12, 29, $b);
-        if ($i -> isLeap($b)) {$k = $i -> mktime(23, 59, 59, 12, 30, $b);
-        }$m = new Lookup;
+        $f = "SELECT date_employed FROM tbl_employment WHERE clerk_id='".$clerk_id."'";
+        $date_employed = $db-> queryOne($f) -> date_employed;
+        $jcal = new CJcalendar(FALSE);
+        $ebtedaye_sal = $jcal -> mktime(0, 0, 0, 1, 1, $year);
+        $end_of_year = $jcal -> mktime(23, 59, 59, 12, 29, $year);
+        $days=365; 
+        if ($jcal -> isLeap($year)) {
+            $days=366;
+            $end_of_year = $jcal -> mktime(23, 59, 59, 12, 30, $year);
+        }
+        $m = new Lookup;
         $n = $m -> getAll('vacation');
-        foreach ($n as $o => $p) {$f = "SELECT SUM(period) FROM tbl_vacation WHERE clerk_id='$a' AND type='$o' AND date_start BETWEEN $j AND $k";
-            $d[$p] = $e -> sumRows('period', $f) . ' روز';
-            if ($o == 1)
-                $q = $e -> sumRows('period', $f);
+        $estehghaghi=0;
+        foreach ($n as $vacation_type => $vacation_name) {
+            $f = "SELECT SUM(period) FROM tbl_vacation WHERE clerk_id='$clerk_id' AND type='$vacation_type' AND date_start BETWEEN $ebtedaye_sal AND $end_of_year";
+            $data[$vacation_name] = $db-> sumRows('period', $f);
+            if ($vacation_type == 1)
+                $estehghaghi = $db-> sumRows('period', $f);
         }
-        if ($b < 1392) {
+        if ($year < 1392) {
             $r = 30;
-            if ($s == $i -> date('Y', $h)) {$t = $i -> date('d', $h);
-                $r = (12 - $i -> date('m', $h)) * 2.5;
-                if ($t > 1 && $t <= 5)
-                    $r += 2.5;
-                elseif ($t > 5 && $t <= 10)
-                    $r += 2;
-                elseif ($t > 10 && $t <= 15)
-                    $r += 1.5;
-                elseif ($t > 15 && $t <= 20)
-                    $r += 1;
-                elseif ($t > 20 && $t <= 25)
-                    $r += 0.5;
-            }$d['مانده مرخصی استحقاقی'] = round($r - $q);
-        } else {$r = 26;
-            if ($b == $i -> date('Y', $h)) {$t = $i -> date('d', $h);
-                $r = (12 - $i -> date('m', $h)) * 2.17;
-                if ($t > 1 && $t <= 5)
-                    $r += 2.17;
-                elseif ($t > 5 && $t <= 10)
-                    $r += 1.74;
-                elseif ($t > 10 && $t <= 15)
-                    $r += 1.31;
-                elseif ($t > 15 && $t <= 20)
-                    $r += 0.88;
-                elseif ($t > 20 && $t <= 25)
-                    $r += 0.45;
-            }$d['مانده مرخصی استحقاقی'] = round($r - $q);
-        }
-        return $d;
+              } else {
+            $r = 26;}
+            $mandeh=0;
+            
+            if ($year == $jcal -> date('Y', $date_employed)) {
+                $days=floor(($end_of_year-$date_employed)/(60*60*24));
+                
+            }
+            $mandeh=(($days*$r)/365)-$estehghaghi;
+            $data['مانده مرخصی استحقاقی'] =round($mandeh);
+      
+       
+        return $data;
     }
 
     public static function listYearlyVacation($clerk_id) {

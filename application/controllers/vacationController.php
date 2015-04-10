@@ -302,34 +302,38 @@ class vacationController {
         CUrl::redirect('vacation/summ/' . CUrl::segment(4) . '/' . CUrl::segment(5));
     }
 
-    public function summ() {$clerk_id = CUrl::segment(3);
+    public function summ() {
+        $clerk_id = CUrl::segment(3);
         if (!$clerk_id)
             CUrl::redirect('vacation/index');
         $v = new CGrid;
         $v -> counter = TRUE;
         $c = new CJcalendar(FALSE);
-        if (($oo = CUrl::segment(4)) !== FALSE) {
-            $f = $c -> mktime(0, 0, 0, 1, 1, $oo);
+        if (($year = CUrl::segment(4)) !== FALSE) {
+            $f = $c -> mktime(0, 0, 0, 1, 1, $year);
             $end = $f + 31536000;
-            if ($c -> checkdate(12, 30, (int)$oo))
+            if ($c -> checkdate(12, 30, (int)$year))
                 $end += 86400;
             $v -> condition = "WHERE date_start BETWEEN $f AND $end AND clerk_id='$clerk_id'";
         } else {$v -> condition = "WHERE clerk_id='$clerk_id'";
-        }$v -> operations = array('view' => FALSE, 'edit' => FALSE, 'delete' => FALSE, 'vacation/edit/$value->id/' . $clerk_id . '/' . $oo => array('icon' => 'public/images/edit.png', 'alt' => 'ویرایش', 'title' => 'ویرایش'), 'vacation/delete/$value->id/' . $clerk_id . '/' . $oo => array('icon' => 'public/images/delete.png', 'alt' => 'ویرایش', 'title' => 'ویرایش'), );
+        }$v -> operations = array('view' => FALSE, 'edit' => FALSE, 'delete' => FALSE, 'vacation/edit/$value->id/' . $clerk_id . '/' . $year => array('icon' => 'public/images/edit.png', 'alt' => 'ویرایش', 'title' => 'ویرایش'), 'vacation/delete/$value->id/' . $clerk_id . '/' . $year => array('icon' => 'public/images/delete.png', 'alt' => 'ویرایش', 'title' => 'ویرایش'), );
         $v -> sort = 'hokm_number DESC';
         $v -> headers = array('date_added' => array('format' => 'model[Cal,getDate($value)]', 'label' => 'تاریخ حکم'), 'hokm_number', 'date_start' => array('format' => 'model[Cal,getDate($value)]', 'label' => 'تاریخ شروع'), 'date_end' => array('format' => 'model[Cal,getDate($value)]', 'label' => 'تاریخ پایان'), 'period', 'type' => array('format' => 'model[Lookup,getById($value,vacation)]', ), 'description');
         $a = new CView;
         $pp = new CDetail;
         $pp -> value = FALSE;
-        if (empty($oo)) {$oo = $c -> date('Y', FALSE, FALSE);
+        if (empty($year)) {$year = $c -> date('Y', FALSE, FALSE);
         }$qq = $v -> run();
-        if ($qq == CGrid::NOTFOUND && $oo < 1392) {$qq = '';
-            $pp -> additional = Vacation::getStat($clerk_id, $oo, TRUE);
-        } else {$pp -> additional = Vacation::getStat($clerk_id, $oo);
-        }$a -> grid = $qq;
+        if ($qq == CGrid::NOTFOUND && $year < 1392) {
+            $qq = '';
+            $pp -> additional = Vacation::getStat($clerk_id, $year, TRUE);
+        } else {
+            $pp -> additional = Vacation::getStat($clerk_id, $year);
+        }
+        $a -> grid = $qq;
         $a -> c_id = $clerk_id;
         $a -> title = 'گزارش مرخصی ' . Profile::getName($clerk_id);
-        $a -> y = $oo;
+        $a -> y = $year;
         $pp -> numberOfColumns = 3;
         $a -> detail = $pp -> run();
         $a -> run('vacation/summ');
