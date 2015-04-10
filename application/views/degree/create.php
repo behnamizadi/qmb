@@ -60,7 +60,7 @@ for($i = 2; $i <= 20;$i++):
            echo $f->select('y_start'.$i,array(
                     'decoration'=>FALSE,
                     'type'=>'select',
-                    'options'=>'years_1386_1392'
+                    'options'=>Utility::years(10,-1)
                 )); 
            ?>
            </td><td><label>تاریخ پایان</label>
@@ -79,7 +79,7 @@ for($i = 2; $i <= 20;$i++):
            echo $f->select('y_end'.$i,array(
                     'decoration'=>FALSE,
                     'type'=>'select',
-                    'options'=>'years_1386_1392'
+                    'options'=>Utility::years(10,-1)
                 )); 
            ?>
         </td>

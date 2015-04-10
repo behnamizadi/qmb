@@ -40,7 +40,8 @@ class childController {
 		CUrl::redirect('child/manage/' . $a);
 	}
 
-	public function edit() {$a = CUrl::segment(3);
+	public function edit() {
+	    $a = CUrl::segment(3);
 		$l = CUrl::segment(4);
 		$g = new CDatabase;
 		if (($m = $g -> getByPk($l)) == FALSE)
@@ -49,11 +50,13 @@ class childController {
 		$d = new CForm;
 		$d -> showFieldErrorText = FALSE;
 		$e = new CJcalendar(FALSE);
-		if ($d -> validate()) {$f = $e -> mktime(0, 0, 0, (int)$_POST['m_born'], (int)$_POST['d_born'], (int)$_POST['y_born']) + 14400;
+		if ($d -> validate()) {
+		    $f = $e -> mktime(0, 0, 0, (int)$_POST['m_born'], (int)$_POST['d_born'], (int)$_POST['y_born']) + 14400;
 			$g -> additional = array('date_born' => $f);
 			$g -> update(array('id' => $l));
 			CUrl::redirect('child/manage/' . $a);
-		}$b -> m = $e -> date('m', $m -> date_born);
+		}
+		$b -> m = $e -> date('m', $m -> date_born);
 		$b -> d = $e -> date('d', $m -> date_born);
 		$b -> y = $e -> date('Y', $m -> date_born);
 		$b -> model = $m;

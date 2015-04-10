@@ -25,7 +25,7 @@ for($i = 0;$i < $counter;$i++):
            echo $f->select('degree_start['.$i.']',array(
                     'decoration'=>FALSE,
                     'type'=>'select',
-                    'options'=>'years_1386_1392'
+                    'options'=>Utility::years(10,-1)
                 )); 
            ?>  
         </td>
@@ -48,7 +48,7 @@ else: ?>
            echo $f->select('degree_start[]',array(
                     'decoration'=>FALSE,
                     'type'=>'select',
-                    'options'=>'years_1386_1392'
+                    'options'=>Utility::years(60,-1)
                 )); 
            ?>  
         </td>
@@ -62,7 +62,7 @@ else: ?>
 $(function(){
     $('.add_degree').click(function(){
         $('#page').append('<tr><td><?php echo $f->select('degree[]',array('type'=>'select','options'=>$degree,'label'=>'درجه<span class="error">*</span>')); ?></td>'+
-        '<td><label>سال<span class="error">*</span></label><?php echo $f->select('degree_start[]',array('decoration'=>FALSE,'type'=>'select','options'=>'years_1386_1392')); ?></td>'+
+        '<td><label>سال<span class="error">*</span></label><?php echo $f->select('degree_start[]',array('decoration'=>FALSE,'type'=>'select','options'=>Utility::years(10,-1))); ?></td>'+
         '</td></tr>');
     });
 });
