@@ -71,8 +71,16 @@ class vacationController {
         $b -> showFieldErrorText = FALSE;
         $a = new CView;
         if ($b -> validate()) {
-            if (isset($_POST['vacation_type'])) {CUrl::redirect('vacation/all/' . $_POST['year'] . '/' . $_POST['vacation_type']);
-            } else {CUrl::redirect('vacation/all/' . $_POST['year']);
+                    $day_start=$_POST['day_start'];
+                    $month_start=$_POST['month_start'];
+                    $day_end=$_POST['day_end'];
+                    $month_end=$_POST['month_end'];
+            if (isset($_POST['vacation_type'])) {
+                CUrl::redirect('vacation/all/' . $_POST['year_start'] . '/' . $_POST['vacation_type'].'/'.
+                $month_start.'/'.$day_start.'/'.$month_end.'/'.$day_end
+                );
+            } else {CUrl::redirect('vacation/all/' . $_POST['year_start'].'/'.
+                $month_start.'/'.$day_start.'/'.$month_end.'/'.$day_end);
             }
         }$c = new CJcalendar;
         $a -> y = $c -> date('Y', FALSE, FALSE);
@@ -173,8 +181,8 @@ class vacationController {
             if (!empty($o)) {$x = "tbl_vacation.type='$o'";
             }$c = new CJcalendar;
             $z = $c -> mktime(0, 0, 0, 1, 1, $f);
-            $aa = $z + 365 * 86400 + 86399;
-            $s = "tbl_vacation.date_start Between $z AND $aa";
+            $end = $z + 365 * 86400 + 86399;
+            $s = "tbl_vacation.date_start Between $z AND $end";
             if (!empty($k)) {
                 switch($p) {case  "less" :
                         $t = 'tbl_vacation.period < ' . $g -> escape($k);
@@ -302,10 +310,10 @@ class vacationController {
         $c = new CJcalendar(FALSE);
         if (($oo = CUrl::segment(4)) !== FALSE) {
             $f = $c -> mktime(0, 0, 0, 1, 1, $oo);
-            $aa = $f + 31536000;
+            $end = $f + 31536000;
             if ($c -> checkdate(12, 30, (int)$oo))
-                $aa += 86400;
-            $v -> condition = "WHERE date_start BETWEEN $f AND $aa AND clerk_id='$clerk_id'";
+                $end += 86400;
+            $v -> condition = "WHERE date_start BETWEEN $f AND $end AND clerk_id='$clerk_id'";
         } else {$v -> condition = "WHERE clerk_id='$clerk_id'";
         }$v -> operations = array('view' => FALSE, 'edit' => FALSE, 'delete' => FALSE, 'vacation/edit/$value->id/' . $clerk_id . '/' . $oo => array('icon' => 'public/images/edit.png', 'alt' => 'ویرایش', 'title' => 'ویرایش'), 'vacation/delete/$value->id/' . $clerk_id . '/' . $oo => array('icon' => 'public/images/delete.png', 'alt' => 'ویرایش', 'title' => 'ویرایش'), );
         $v -> sort = 'hokm_number DESC';
@@ -336,10 +344,10 @@ class vacationController {
         $v -> counter = TRUE;
         $c = new CJcalendar(FALSE);
         if (($oo = CUrl::segment(4)) !== FALSE) {$f = $c -> mktime(0, 0, 0, 1, 1, $oo);
-            $aa = $f + 31536000;
+            $end = $f + 31536000;
             if ($c -> checkdate(12, 30, (int)$oo))
-                $aa += 86400;
-            $v -> condition = "WHERE date_start BETWEEN $f AND $aa AND clerk_id='$clerk_id'";
+                $end += 86400;
+            $v -> condition = "WHERE date_start BETWEEN $f AND $end AND clerk_id='$clerk_id'";
         } else {$v -> condition = "WHERE clerk_id='$clerk_id'";
         }$v -> sort = 'hokm_number DESC';
         $v -> headers = array('date_added' => array('format' => 'model[Cal,getDate($value)]', 'label' => 'تاریخ حکم'), 'hokm_number', 'date_start' => array('format' => 'model[Cal,getDate($value)]', 'label' => 'تاریخ شروع'), 'date_end' => array('format' => 'model[Cal,getDate($value)]', 'label' => 'تاریخ پایان'), 'period' => array('format' => ' روز'), 'type' => array('format' => 'model[Lookup,getById($value,vacation)]', ), );
@@ -372,6 +380,10 @@ class vacationController {
         $ONE_YEAR = 31536000;
         $year = CUrl::segment(3);
         $vac_type = CUrl::segment(4);
+        $day_start=CUrl::segment(6);
+        $month_start=CUrl::segment(5);
+        $day_end=CUrl::segment(8);
+        $month_end=CUrl::segment(7);
         $is_print = FALSE;
         if (CUrl::segment(5) === 'print')
             $is_print = TRUE;
@@ -380,10 +392,8 @@ class vacationController {
             CUrl::redirect('vacation/index2');
         $a = new CView;
         $c = new CJcalendar(FALSE);
-        $f = $c -> mktime(0, 0, 0, 1, 1, $year);
-        $aa = $f + $ONE_YEAR;
-        if ($c -> checkdate(12, 30, $year))
-            $aa += $ONE_DAY;
+        $start = $c -> mktime(0, 0, 0, $month_start, $day_start, $year);
+        $end = $c -> mktime(0, 0, 0, $month_end, $day_end, $year);
         $u = "SELECT tbl_profile.clerk_id,tbl_profile.name,tbl_profile.lastname FROM tbl_profile,tbl_carrier 
 		WHERE tbl_carrier.clerk_id=tbl_profile.clerk_id AND tbl_carrier.job_status='1' AND tbl_carrier.now_c='1' AND  tbl_carrier.hokm_type<>8";
         $g = new CDatabase;
@@ -400,7 +410,7 @@ class vacationController {
                 $u = "SELECT date_employed FROM tbl_employment WHERE clerk_id='$clerck->clerk_id'";
                 $xx = $g -> queryOne($u) -> date_employed;
                 if ($c -> date('Y', $xx) <= $year) {
-                    $u = "SELECT SUM(period) FROM tbl_vacation WHERE clerk_id='$clerck->clerk_id' AND date_start BETWEEN $f AND $aa AND type='$vac_type'";
+                    $u = "SELECT SUM(period) FROM tbl_vacation WHERE clerk_id='$clerck->clerk_id' AND date_start BETWEEN $start AND $end AND type='$vac_type'";
                     $used = $g -> sumRows('period', $u);
                     if ($year >= 1392) {$zz = 26;
                         if ($year == $c -> date('Y', $xx)) {$aaa = $c -> date('d', $xx);
@@ -456,10 +466,7 @@ class vacationController {
         }$a = new CView;
         $bb = new Lookup;
         $cc = $bb -> getById($vac_type, 'vacation');
-        if ($year < 1393)
-            $dd = 'گزارش مرخصی ' . $cc . ' کل کارمندان سال ' . $year . ' تا تاریخ ' . $year . '/12/29';
-        else
-            $dd = 'گزارش مرخصی ' . $cc . ' کل کارمندان سال ' . $year . ' تا تاریخ ' . $c -> date('Y/m/d');
+        $dd = 'گزارش مرخصی ' . $cc . ' کل کارمندان سال ' ;
         if ($is_print) {
             $v -> operations = FALSE;
             $v -> noSort = TRUE;

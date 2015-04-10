@@ -57,7 +57,8 @@ class notice_asrController {
 		$g -> run();
 	}
 
-	public function edit() {$p = CUrl::segment(3);
+	public function edit() {
+	    $p = CUrl::segment(3);
 		$d = new CDatabase;
 		if (($q = $d -> getByPk($p)) == FALSE)
 			CUrl::redirect(404);
@@ -68,15 +69,17 @@ class notice_asrController {
 		$g -> d = $e -> date('d', $q -> date_end);
 		$g -> y = $e -> date('Y', $q -> date_end);
 		$a = new CForm;
-		if ($a -> validate()) {$d = new CDatabase;
+		if ($a -> validate()) {
+		    $d = new CDatabase;
 			$e = new CJcalendar;
 			$f = $e -> mktime(0, 0, 0, (int)$_POST['m_end'], (int)$_POST['d_end'], (int)$_POST['y_end']) + 14400;
 			$d -> update(array('code' => $p), array('date_end' => $f));
 			CUrl::redirect('notice_asr/manage');
-		}$b = new Branch;
+		}
+		$b = new Branch;
 		$g -> form = $a -> run();
 		if (($s = $b -> getNameById($p)) != FALSE)
-			$g -> title = 'ویرایش اخطار باجه عصر شعبه ' . $p . ' (' . $n . ')';
+			$g -> title = 'ویرایش اخطار باجه عصر شعبه ' . $p . ' (' . $s . ')';
 		else {$c = new Sar;
 			$g -> title = 'ویرایش اخطار سرپرستی ' . $p . ' (' . $c -> getNameById($p) . ')';
 		}$g -> run();

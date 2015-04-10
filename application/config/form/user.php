@@ -26,7 +26,7 @@ return array('login' => array(
 			'change_pass' => array('password' => array('type' => 'password', 'post' => FALSE, 'validation' => array('required'), 'label' => 'رمز عبور فعلی'), 
 			'new_password' => array('type' => 'password', 'post' => FALSE, 'validation' => array('required,minLength[6]'), 'label' => 'رمز عبور جدید'), 'verify_pass' => array('type' => 'password', 'post' => FALSE, 'validation' => array('required,match[new_password]'), 'label' => 'تکرار رمز عبور جدید'), 'submit' => array('type' => 'submit', 'value' => 'تغییر رمز عبور', ), ),
             
-            'set_pass' => array('user_id' => array('type' => 'text','post' => FALSE, 'validation' => array('required'), 'label' => 'کاربر'), 
+            'set_pass' => array('user_id' => array('type' => 'text','post' => FALSE, 'validation' => array('required'), 'label' => 'ای دی کاربر'), 
             'new_password' => array('type' => 'password', 'post' => FALSE, 'validation' => array('required,minLength[6]'), 'label' => 'رمز عبور جدید'), 'verify_pass' => array('type' => 'password','post' => FALSE, 'validation' => array('required,match[new_password]'), 'label' => 'تکرار رمز عبور جدید'), 'submit' => array('type' => 'submit', 'value' => 'تغییر رمز عبور', ), )
             
             
