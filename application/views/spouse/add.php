@@ -1,35 +1,13 @@
 <?php
 echo $f->run();
-//$v = new CValidator;
-/*if($v->getAllErrors() !== FALSE)
-{
-    
-    echo '<div class="red"><ul>';
-    for($i = 1; $i <= $number_of_children;$i++):
-        if(($message = $v->getError('ch_name'.$i)) !== TRUE)
-        {
-            echo '<li>'.$message.'</li>';
-        }
-        if(($message = $v->getError('ch_code'.$i)) !== TRUE)
-        {
-            echo '<li>'.$message.'</li>';
-        }
-        if(($message = $v->getError('y_born'.$i)) !== TRUE)
-        {
-            echo '<li>'.$message.'</li>';
-        }
-    endfor;
-    echo '</ul></div>';
-}*/
 if($number_of_children):
 echo '<h3>اطلاعات فرزندان</h3>';
-echo '<table class="create">';
 for($i = 1; $i <= $number_of_children;$i++):
    ?>
-   <tr>
-  <td><?php echo $f->makeField('ch_name'.$i, array('type'=>'text','in'=>'class="txt" maxlength="80"','label'=>'نام <span class="error">*</span>')); ?></td>
-  <td><?php echo $f->makeField('ch_code'.$i, array('type'=>'text','in'=>'class="txt" maxlength="10"','label'=>'کد ملی <span class="error">*</span>')); ?></td>
-  <td> تاریخ تولد<span class="error">*</span>&nbsp;<?php echo $f->select('d_born'.$i, array(
+   
+ <?php echo $f->makeField('ch_name'.$i, array('type'=>'text','label'=>'نام <span class="error">*</span>')); ?>
+ <?php echo $f->makeField('ch_code'.$i, array('type'=>'text','label'=>'کد ملی <span class="error">*</span>')); ?>
+ <lable>تاریخ تولد<span class="error">*</span></lable><?php echo $f->select('d_born'.$i, array(
             'decoration'=>FALSE,
             'options'=>'days_of_month',
             'showFieldError'=>FALSE
@@ -41,53 +19,57 @@ for($i = 1; $i <= $number_of_children;$i++):
        ));
        echo $f->select('y_born'.$i, array(
             'decoration'=>FALSE,
-            'options'=>'years_1340_1392',
+            'options'=>Utility::years(30,0),
             'showFieldError'=>FALSE
        ));
        ?>
-   </td>
-   <td>
-       <?php echo $f->makeField('city_born'.$i, array('type'=>'text','in'=>'class="txt" maxlength="30"','label'=>'محل تولد <span class="error">*</span>')); ?>
-   </td>
-   </tr>    
+
+       <?php echo $f->makeField('city_born'.$i, array('type'=>'text','label'=>'محل تولد <span class="error">*</span>')); ?> 
 <?php
 endfor;
 endif;
 ?>
 </table>
-<p><label>&nbsp;</label>
-<input type="submit" name="submit" value="مرحله بعد" class="box" />
-</p>
+<label>&nbsp;</label>
+<input type="submit" name="submit" value="مرحله بعد" class="btn btn-success" />
 </form>
-<script>
-    $(function(){
+<?php $scripts="
+<script type='text/javascript'>
+    $(document).ready(function(){
+        var opts = {
+  lines: 13, // The number of lines to draw
+  length: 20, // The length of each line
+  width: 10, // The line thickness
+  radius: 20, // The radius of the inner circle
+  corners: 1, // Corner roundness (0..1)
+  rotate: 0, // The rotation offset
+  direction: 1, // 1: clockwise, -1: counterclockwise
+  color: '#000', // #rgb or #rrggbb or array of colors
+  speed: 1, // Rounds per second
+  trail: 60, // Afterglow percentage
+  shadow: false, // Whether to render a shadow
+  hwaccel: false, // Whether to use hardware acceleration
+  className: 'spinner', // The CSS class to assign to the spinner
+  zIndex: 999, // The z-index (defaults to 2000000000)
+  top: '300px', // Top position relative to parent
+  left: '50%' // Left position relative to parent
+};
+var target = document.getElementById('navbar');
+var spinner = new Spinner(opts);
+      $('#study_degree').change(function(){
+        spinner.spin(target);
         var study_degree = $('#study_degree').val();
-        if(study_degree)
-        {
-           $.ajax({
-               cache: false,
-                url: '<?php echo PHP40::get()->homeUrl; ?>index.php/study_field/getByDegreeAjax/',
-                type: 'POST',
-                data:'study_degree='+study_degree,
-                success:function(result){
-                    $('#study_field option').remove();
-                    $('#study_field').append(result);
-                }
-            });
-        }
-        $('#study_degree').change(function(){
-            var study_degree = $('#study_degree').val();
-            $.ajax({
-                cache: false,
-                url: '<?php echo PHP40::get()->homeUrl; ?>index.php/study_field/getByDegreeAjax/',
-                type: 'POST',
-                data:'study_degree='+study_degree,
-                success:function(result){  
-                    $('#study_field option').remove();
-                    $('#study_field').append(result);
-                }
-            });
+        $.ajax({
+            url: '".PHP40::get()->homeUrl."index.php/study_field/getByDegreeAjax/',
+            type: 'POST',
+            data:'study_degree='+study_degree,
+            success:function(result){
+                spinner.stop();
+                $('#study_field option').remove();
+                $('#study_field').append(result);
+            }
         });
-        
+        });
     });
-</script>
+          
+</script>";  ?>
