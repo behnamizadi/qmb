@@ -19,10 +19,10 @@ echo $form;
   hwaccel: false, // Whether to use hardware acceleration
   className: 'spinner', // The CSS class to assign to the spinner
   zIndex: 999, // The z-index (defaults to 2000000000)
-  top: '50%', // Top position relative to parent
+  top: '300px', // Top position relative to parent
   left: '50%' // Left position relative to parent
 };
-var target = document.getElementById('view');
+var target = document.getElementById('navbar');
 var spinner = new Spinner(opts);
       $('#study_degree').change(function(){
         spinner.spin(target);
