@@ -38,7 +38,7 @@ class notice_asrController {
 		$d = new CDatabase;
 		$m = new CGrid;
 		$m -> values = $l;
-		$m -> headers = array('code', 'name', 'date_end' => array('format' => 'model[Cal,getDate($value)]'), );
+		$m -> headers = array( 'name','code', 'date_end' => array('format' => 'model[Cal,getDate($value)]'), );
 		$m -> operations['view'] = FALSE;
 		$m -> sort = 'date_end';
 		$m -> counter = TRUE;

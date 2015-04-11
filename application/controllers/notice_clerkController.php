@@ -38,9 +38,9 @@ class notice_clerkController {
 	    $isprint = False;
 		if (CUrl::segment(3) === 'print')
 			$isprint = TRUE;
-		$e = "SELECT tbl_notice_clerk.clerk_id,tbl_notice_clerk.post,tbl_notice_clerk.place,tbl_notice_clerk.date_end,tbl_profile.name,tbl_profile.lastname 
-		FROM tbl_notice_clerk inner join tbl_profile 
-		on tbl_notice_clerk.clerk_id=tbl_profile.clerk_id";
+		$e = "SELECT tbl_notice_clerk.clerk_id,tbl_notice_clerk.post,tbl_clerk.clerk_number, tbl_notice_clerk.place,tbl_notice_clerk.date_end,tbl_profile.name,tbl_profile.lastname 
+		 FROM tbl_notice_clerk inner join tbl_profile 
+		on tbl_notice_clerk.clerk_id=tbl_profile.clerk_id inner join tbl_clerk on tbl_profile.clerk_id=tbl_clerk.id";
 		$d = new CDatabase;
         $values = $d -> queryAll($e);
 		$v= new CView;
