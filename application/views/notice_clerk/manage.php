@@ -17,7 +17,6 @@ if ($isprint) {$k -> operations = FALSE;
 {
     $pb = '<center>' . CUrl::createLink('نسخه چاپی', 'notice_clerk/manage/print', 'class="btn btn-default" target="_blank"') . '</center>';
 }
-$title = $l;
 $grid = $k -> run();
 echo $grid;  
 if(isset($pb)){

@@ -44,6 +44,7 @@ class notice_clerkController {
 		$d = new CDatabase;
         $values = $d -> queryAll($e);
 		$v= new CView;
+        $v->title="لیست اخطار تمدید کارمندان";
         $v -> values= $values;
         $v -> isprint = $isprint;
         $v -> run('notice_clerk/manage');
