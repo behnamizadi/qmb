@@ -399,7 +399,7 @@ class vacationController {
         $start = $c -> mktime(0, 0, 0, $month_start, $day_start, $year);
         $end = $c -> mktime(0, 0, 0, $month_end, $day_end, $year);
         $u = "SELECT tbl_profile.clerk_id,tbl_profile.name,tbl_profile.lastname FROM tbl_profile,tbl_carrier 
-		WHERE tbl_carrier.clerk_id=tbl_profile.clerk_id AND tbl_carrier.job_status='1' AND tbl_carrier.now_c='1' AND  tbl_carrier.hokm_type<>8";
+		WHERE tbl_carrier.clerk_id=tbl_profile.clerk_id AND tbl_carrier.job_status='1' AND tbl_carrier.now_c='1' AND  tbl_carrier.hokm_type<>'8'";
         $g = new CDatabase;
         $clercks = $g -> queryAll($u);
         $qq = array();
