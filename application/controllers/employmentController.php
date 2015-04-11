@@ -150,7 +150,7 @@ class employmentController {
         $o = new CGrid;
         $o -> counter = TRUE;
         $o -> operations = FALSE;
-        $o -> headers = array('name' => array('label' => 'نام'), 'lastname' => array('label' => 'نام خانوادگی'), 'clerk_number' => array('label' => 'کد پرسنلی'), 'date_employed' => array('format' => 'model[Cal,getDate($value)]', 'label' => 'تاریخ استخدام'), 'hesab' => array('label' => 'شماره حساب'), 'bon' => array('label' => 'شماره بن‌کارت'), 'bimeh' => array('label' => 'شماره بیمه'), );
+        $o -> headers = array('clerk_number' => array('label' => 'کد پرسنلی'), 'name' => array('label' => 'نام'), 'lastname' => array('label' => 'نام خانوادگی'), 'date_employed' => array('format' => 'model[Cal,getDate($value)]', 'label' => 'تاریخ استخدام'), 'hesab' => array('label' => 'شماره حساب'), 'bon' => array('label' => 'شماره بن‌کارت'), 'bimeh' => array('label' => 'شماره بیمه'), );
         $c = new CDatabase;
         $o -> values = $c -> queryAll($b);
         $e = new CView;
