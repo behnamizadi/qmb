@@ -15,9 +15,12 @@ if ($isprint) {$k -> operations = FALSE;
     $k -> paginate = FALSE;
 } else 
 {
-    $pb = '<center><p>' . CUrl::createLink('نسخه چاپی', 'notice_clerk/manage/print', 'class="box" target="_blank"') . '</p></center>';
+    $pb = '<center>' . CUrl::createLink('نسخه چاپی', 'notice_clerk/manage/print', 'class="btn btn-default" target="_blank"') . '</center>';
 }
 $title = $l;
 $grid = $k -> run();
-echo $grid;    
+echo $grid;  
+if(isset($pb)){
+    echo $pb;
+}  
 ?>
