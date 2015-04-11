@@ -380,7 +380,7 @@ class vacationController {
     }
 
     public function all() {
-        $ONE_DAY = 86400;
+          $ONE_DAY = 86400;
         $ONE_YEAR = 31536000;
         $year = CUrl::segment(3);
         $vac_type = CUrl::segment(4);
@@ -414,7 +414,7 @@ class vacationController {
                 $u = "SELECT date_employed FROM tbl_employment WHERE clerk_id='$clerck->clerk_id'";
                 $xx = $g -> queryOne($u) -> date_employed;
                 if ($c -> date('Y', $xx) <= $year) {
-                    $u = "SELECT SUM(period) FROM tbl_vacation WHERE clerk_id='$clerck->clerk_id' AND date_start BETWEEN $start AND $end AND type='$vac_type'";
+                    $u = "SELECT SUM(period) FROM tbl_vacation WHERE clerk_id='$clerck->clerk_id' AND date_start BETWEEN '$start' AND '$end' AND type='$vac_type'";
                     $used = $g -> sumRows('period', $u);
                     if ($year >= 1392) {$zz = 26;
                         if ($year == $c -> date('Y', $xx)) {$aaa = $c -> date('d', $xx);
