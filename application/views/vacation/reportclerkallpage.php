@@ -1,5 +1,12 @@
 <div id="jtable"></div>
 <?php
+echo $grid;
+echo $detail;
+if(isset($c_id)):
+?>
+<?php echo CUrl::createLink('افزودن مرخصی', 'vacation/add/'.$c_id, 'target="_blank""', $in = TRUE); ?>
+<?php echo CUrl::createLink('نسخه چاپی', 'vacation/summprint/'.$c_id.'/'.$y, 'target="_blank"', $in = TRUE); ?>
+<?php endif; 
 $id=$_REQUEST["clerk_id"];
  $scripts="
 <script type='text/javascript'>

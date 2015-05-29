@@ -162,16 +162,19 @@
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="caret"></span><span>مرخصی</span></a>
 				<ul class="dropdown-menu" role="menu">
 					<li>
-						<a href="<?php echo $path; ?>index.php/vacation/index/add"><span>ثبت مرخصی</span></a>
+						<a href="<?php echo $path; ?>index.php/vacation/adddaily"><span>ثبت مرخصی</span></a>
 					</li>
 					<li>
-						<a href="<?php echo $path; ?>index.php/vacation/index/addyear"><span>ثبت مرخصی سالانه</span></a>
+						<a href="<?php echo $path; ?>index.php/vacation/addyearly"><span>ثبت مرخصی سالانه</span></a>
 					</li>
 					<li>
-						<a href="<?php echo $path; ?>index.php/vacation/index"><span>گزارش مرخصی کارمند</span></a>
+						<a href="<?php echo $path; ?>index.php/vacation/reportclerk"><span>گزارش مرخصی کارمند</span></a>
 					</li>
 					<li>
-						<a href="<?php echo $path; ?>index.php/vacation/index2"><span>گزارش کل مرخصی کارمندان</span></a>
+                        <a href="<?php echo $path; ?>index.php/vacation/reportclerkall"><span>گزارش کل مرخصی کارمند</span></a>
+                    </li>
+					<li>
+						<a href="<?php echo $path; ?>index.php/vacation/reportallclerks"><span>گزارش کل مرخصی کارمندان</span></a>
 					</li>
 					<li>
 						<a href="<?php echo $path; ?>index.php/vacation/search1"><span>گزارش(جستجو)</span></a>

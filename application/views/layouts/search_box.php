@@ -1,3 +1,12 @@
+      <div class="form-group">
+          <div class="col-md-2">
+           <label  for="clerk_number">کدپرسنلی</label>
+           </div>
+           <div class="col-md-3">
+           <input class="form-control"  type="text" name="clerk_number" id="clerk_number" />
+           </div>
+           <a class="btn btn-success"  name="search" id="search" href="#" >...</a>
+      </div>
 <div class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -6,21 +15,20 @@
         <h4 class="modal-title">جستجوی کارمند</h4>
       </div>
       <div class="modal-body">
-           <form class="form-horizontal" method="post" action="#" id="search_form">
+          
       <div class="form-group">
            <label class="col-md-3"  for="name">نام</label>
-           <input  type="text" name="name" id="name" class="txt" />
+           <input  type="text" name="name" id="name"  />
       </div>
       <div class="form-group"> 
            <label class="col-md-3" for="lastname">نام خانوادگی</label>
-           <input type="text" name="lastname" id="lastname" class="txt" />
+           <input type="text" name="lastname" id="lastname"  />
       </div>
       <div class="form-group">
           <div class="col-md-3" for="lastname">
         <input class="btn btn-success" type="submit" name="search_clerk" id="search_clerk" value="جستجو" />
         </div>
        </div>
-    </form>
       </div>
       <div class="modal-footer">
 

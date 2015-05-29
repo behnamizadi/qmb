@@ -7,6 +7,7 @@ class Vacation {
 
     public static function getStat($clerk_id, $year, $c = FALSE) {
         $data = array();
+        $data['سال']=$year;
         $db= new CDatabase;
         if ($c !== FALSE) {
             $f = "SELECT * FROM tbl_vacation_year WHERE clerk_id='$clerk_id' AND year='$year'";
