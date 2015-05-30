@@ -2,7 +2,7 @@
 class trainingController {
 	public function index() {$a = CUrl::segment(3);
 		$b = new CForm;
-		if (isset($_POST['submit'])) {$c = new Clerk;
+		if (isset($_POST['itisform'])) {$c = new Clerk;
 			$d = $c -> getId($_POST['clerk_number']);
 			if (!$d) {$b -> setError('clerk_number', 'رکوردی با این کد پرسنلی وجود ندارد.');
 			}
@@ -196,7 +196,7 @@ class trainingController {
 	}
 
 	public function search() {$b = new CForm;
-		if (isset($_POST['submit'])) {
+		if (isset($_POST['itisform'])) {
 			if (!empty($_POST['d_start'])) {
 				if (empty($_POST['m_start']))
 					$b -> setError('m_start', 'e');
