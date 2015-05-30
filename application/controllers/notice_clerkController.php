@@ -1,7 +1,7 @@
 <?php
 class notice_clerkController {
 	public function index() {$a = new CForm;
-		if (isset($_POST['submit'])) {$b = new Clerk;
+		if (isset($_POST['itisform'])) {$b = new Clerk;
 			$c = $b -> getId($_POST['clerk_number']);
 			if (!$c) {$a -> setError('clerk_number', 'رکوردی با این کد پرسنلی وجود ندارد.');
 			}$d = new CDatabase;
