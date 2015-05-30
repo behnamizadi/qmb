@@ -139,7 +139,7 @@ class vacationController {
                 $db -> additional = array('clerk_id' => $clerk_id, 'date_start' => $j, 'date_end' => $m, 'hokm_number' => $ddd, 'date_added' => time(), 'description' => $n);
                 $result = $db -> insert();
             }
-            CUrl::redirect('vacation/summ/' . $clerk_id . '/' . $year);
+            CUrl::redirect('vacation/reportclerkpage/' . $clerk_id . '/' . $year);
         }$a = new CView;
         $a -> y = $calendar -> date('Y', FALSE, FALSE);
         $a -> m = $calendar -> date('m', FALSE, FALSE);
