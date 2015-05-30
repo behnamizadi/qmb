@@ -9,7 +9,7 @@ class evaluationController {
 		} else {$e = TRUE;
 			$d = new CForm('batchindex');
 		}
-		if (isset($_POST['submit'])) {
+		if (isset($_POST['itisform'])) {
 			if (!isset($e)) {$f = new Clerk;
 				$g = $f -> getId($_POST['clerk_number']);
 				if (!$g) {$d -> setError('clerk_number', 'رکوردی با این کد پرسنلی وجود ندارد.');
@@ -121,7 +121,7 @@ class evaluationController {
 		$s = $l -> queryAll($k);
 		$cview = new CView;
 		$cview -> title = "ثبت نمره ارزشیابی دسته‌ای سال $i";
-		if (isset($_POST['submit'])) {
+		if (isset($_POST['itisform'])) {
 			foreach ($s as $f) {
 				if (!empty($_POST[$f -> id])) {
 					if (Evaluation::unique($f -> id, $i) == FALSE) {$l -> update(array('clerk_id' => $f -> id, 'year' => $i), array('grade' => $_POST[$f -> id]));

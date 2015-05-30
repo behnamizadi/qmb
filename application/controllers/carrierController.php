@@ -1,7 +1,7 @@
 <?php
 class carrierController {
 	public function index() {$a = new CForm;
-		if (isset($_POST['submit'])) {$b = new Clerk;
+		if (isset($_POST['itisform'])) {$b = new Clerk;
 			$c = $b -> getId($_POST['clerk_number']);
 			if (!$c) {$a -> setError('clerk_number', 'رکوردی با این کد پرسنلی وجود ندارد.');
 			}
@@ -56,7 +56,7 @@ class carrierController {
 			CUrl::redirect('carrier/index/add');
 		$a = new CForm;
 		$a -> showFieldErrorText = FALSE;
-		if (isset($_POST['submit'])) {$h = new CDatabase;
+		if (isset($_POST['itisform'])) {$h = new CDatabase;
 			$o = $h -> escape($_POST['c_path']);
 			$p = FALSE;
 			for ($q = 1; $q <= $o; $q++) {$r = TRUE;
