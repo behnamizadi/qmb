@@ -21,7 +21,7 @@ class clerkController {
 			}
 		}
 		$view -> title = 'ثبت اطلاعات کارمند';
-		$view -> frun = $form -> run();
+		$view -> form = $form -> run();
 		$view -> run('clerk/add');
 	}
 

@@ -7,7 +7,8 @@ class employmentController {
             CUrl::redirect('employment/edit/' . $a);
         $d = CUrl::segment(4);
         $e = new CView;
-        if (Clerk::doesExist($a, $d)) {$f = new CForm;
+        if (Clerk::doesExist($a, $d)) {
+			$f = new CForm;
             $f -> type = 'multipart/form-data';
             $f -> showFieldErrorText = FALSE;
             $g = new CValidator;

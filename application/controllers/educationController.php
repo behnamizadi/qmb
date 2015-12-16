@@ -1,16 +1,19 @@
 <?php
 class educationController {
 	public function add() {
-		$a = new CView;
-		$b = CUrl::segment(3);
-		$c = 'SELECT COUNT(*) FROM tbl_education WHERE clerk_id=\'' . $b . '\'';
-		$d = new CDatabase;
-		if ($d -> countRows($c))
-			CUrl::redirect('education/manage/' . $b);
-		$e = CUrl::segment(4);
-		if (Clerk::doesExist($b, $e)) {$f = new CForm;
-			$f -> showFieldErrorText = FALSE;
-			if (isset($_POST['submit'])) {$d = new CDatabase;
+		$view = new CView;
+		$clerk_id = CUrl::segment(3);
+		$sql = 'SELECT COUNT(*) FROM tbl_education WHERE clerk_id=\'' . $clerk_id . '\'';
+		$db = new CDatabase;
+		if ($db -> countRows($sql))
+			CUrl::redirect('education/manage/' . $clerk_id);
+		$time_added = CUrl::segment(4);
+		$form = new CForm;
+		if (Clerk::doesExist($clerk_id, $time_added)) 
+		{			
+			if ($_SERVER['REQUEST_METHOD'] == 'POST')  
+			{
+				$db = new CDatabase;
 				$g = 7;
 				$h = TRUE;
 				for ($j = 2; $j <= $g; $j++) {$k = TRUE;
@@ -20,87 +23,93 @@ class educationController {
 					if (!empty($_POST['study_field' . $j]) && !empty($_POST['y_get' . $j]) && !empty($_POST['place' . $j])) {$k = TRUE;
 					}
 					if ($k == FALSE) {
-						if (empty($_POST['study_field' . $j])) {$f -> setError('study_field' . $j, 'e');
+						if (empty($_POST['study_field' . $j])) {$form -> setError('study_field' . $j, 'e');
 						}
-						if (empty($_POST['y_get' . $j])) {$f -> setError('y_get' . $j, 'e');
+						if (empty($_POST['y_get' . $j])) {$form -> setError('y_get' . $j, 'e');
 						}
-						if (empty($_POST['place' . $j])) {$f -> setError('place' . $j, 'e');
+						if (empty($_POST['place' . $j])) {$form -> setError('place' . $j, 'e');
 						}
 					}
 				}
-				if ($f -> validate() === TRUE) {
-					if ($h == TRUE) {$d -> additional = array('clerk_id' => $b, 'study_degree' => 1, 'study_field' => 0, 'date_get' => 0, 'place' => 0);
-						$d -> insert();
-					} else {$l = new CJcalendar;
+				if ($form -> validate() === TRUE) {
+					if ($h == TRUE) {
+						$db -> additional = array('clerk_id' => $clerk_id, 'study_degree' => 1, 'study_field' => 0, 'date_get' => 0, 'place' => 0);
+						$db -> insert();
+					} else {
+						$l = new CJcalendar;
 						for ($j = 2; $j <= $g; $j++) {
 							if (!empty($_POST['study_field' . $j]) && !empty($_POST['y_get' . $j]) && !empty($_POST['place' . $j])) {$m = $l -> mktime(0, 0, 0, 1, 1, (int)$_POST['y_get' . $j]) + 14400;
-								$d -> additional = array('clerk_id' => $b, 'study_degree' => $j, 'study_field' => $_POST['study_field' . $j], 'date_get' => $m, 'place' => $_POST['place' . $j]);
-								$d -> insert();
+								$db -> additional = array('clerk_id' => $clerk_id, 'study_degree' => $j, 'study_field' => $_POST['study_field' . $j], 'date_get' => $m, 'place' => $_POST['place' . $j]);
+								$db -> insert();
 							}
 						}
-					}CUrl::redirect('clerk/manage');
+					}
+					CUrl::redirect('education/manage');
 				}
-			}$a -> title = 'ورود اطلاعات تحصیلی ' . Profile::getName($b);
-			$a -> form = $f -> run();
-			$a -> run('education/add');
-		} else {$a -> error = 'مشکلی در فرایند ثبت به وجود آمده است.';
-			$a -> run();
+			}
+			$view -> title = 'ورود اطلاعات تحصیلی ' . Profile::getName($clerk_id);
+			$view -> form = $form -> run();
+			$view -> run('education/add');
+		} else {$view -> error = 'مشکلی در فرایند ثبت به وجود آمده است.';
+			$view -> run('education/add');
 		}
+		
 	}
 
 	public function manage() {
-	    $b = CUrl::segment(3);
-		$a = new CView;
-		$f = new CForm;
-		$f -> showFieldErrorText = FALSE;
+	    $clerk_id = CUrl::segment(3);
+		$view = new CView;
+		$form = new CForm;
+		$form -> showFieldErrorText = FALSE;
 		if (isset($_POST['submit'])) {
-			if ($f -> validate()) {$_POST['error'] = 0;
+			if ($form -> validate()) {$_POST['error'] = 0;
 				$l = new CJcalendar;
 				$m = $l -> mktime(0, 0, 0, 1, 1, (int)$_POST['y_get']);
-				$d = new CDatabase;
-				$d -> additional = array('clerk_id' => $b, 'date_get' => $m);
-				$d -> insert();
+				$db = new CDatabase;
+				$db -> additional = array('clerk_id' => $clerk_id, 'date_get' => $m);
+				$db -> insert();
 			} else{
 				$_POST['error'] = 1;}
 		}
 		$n = new CGrid;
-		$n -> operations = array('view' => FALSE, 'edit' => FALSE, 'delete' => FALSE, 'education/edit/' . $b . '/$value->id' => array('icon' => 'public/images/edit.png', 'alt' => 'ویرایش', 'title' => 'ویرایش'), 'education/delete/' . $b . '/$value->id' => array('icon' => 'public/images/delete.png', 'alt' => 'حذف', 'title' => 'حذف'), );
-		$n -> condition = array('clerk_id' => $b);
+		$n -> operations = array('view' => FALSE, 'edit' => FALSE, 'delete' => FALSE, 'education/edit/' . $clerk_id . '/$value->id' => array('icon' => 'public/images/edit.png', 'alt' => 'ویرایش', 'title' => 'ویرایش'), 'education/delete/' . $clerk_id . '/$value->id' => array('icon' => 'public/images/delete.png', 'alt' => 'حذف', 'title' => 'حذف'), );
+		$n -> condition = array('clerk_id' => $clerk_id);
 		$n -> headers = array('study_degree' => array('format' => 'model[Lookup,getById($value,study_degree)]'), 'study_field' => array('format' => 'model[StudyField,getById($value)]'), 'date_get' => array('format' => 'model[Cal,getDate($value,Y)]'), 'place');
-		$a -> sfs = StudyField::getAll();
-		$a -> grid = $n -> run();
-		$a -> form = $f -> run();
-		$a -> title = 'اطلاعات تحصیلی ' . Profile::getName($b);
-		$a -> run('education/manage');
+		$view -> sfs = StudyField::getAll();
+		$view -> grid = $n -> run();
+		$view -> form = $form -> run();
+		$view -> title = 'اطلاعات تحصیلی ' . Profile::getName($clerk_id);
+		$view -> run('education/manage');
 	}
 
-	public function delete() {$b = CUrl::segment(3);
+	public function delete() {$clerk_id = CUrl::segment(3);
 		$o = CUrl::segment(4);
-		$d = new CDatabase;
-		$d -> delete(array('id' => $o));
-		CUrl::redirect('education/manage/' . $b);
+		$db = new CDatabase;
+		$db -> delete(array('id' => $o));
+		CUrl::redirect('education/manage/' . $clerk_id);
 	}
 
-	public function edit() {$b = CUrl::segment(3);
+	public function edit() {$clerk_id = CUrl::segment(3);
 		$o = CUrl::segment(4);
-		$d = new CDatabase;
-		if (($p = $d -> getByPk($o)) == FALSE)
+		$db = new CDatabase;
+		if (($p = $db -> getByPk($o)) == FALSE)
 			CUrl::redirect(404);
-		$a = new CView;
+		$view = new CView;
 		$q = new StudyField;
-		$a -> sfs = $q -> getByDegree($p -> study_degree);
-		$f = new CForm;
-		$f -> showFieldErrorText = FALSE;
+		$view -> sfs = $q -> getByDegree($p -> study_degree);
+		$form = new CForm;
+		$form -> showFieldErrorText = FALSE;
 		$l = new CJcalendar(FALSE);
-		if ($f -> validate()) {$m = $l -> mktime(0, 0, 0, 1, 1, (int)$_POST['y_get']) + 14400;
-			$d -> additional = array('date_get' => $m);
-			$d -> update(array('id' => $o));
-			CUrl::redirect('education/manage/' . $b);
-		}$a -> y = $l -> date('Y', $p -> date_get);
-		$a -> model = $p;
-		$a -> form = $f -> run();
-		$a -> title = 'ویرایش اطلاعات تحصیلی';
-		$a -> run('education/edit');
+		if ($form -> validate()) {$m = $l -> mktime(0, 0, 0, 1, 1, (int)$_POST['y_get']) + 14400;
+			$db -> additional = array('date_get' => $m);
+			$db -> update(array('id' => $o));
+			CUrl::redirect('education/manage/' . $clerk_id);
+		}$view -> y = $l -> date('Y', $p -> date_get);
+		$view -> model = $p;
+		$view -> form = $form -> run();
+		$view -> title = 'ویرایش اطلاعات تحصیلی';
+		$view -> run('education/edit');
 	}
 
 }
+	

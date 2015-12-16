@@ -1,20 +1,26 @@
 <?php
-$a = new Lookup;
-$b = $a -> getAll('study_degree');
+$lookup = new Lookup;
+$degrees = $lookup -> getAll('study_degree');
 $study_field = array();
-unset($b[1]);
-$b['default'] ='انتخاب';
+unset($degrees[1]);
+$degrees['default'] ='انتخاب';
 if (isset($_POST['error']) && $_POST['error'] == 1)
     $l = '';
 return array(
+'add' => array('study_degree' => array('type' => 'select', 'options' => $degrees, 'validation' => 'required'), 
+'study_field' => array('type' => 'select','options' => $study_field, 'validation' => 'required'),
+ '<label>تاریخ اخذ مدرک<span class="error">*</span></label>', 
+ 'y_get' => array('decoration' => FALSE, 'type' => 'select', 'options' =>Utility::years(60,0), 'validation' => 'required'), 
+  'place' => array('type' => 'text', 'in' => 'class="txt"', 'validation' => 'required'), 
+   'submit' => array('type' => 'submit', 'value' => 'ثبت', 'in' => 'class="btn btn-primary"')
+   ), 
 
-'manage' => array('<table id="add_tbl" class="create" style="display: none;">
+'manage' => array('<table id="add_tbl" class="create">
  <tr>
  <td>', 'error' => array('type' => 'hidden', 'value' => 0), 
- 'study_degree' => array('type' => 'select', 'options' => $b, 'validation' => 'required'), '</td><td>', 
+ 'study_degree' => array('type' => 'select', 'options' => $degrees, 'validation' => 'required'), '</td><td>', 
  'study_field' => array('type' => 'select','options' => $study_field, 'validation' => 'required'), '</td><td>', '<label>تاریخ اخذ مدرک<span class="error">*</span></label>', 'y_get' => array('decoration' => FALSE, 'type' => 'select', 'options' =>Utility::years(60,0), 'validation' => 'required'), '</td><td>', 'place' => array('type' => 'text', 'in' => 'class="txt"', 'validation' => 'required'), '</td></tr><tr><td>', 'submit' => array('type' => 'submit', 'value' => 'ثبت', 'in' => 'class="btn btn-primary"'), '</td></tr></table>'), 
  
- 'edit' => array('<table id="add_tbl" class="create"><tr><td>', 'reference' => 'model', 'study_degree' => array('type' => 'select', 'options' => $b, 'validation' => 'required'), '</td>
+ 'edit' => array('<table id="add_tbl" class="create"><tr><td>', 'reference' => 'model', 'study_degree' => array('type' => 'select', 'options' => $degrees, 'validation' => 'required'), '</td>
 <td>', 'study_field' => array('type' => 'select', 'validation' => 'required', 'options' => $study_field), '</td>
 <td>', '<label>تاریخ اخذ مدرک<span class="error">*</span></label>', 'y_get' => array('decoration' => FALSE, 'type' => 'select', 'options' => Utility::years(60,0), 'validation' => 'required', 'reference' => 'y', ), '</td><td>', 'place' => array('type' => 'text', 'in' => 'class="txt"', 'validation' => 'required'), '</td></tr></table>', 'submit' => array('type' => 'submit', 'value' => 'ثبت', 'in' => 'class="btn btn-primary"') ));
-?>

@@ -1,5 +1,5 @@
 <?php
-echo $frun;
+echo $form;
 if(isset($error))
     echo $error;
 ?>
