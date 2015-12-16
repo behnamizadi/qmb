@@ -3,7 +3,7 @@ ini_set('display_errors', 'On');
 error_reporting(E_ALL | E_STRICT);
 return array(
 	'defines'=>array(
-		'admin_email'=>'mgaghdam@gmail.com',
+		'admin_email'=>'behnamizadi@yahoo.com',
 	),
 	'homeUrl'=>'/qmb/',
 	'appName'=>'سامانه مدیریت منابع انسانی یاغیش- نسخه ۱.۱',
@@ -28,7 +28,7 @@ return array(
 			'database'=>'qmb',
 			'host'=>'localhost',
 			'user'=>'root',
-			'password'=>'',
+			'password'=>'4145633149',
 			'charset'=>'utf8',
 			'perfix'=>'tbl_'
 		),
