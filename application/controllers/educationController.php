@@ -1,6 +1,7 @@
 <?php
 class educationController {
-	public function add() {$a = new CView;
+	public function add() {
+		$a = new CView;
 		$b = CUrl::segment(3);
 		$c = 'SELECT COUNT(*) FROM tbl_education WHERE clerk_id=\'' . $b . '\'';
 		$d = new CDatabase;

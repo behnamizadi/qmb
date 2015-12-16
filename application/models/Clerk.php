@@ -1,6 +1,7 @@
 <?php
 class Clerk {
-	public function getClerkNumber($a) {$b = new CDatabase;
+	public function getClerkNumber($a) {
+		$b = new CDatabase;
 		$a = $b -> escape($a);
 		$c = "SELECT clerk_number FROM tbl_clerk WHERE id='$a'";
 		$d = $b -> queryOne($c);
@@ -9,7 +10,8 @@ class Clerk {
 		return FALSE;
 	}
 
-	public function getId($e) {$b = new CDatabase;
+	public function getId($e) {
+		$b = new CDatabase;
 		$e = $b -> escape($e);
 		$c = "SELECT id FROM tbl_clerk WHERE clerk_number='$e'";
 		$d = $b -> queryOne($c);
