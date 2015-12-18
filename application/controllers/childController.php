@@ -11,7 +11,7 @@ class childController {
 		$b = new CView;
 		$d = new CForm;
 		$d -> showFieldErrorText = FALSE;
-		if (isset($_POST['submit'])) {
+		if ($_SERVER['REQUEST_METHOD'] == 'POST')  {
 			if ($d -> validate()) {$_POST['error'] = 0;
 				$e = new CJcalendar;
 				$f = $e -> mktime(0, 0, 0, (int)$_POST['m_born'], (int)$_POST['d_born'], (int)$_POST['y_born']);
@@ -66,4 +66,3 @@ class childController {
 	}
 
 }
-?>
