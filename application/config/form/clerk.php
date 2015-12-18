@@ -1,4 +1,11 @@
 <?php
-return array('add' => array('<label for="clerk_number">کد پرسنلی<span class="error">*</span></label>', 'clerk_number' => array('type' => 'text', 'in' => 'class="txt" maxLength="25"', 'validation' => array('required,number'), 'decoration' => FALSE), 'submit' => array('type' => 'submit', 'in' => 'class="btn btn-primary"', 'value' => 'مرحله بعد')), 
-'edit' => array('<label for="clerk_number">کد پرسنلی<span class="error">*</span></label>', 'clerk_number' => array('type' => 'text', 'in' => 'class="txt" maxLength="25"', 'validation' => array('required,number'), 'decoration' => FALSE), 'search' => array('type' => 'button', 'value' => '...', 'decoration' => FALSE), 'submit' => array('type' => 'submit', 'in' => 'class="btn btn-default"', 'value' => 'مرحله بعد')));
+return array(
+'add' => array( 
+	'clerk_number' => array('type' => 'text', 'in' => ' maxLength="25"', 'validation' => array('required,number'), ), 
+	'submit' => array('type' => 'submit', 'in' => 'class="btn btn-primary"', 'value' => 'مرحله بعد')), 
+'edit' => array(
+	'clerk_number' => array('type' => 'text', 'in' => ' maxLength="25"', 'validation' => array('required,number'), ), 
+	'search' => array('type' => 'button', 'value' => '...', 'decoration' => FALSE), 
+	'submit' => array('type' => 'submit', 'in' => 'class="btn btn-default"', 'value' => 'مرحله بعد'))
+	);
 

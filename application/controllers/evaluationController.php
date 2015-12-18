@@ -9,7 +9,7 @@ class evaluationController {
 		} else {$e = TRUE;
 			$d = new CForm('batchindex');
 		}
-		if (isset($_POST['itisform'])) {
+		if ($_SERVER['REQUEST_METHOD'] == 'POST')  {
 			if (!isset($e)) {$f = new Clerk;
 				$g = $f -> getId($_POST['clerk_number']);
 				if (!$g) {$d -> setError('clerk_number', 'رکوردی با این کد پرسنلی وجود ندارد.');
