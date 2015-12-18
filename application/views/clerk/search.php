@@ -25,7 +25,7 @@ echo $spouse;
 endif;
 ?>
 <?php
-if(isset($spouse)):
+if(isset($childs)):
 ?>
 <h3>مشخصات فرزندان</h3>
 <?php

@@ -1,4 +1,4 @@
-<?php
+	<?php
 class childController {
 	public function manage() {
 		$a = CUrl::segment(3);

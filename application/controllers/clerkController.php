@@ -187,6 +187,7 @@ class clerkController {
 		$jj = new CDetail;
 		$view = new CView;
 		$db = new CDatabase;
+		
 		$db -> setTbl('tbl_profile');
 		$s = $db -> getByPk($clerkid);
 		if ($s) {$jj -> value = $s;
@@ -204,7 +205,7 @@ class clerkController {
 				$view -> spouse = $jj -> run();
 			}
 		}
-		$db -> setTbl('tbl_employment');
+		
 		
 		//-----------childs
 		$child_query = "SELECT * FROM tbl_child WHERE clerk_id='$clerkid'";
@@ -214,13 +215,12 @@ class clerkController {
 			$g -> operations = FALSE;
 			$g -> values = $childs;
 			$g -> headers = array('name', 'code_melli', 'date_born' => array('format' => 'model[Cal,getDate($value)]'), 'city_born');
-			if ($h) {$g -> noSort = array('study_degree', 'study_field', 'date_get', 'place');
-			}
 			$view -> childs = $g -> run();
 		}
 		//------------end childs
 		
 		
+		$db -> setTbl('tbl_employment');
 		$aa = $db -> getByPk($clerkid);
 		if ($aa) {$jj -> value = $aa;
 			$jj -> numberOfColumns = 4;

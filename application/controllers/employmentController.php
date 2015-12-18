@@ -1,18 +1,19 @@
 <?php
 class employmentController {
-    public function add() {$a = CUrl::segment(3);
-        $b = 'SELECT COUNT(*) FROM tbl_employment WHERE clerk_id=\'' . $a . '\'';
-        $c = new CDatabase;
-        if ($c -> countRows($b))
-            CUrl::redirect('employment/edit/' . $a);
+    public function add() {
+		$clerk_id = CUrl::segment(3);
+        $b = 'SELECT COUNT(*) FROM tbl_employment WHERE clerk_id=\'' . $clerk_id . '\'';
+        $db = new CDatabase;
+        if ($db -> countRows($b))
+            CUrl::redirect('employment/edit/' . $clerk_id);
         $d = CUrl::segment(4);
         $e = new CView;
-        if (Clerk::doesExist($a, $d)) {
+        if (Clerk::doesExist($clerk_id, $d)) {
 			$f = new CForm;
             $f -> type = 'multipart/form-data';
             $f -> showFieldErrorText = FALSE;
             $g = new CValidator;
-            if ($g -> unique('tbl_employment', 'clerk_id', $a) === FALSE) {$e -> error = 'برای این کد قبلا کارمندی سابقه اطلاعات شغلی وارد شده است. برای ویرایش اطلاعات سابقه شغلی کارمند مذکور روی این ' . CUrl::createLink('لینک', 'employment/edit/' . $a) . '‌ کلیک کنید';
+            if ($g -> unique('tbl_employment', 'clerk_id', $clerk_id) === FALSE) {$e -> error = 'برای این کد قبلا کارمندی سابقه اطلاعات شغلی وارد شده است. برای ویرایش اطلاعات سابقه شغلی کارمند مذکور روی این ' . CUrl::createLink('لینک', 'employment/edit/' . $clerk_id) . '‌ کلیک کنید';
                 $e -> run();
             }
             if (isset($_POST['submit'])) {$h = new CUpload;
@@ -23,18 +24,18 @@ class employmentController {
                     } elseif ($h -> errorType == CUpload::MAX_SIZE) {$f -> setError('picture', 'حداکثر اندازه عکس، ۵۰ کیلوبایت می‌باشد.');
                     } else {$f -> setError('picture', $h -> errorMessage);
                     }
-                } else {$i = $a . '_' . CGeneral::generateRandom(3) . '.' . $h -> extension;
+                } else {$i = $clerk_id . '_' . CGeneral::generateRandom(3) . '.' . $h -> extension;
                     if (!$h -> saveAs(ROOT . 'pics/' . $i)) {$f -> setError('picture', 'مشکلی در آپلود فایل پیش آمده است.');
                     }
                 }
-                if ($f -> validate() === TRUE && empty($j)) {$c = new CDatabase;
+                if ($f -> validate() === TRUE && empty($j)) {$db = new CDatabase;
                     $k = new CJcalendar;
                     $l = $k -> mktime(0, 0, 0, (int)$_POST['m_employed'], (int)$_POST['d_employed'], (int)$_POST['y_employed']) + 14400;
-                    $c -> additional = array('date_employed' => $l, 'picture' => $i, 'date_retired' => 0, 'clerk_id' => $a);
-                    $c -> insert();
-                    CUrl::redirect('education/add/' . $a . '/' . $d);
+                    $db -> additional = array('date_employed' => $l, 'picture' => $i, 'date_retired' => 0, 'clerk_id' => $clerk_id);
+                    $db -> insert();
+                    CUrl::redirect('education/add/' . $clerk_id . '/' . $d);
                 }
-            }$e -> title = 'اطلاعات پایه‌ای شغل ' . Profile::getName($a);
+            }$e -> title = 'اطلاعات پایه‌ای شغل ' . Profile::getName($clerk_id);
             $e -> form = $f -> run();
             $e -> run('employment/add');
         } else {$e -> error = 'مشکلی در فرایند ثبت به وجود آمده است.';
@@ -42,9 +43,10 @@ class employmentController {
         }
     }
 
-    public function edit() {$a = CUrl::segment(3);
-        $c = new CDatabase;
-        if (($m = $c -> getByPk($a)) == FALSE)
+    public function edit() {
+		$clerk_id = CUrl::segment(3);
+        $db = new CDatabase;
+        if (($m = $db -> getByPk($clerk_id)) == FALSE)
             CUrl::redirect(404);
         $e = new CView;
         $e -> model = $m;
@@ -53,13 +55,14 @@ class employmentController {
         $e -> d = $k -> date('d', $m -> date_employed);
         $e -> y = $k -> date('Y', $m -> date_employed);
         $n = new Clerk;
-        $e -> clerk_number = $n -> getClerkNumber($a);
+        $e -> clerk_number = $n -> getClerkNumber($clerk_id);
         $f = new CForm;
         $f -> dontClose = TRUE;
         $f -> showFieldErrorText = FALSE;
         $f -> type = 'multipart/form-data';
-        $i = Employment::getPicture($a);
-        if (isset($_POST['submit'])) {$h = new CUpload;
+        $i = Employment::getPicture($clerk_id);
+        if ($_SERVER['REQUEST_METHOD'] == 'POST')  {
+			$h = new CUpload;
             $h -> allowedType = array('gif', 'jpeg', 'jpg', 'png', 'jpe', 'pjpeg');
             $h -> maxSize = 52224;
             if ($h -> run('picture', FALSE) === FALSE) {
@@ -67,22 +70,22 @@ class employmentController {
                 } elseif ($h -> errorType == CUpload::MAX_SIZE) {$f -> setError('picture', 'حداکثر اندازه عکس، ۵۰ کیلوبایت می‌باشد.');
                 } else {$f -> setError('picture', $h -> errorMessage);
                 }
-            } elseif ($h -> error == UPLOAD_ERR_OK) {$i = $a . '_' . CGeneral::generateRandom(3) . '.' . $h -> extension;
+            } elseif ($h -> error == UPLOAD_ERR_OK) {$i = $clerk_id . '_' . CGeneral::generateRandom(3) . '.' . $h -> extension;
                 if (!$h -> saveAs(ROOT . 'pics/' . $i)) {$f -> setError('picture', 'مشکلی در آپلود فایل پیش آمده است.');
                 }
             }
             if ($f -> validate() === TRUE) {$k = new CJcalendar;
                 $l = $k -> mktime(0, 0, 0, (int)$_POST['m_employed'], (int)$_POST['d_employed'], (int)$_POST['y_employed']);
-                $c -> additional = array('date_employed' => $l, 'picture' => $i);
-                $c -> update(array('clerk_id' => $a));
-                $c -> setTbl('tbl_clerk');
-                $c -> update(array('id' => $a), array('clerk_number' => $_POST['clerk_number']));
+                $db -> additional = array('date_employed' => $l, 'picture' => $i);
+                $db -> update(array('clerk_id' => $clerk_id));
+                $db -> setTbl('tbl_clerk');
+                $db -> update(array('id' => $clerk_id), array('clerk_number' => $_POST['clerk_number']));
                 CUrl::redirect('clerk/manage');
             }
         }$e -> form = $f;
-        $e -> clerk_id = $a;
+        $e -> clerk_id = $clerk_id;
         $e -> fileName = $i;
-        $e -> title = 'ویرایش اطلاعات شغلی ' . Profile::getName($a);
+        $e -> title = 'ویرایش اطلاعات شغلی ' . Profile::getName($clerk_id);
         $e -> run('employment/edit');
     }
 
@@ -92,8 +95,8 @@ class employmentController {
         $o -> counter = TRUE;
         $o -> operations = FALSE;
         $o -> headers = array('clerk_number' => array('label' => 'کد پرسنلی'), 'name' => array('label' => 'نام'), 'lastname' => array('label' => 'نام خانوادگی'), 'bimeh' => array('label' => 'شماره بیمه'), );
-        $c = new CDatabase;
-        $o -> values = $c -> queryAll($b);
+        $db = new CDatabase;
+        $o -> values = $db -> queryAll($b);
         $e = new CView;
         $e -> grid = $o -> run();
         $e -> title = 'شماره بیمه کارمندان';
@@ -106,8 +109,8 @@ class employmentController {
         $o -> counter = TRUE;
         $o -> operations = FALSE;
         $o -> headers = array('clerk_number' => array('label' => 'کد پرسنلی'), 'name' => array('label' => 'نام'), 'lastname' => array('label' => 'نام خانوادگی'), 'date_employed' => array('format' => 'model[Cal,getDate($value)]', 'label' => 'تاریخ استخدام'), );
-        $c = new CDatabase;
-        $o -> values = $c -> queryAll($b);
+        $db = new CDatabase;
+        $o -> values = $db -> queryAll($b);
         $e = new CView;
         $e -> grid = $o -> run();
         $e -> title = 'تاریخ استخدام کارمندان';
@@ -121,8 +124,8 @@ class employmentController {
         $o -> counter = TRUE;
         $o -> operations = FALSE;
         $o -> headers = array('clerk_number' => array('label' => 'کد پرسنلی'), 'name' => array('label' => 'نام'), 'lastname' => array('label' => 'نام خانوادگی'), 'hesab' => array('label' => 'شماره حساب'), );
-        $c = new CDatabase;
-        $o -> values = $c -> queryAll($b);
+        $db = new CDatabase;
+        $o -> values = $db -> queryAll($b);
         $e = new CView;
         $e -> grid = $o -> run();
         $e -> title = 'شماره حساب کارمندان';
@@ -135,8 +138,8 @@ class employmentController {
         $o -> counter = TRUE;
         $o -> operations = FALSE;
         $o -> headers = array('clerk_number' => array('label' => 'کد پرسنلی'), 'name' => array('label' => 'نام'), 'lastname' => array('label' => 'نام خانوادگی'), 'bon' => array('label' => 'شماره بن‌کارت'), );
-        $c = new CDatabase;
-        $o -> values = $c -> queryAll($b);
+        $db = new CDatabase;
+        $o -> values = $db -> queryAll($b);
         $e = new CView;
         $e -> grid = $o -> run();
         $e -> title = 'شماره بن‌کارت کارمندان';
@@ -152,8 +155,8 @@ class employmentController {
         $o -> counter = TRUE;
         $o -> operations = FALSE;
         $o -> headers = array('clerk_number' => array('label' => 'کد پرسنلی'), 'name' => array('label' => 'نام'), 'lastname' => array('label' => 'نام خانوادگی'), 'date_employed' => array('format' => 'model[Cal,getDate($value)]', 'label' => 'تاریخ استخدام'), 'hesab' => array('label' => 'شماره حساب'), 'bon' => array('label' => 'شماره بن‌کارت'), 'bimeh' => array('label' => 'شماره بیمه'), );
-        $c = new CDatabase;
-        $o -> values = $c -> queryAll($b);
+        $db = new CDatabase;
+        $o -> values = $db -> queryAll($b);
         $e = new CView;
         $q = 'اطلاعات کلی کارمندان';
         $e -> title = $q;
