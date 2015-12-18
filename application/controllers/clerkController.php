@@ -192,7 +192,12 @@ class clerkController {
 		$s = $db -> getByPk($clerkid);
 		if ($s) {$jj -> value = $s;
 			$jj -> numberOfColumns = 4;
-			$jj -> headers = array('name', 'lastname', 'father', 'date_born' => array('format' => 'model[Cal,getDate($value)]'), 'city_born', 'city_sodur', 'sh_sh', 'code_melli', 'religion', 'sex' => array('format' => 'type[1:مرد,2:زن]'), 'sarbazi' => array('format' => 'model[Lookup,getById($value,sarbazi)]'), 'married' => array('format' => 'type[1:مجرد,2:متاهل]'), 'tel', 'mobile', 'father_tel', 'takafol', 'address', 'father_address','religion');
+			$jj -> headers = array('name', 'lastname', 'father', 'date_born' => array('format' => 'model[Cal,getDate($value)]'),
+			 'city_born', 'city_sodur', 'sh_sh', 'code_melli', 'religion', 
+			 'sex' => array('format' => 'type[1:مرد,2:زن]'), 
+			 'sarbazi' => array('format' => 'model[Lookup,getById($value,sarbazi)]'), 
+			 'married' => array('format' => 'type[1:مجرد,2:متاهل]'), 
+			 'tel', 'mobile', 'father_tel', 'takafol', 'address', 'father_address','religion');
 			$view -> profile = $jj -> run();
 		}
 		if ($s -> married == 2) {
@@ -214,7 +219,7 @@ class clerkController {
 			$g = new CGrid;
 			$g -> operations = FALSE;
 			$g -> values = $childs;
-			$g -> headers = array('name', 'code_melli', 'date_born' => array('format' => 'model[Cal,getDate($value)]'), 'city_born');
+			$g -> headers = array('name', 'code_melli', 'date_born' => array('format' => 'model[Cal,getDate($value)]'), 'city_born');	
 			$view -> childs = $g -> run();
 		}
 		//------------end childs

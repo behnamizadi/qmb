@@ -61,7 +61,7 @@ class profileController {
 			}
 		}$j -> additional = $l;
 		$c = new CView;
-		$c -> body = $j -> run();
+		$c -> form = $j -> run();
 		$c -> run('profile/view');
 	}
 
@@ -78,7 +78,7 @@ class profileController {
 		$f = new CForm;
 		$f -> dontClose = TRUE;
 		$f -> showFieldErrorText = FALSE;
-		if (isset($_POST['submit'])) {
+		if ($_SERVER['REQUEST_METHOD'] == 'POST')  {
 			if (isset($_POST['married']) && $_POST['married'] == 2)
 				$c -> takafol_display = '</td><td><div id="takafol_display"><label>تعداد تحت تفکل<span class="error">*</span></label>';
 			if ($f -> validate() === TRUE) {$g = new CJcalendar;
