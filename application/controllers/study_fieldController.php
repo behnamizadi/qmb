@@ -1,12 +1,14 @@
 <?php
 class study_fieldController {
-	public function add() {$a = new CForm;
+	public function add() {
+		$a = new CForm;
 		$a -> showFieldErrorText = FALSE;
 		$a -> dontClose = TRUE;
 		$b = new CView;
 		$c = CUrl::segment(3);
 		if (isset($_POST['submit'])) {
-			if (empty($_POST['study_degree'])) {$b -> error = '<span class="error">لطفا حداقل یکی از مقاطع تحصیلی را انتخاب نمایید.</span>';
+			if (empty($_POST['study_degree'])) {
+				$b -> error = '<span class="error">لطفا حداقل یکی از مقاطع تحصیلی را انتخاب نمایید.</span>';
 				$a -> setError('study_degree', 'لطفا حداقل یکی از مقاطع تحصیلی را انتخاب نمایید.');
 			}
 			if ($a -> validate() === TRUE) {echo 't';
@@ -19,8 +21,9 @@ class study_fieldController {
 				else
 					CUrl::redirect('study_field/manage/' . $c);
 			}
-		}$b -> form = $a -> run();
+		}
 		$b -> study_degree = $c;
+		$b -> form = $a -> run();
 		$b -> title = 'افزودن رشته تحصیلی';
 		$b -> run('study_field/add');
 	}
@@ -32,11 +35,12 @@ class study_fieldController {
 		$b -> run('study_field/filter');
 	}
 
-	public function manage() {$e = CUrl::segment(3);
+	public function manage() {
+		$e = CUrl::segment(3);
 		if (empty($e))
 			CUrl::redirect('study_field/filter');
 		$f = new CGrid;
-		$f -> operations = array('view' => array('href'=>"study_field/view/".$value->id."/$e" , 'alt' => 'مشاهده', 'title' => 'مشاهده و ویرایش'), 'delete'=>array('href'=>"study_field/delete/".$value->id."/$e" ,'alt' => 'حذف', 'title' => 'حذف'), );
+		$f->operations = array('view' => FALSE);
 		$f -> condition = array('where' => array('study_degree' => $e));
 		$f -> headers = array('title', 'study_degree' => array('format' => 'model[Lookup,getById($value,study_degree)]', 'label' => 'مقطع تحصیلی'));
 		$b = new CView;
@@ -47,7 +51,10 @@ class study_fieldController {
 		$b -> run('study_field/manage');
 	}
 
-	public function view() {$h = CUrl::segment(3);
+	
+	
+		public function edit() {
+		$h = CUrl::segment(3);
 		$e = CUrl::segment(4);
 		$d = new CDatabase;
 		$i = $d -> getByPk($h);
@@ -65,7 +72,8 @@ class study_fieldController {
 		$b -> model = $i;
 		$b -> title = 'جزئیات رشته تحصیلی';
 		$b -> study_degree = $e;
-		$b -> run('study_field/add');
+		$b -> form = $a->run();
+		$b -> run('study_field/edit');
 	}
 
 	public function delete() {$h = CUrl::segment(3);

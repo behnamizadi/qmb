@@ -6,5 +6,4 @@ else {
 	$url = 'filter';
 }
 ?>
-<a href="<?php echo PHP40::get()->homeUrl;?>index.php/study_field/<?php echo $url; ?>" class="box">بازگشت</a></p>
-</form>
+<a href="<?php echo PHP40::get()->homeUrl;?>index.php/study_field/<?php echo $url; ?>" class="box">بازگشت</a>

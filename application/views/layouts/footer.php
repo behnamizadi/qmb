@@ -18,15 +18,15 @@ if (null!==$name->getName()) $username=$name->getName();
 <button class="btn btn-default btn-xs"><?php echo $username; ?></button>
 </div>
 <?php
-$notice = new Notice;
+
 echo '<div class="col-md-3 pull-left">';
-if ($notice -> getAsr())
+if (Notice ::getAsr())
 {
     
 	echo CUrl::createLink('تمدید باجه عصر!', 'notice_asr/manage','class="btn btn-xs btn-danger"');
    
 }
-if ($notice -> getClerk())
+if (Notice :: getClerk())
 {
  
 	echo CUrl::createLink('تمدید قرارداد کارمند!', 'notice_clerk/manage','class="btn btn-xs btn-danger"');
